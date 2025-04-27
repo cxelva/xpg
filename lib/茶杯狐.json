@@ -1,0 +1,9 @@
+{
+
+    //"分类url":"https://www.lhyacht.com/vodshow/area/{area}/by/{by}/id/{cateId}/lang/{lang}/page/{catePg}/year/{year}.html",
+    "分类url":"https://www.lhyacht.com/movie/fenlei{cateId}-{catePg}.html",
+    "分类":"电影$1#剧集$2#综艺$3#动漫$4",
+    "线路标题":"🍎小苹果影视+<span>&&Text</small>[替换:暴风资源>>🍎小苹果影视#高清云播>>🍎小苹果影视#线路3>>🍎小苹果影视3#线路4>>🍎小苹果影视4#线路5>>🍎小苹果影视5#</span><small>>>>线路共]+",
+    "搜索url":"https://www.lhyacht.com/vodsearch/wd/{wd}.html"
+
+}

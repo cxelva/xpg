@@ -1,0 +1,5 @@
+{
+        "播放数组": "<tbody>&&</tbody>",
+        "分类": "电影$dianying#动画$donghua#国产剧$guochanju#美欧剧$meiouju#日韩剧$rihanju",
+        "分类url": "https://www.foxjun.com/channel/{cateId}.html?apage1={catePg}"
+      }
