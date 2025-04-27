@@ -1,0 +1,77 @@
+{
+      "spider": "./jar/iZZiO2rkmy5g",
+  "wallpaper": "美美影视提示：不要外传！不要外传！不要外传！",
+    "logo": "https://s1.aigei.com/prevfiles/68f66953f939418b93cb63dd604cf560.gif?e=2051020800&token=P7S2Xpzfz11vAkASLTkfHN7Fw-oOZBecqeJaxypL:zQuZVbKvUMUYt39j8bSGJnsj__k=",
+  "sites": [
+      
+			        {
+      "key": "梦梦影视",
+      "name": "美美影视提示：外传后果自负！ 不要外传！不要外传！不要外传！ 点我换源",
+      "type": 3,
+      "api": "csp_JiangVideo",
+      "playerType": 2,
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1
+    },
+	        {
+      "key": "点点影视",
+      "name": "点点影视",
+      "type": 3,
+      "api": "csp_MiMei",
+      "playerType": 2,
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1
+    },
+    {
+      "key": "星星影视",
+      "name": "星星影视",
+      "type": 3,
+      "api": "csp_J91",
+      "playerType": 2,
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1
+    },
+        {
+      "key": "明明影视",
+      "name": "明明影视",
+      "type": 3,
+      "api": "csp_SexTiger",
+      "playerType": 2,
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1
+    },
+    	    {
+      "key": "领领影视",
+      "name": "领领影视",
+      "type": 3,
+      "api": "csp_Cg51",
+      "playerType": 2,
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1
+    },
+    {"key":"乐乐影视","name":"乐乐影视（移动)","type":1,"api":"https://lbapi9.com/api.php/provide/vod/","quickSearch":1,"searchable":1,"filterable":1},
+    {"key": "诚诚影视","name":"诚诚影视（移动)","type": 1,"searchable": 1,"quickSearch": 1,"filterable": 1,"api":"http://lbapiby.com/api.php/provide/vod/"},
+    {"key": "天天影视","name": "天天影视（移动)","type":0,"api": "https://www.pgxdy.com/api/xml.php","searchable": 1,"quickSearch": 1,"filterable": 1},
+    {"key": "香香影视","name": "香香影视（移动)","type":0,"api": "https://www.gdlsp.com/api/xml.php","searchable": 1,"quickSearch": 1,"filterable": 1},
+    {"key": "玲玲影视","name": "玲玲影视（移动)","type":0,"api": "https://www.xrbsp.com/api/xml.php","searchable": 1,"quickSearch": 1,"filterable": 1},
+    {"key":"非非影视","name":"非非影视（移动)","type":1,"api":"https://apilsbzy1.com/api.php/provide/vod/?ac=list","searchable":1,"filterable":1},
+    {"key":"香香影视","name":"香香影视（移动)","type":1,"api":"https://naixxzy.com/api.php/provide/vod/?ac=list","searchable":1,"filterable":1},
+    {"key":"飞飞影视","name":"飞飞影视（移动)","type":1,"api":"https://155api.com/api.php/provide/vod/?ac=list","searchable":1,"filterable":1},
+    {"key": "3影视","name":"丝丝影视（移动)","type":1,"api":"https://www.siwazyw.tv/api.php/provide/vod/","searchable": 1,"quickSearch": 1,"filterable": 1},
+    {"key": "ss19","name": "易易影视（移动)","type":1,"api": "https://api.yikanapi.com/api.php/provide/vod/","searchable": 1,"quickSearch": 1},
+    {"key": "源源影视","name": "源源影视（电信)","type":0,"api": "https://www.msnii.com/api/xml.php","searchable": 1,"quickSearch": 1,"filterable": 1},
+    {"key":"didizy.com","name":"滴滴影视（电信)","type":1,"api":"https://api.ddapi.cc/api.php/provide/vod/?ac=list","searchable":1,"filterable":1},
+    {"key":"地地资源","name":"地地影视（电信)","type":0,"api":"https://dadiapi.com/api.php","searchable":1,"quickSearch":0},
+    {"key":"www.caoliuzyw.com","name":"榴榴影视（电信)","type":1,"api":"https://www.caoliuzyw.com/api.php/provide/vod/?ac=list","searchable":1,"filterable":1},
+    {"key": "1影视","name": "百百影视（电信)","type":1,"api": "https://caiji.putaozyw.net/inc/apijson_vod.php","searchable": 1,"quickSearch": 1,"filterable": 0},
+    {"key":"玉玉资源","name":"玉玉影视（电信)","type":0,"api":"https://apiyutu.com/api.php/provide/vod/at/xml/","searchable":1,"style":{"type":"rect","ratio":1.333},"quickSearch":1},
+    {"key": "ss18","name": "猫猫影视（电信)","type":1,"api": "https://api.maozyapi.com/inc/apijson_vod.php","searchable": 1,"quickSearch": 0,"filterable": 0},
+    {"key": "ss9","name": "国国影视（电信)","type":1,"api": "https://api.sexnguon.com/api.php/provide/vod/","searchable": 1,"quickSearch": 1,"filterable": 1},
+    {"key":"senlinzy.com","name":"林林影视（电信)","type":1,"api":"https://slapibf.com/api.php/provide/vod/?ac=list","searchable":1,"filterable":1}
+  ]
+}
