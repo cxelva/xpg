@@ -113,6 +113,22 @@
       "api": "csp_Jpys",
       "ext": "https://m.hkybqufgh.com,https://m.sizhengxt.com,https://m.9zhoukj.com,https://m.sizhengxt.com,https://m.jiabaide.cn"
     },
+    {
+      "key": "金牌",
+      "name": "🍎金牌🔹蓝光",
+      "type": 3,
+      "api": "csp_AppQi",
+      "searchable": 1,
+      "changeable": 1,
+      "ext": {
+        "url": "https://qj4.catbb.xyz",
+        "dataKey": "eecbio48dsq13kkk",
+        "dataIv": "eecbio48dsq13kkk",
+        "search": "searchList4",
+        "init": "initV122",
+        "ua": "okhttp/3.10.0"
+      }
+    },
      {
       "name": "🍎小黄🔹影视",
       "key": "AppV6Xhr",
@@ -285,10 +301,10 @@
       "api": "./lib/永乐视频.js"
     },
     {
-      "key": "金牌123",
-      "name": "🍎金牌🔹影视",
+      "key": "独播库",
+      "name": "🍎播库🔹影视",
       "type": 3,
-      "api": "./lib/金牌影院.js"
+      "api": "./lib/VmOlRys8_vip.js"
     },
             {
       "key": "八戒影视",
@@ -384,6 +400,12 @@
       "type": 3,
       "api": "csp_Hxq",
       "ext": "https://fishapi.wya6.com/fish/fishhxq.php"
+    },
+        {
+      "key": "星辰影院",
+      "name": "🍎星辰🔹影视",
+      "type": 3,
+      "api": "./lib/星辰影院.js"
     },
      {
       "key": "移动",
@@ -882,39 +904,6 @@
         "体育赛事",
         "预告片"
       ]
-    },
-         {
-      "key": "Zwqf",
-      "name": "🍎醉挽🔹4K",
-      "type": 3,
-      "api": "csp_Zwqf",
-      "jar": "https://tc-new.z.wiki/autoupload/iYHTWVx6T8RrCmqdGD6MOdiO_OyvX7mIgxFBfDMDErs/20260419/IN6D/fish04192345.php;md5;e5f2a9bc2e0d4b02b9030acbeda6981b",
-      "searchable": 1,
-      "ext": {
-        "url": "http://我不是.摸鱼儿.com/api/feng/moyu.php",
-        "token": "xiaoman666"
-      }
-    },
-    {
-      "key": "xmwq",
-      "name": "🍎小满🔹4K",
-      "type": 3,
-      "api": "csp_Zwqf",
-      "jar": "https://tc-new.z.wiki/autoupload/iYHTWVx6T8RrCmqdGD6MOdiO_OyvX7mIgxFBfDMDErs/20260419/IN6D/fish04192345.php;md5;e5f2a9bc2e0d4b02b9030acbeda6981b",
-      "searchable": 1,
-      "ext": {
-        "url": "http://我不是.摸鱼儿.com/api/feng/xiaoman.php",
-        "token": "xiaoman666"
-      }
-    },
-    {
-      "key": "zhiqiu",
-      "name": "🍎听风🔹4K",
-      "type": 3,
-      "api": "csp_zhiqiu",
-      "jar": "https://tc-new.z.wiki/autoupload/iYHTWVx6T8RrCmqdGD6MOdiO_OyvX7mIgxFBfDMDErs/20260419/IN6D/fish04192345.php;md5;e5f2a9bc2e0d4b02b9030acbeda6981b",
-      "searchable": 1,
-      "ext": "https://fishapi.wya6.com/fish/zhiqiu.php"
     },
     {
       "key": "曼波动漫",
