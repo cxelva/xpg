@@ -13,7 +13,7 @@
     },
     {
       "key": "配置中心",
-      "name": "🍎配置🔹中心",
+      "name": "🍎云盘🔹配置",
       "type": 3,
       "api": "csp_Config",
       "searchable": 0,
@@ -267,18 +267,15 @@
       "type": 3
     },
     {
-      "key": "农民影视",
-      "name": "🍎农民🔹影视",
-      "type": 3,
-      "api": "csp_Wwys",
-      "ext": "https://vip.wwgz.cn:5200"
-    },
-    {
-      "key": "云播影视",
+      "key": "云播",
       "name": "🍎云播🔹影视",
       "type": 3,
-      "api": "csp_Tvyb",
-      "ext": "http://www.tvyb03.com"
+      "api": "csp_AppFox",
+      "searchable": 1,
+      "changeable": 1,
+      "ext": {
+        "host": "http://app.hktvyb.cc"
+      }
     },
     {
       "key": "三秋影视",
@@ -1092,16 +1089,6 @@
         "type": "list"
       }
     },
-    {
-      "key": "瓜子体育",
-      "name": "⚽瓜子🔹体育",
-      "type": 3,
-      "api": "csp_GuaziTY",
-      "jar": "./xpg.jar",
-      "style": {
-        "type": "list"
-      }
-    },
         {
       "key": "88看球",
       "name": "⚽88🔹看球",
@@ -1180,6 +1167,15 @@
       "filterable": 1,
       "changeable": 1,
       "api": "./lib/preview?name=jhdj.js"
+    },
+     {
+      "key": "世界听书",
+      "name": "🌸世界🔹听书",
+      "type": 3,
+      "api": "csp_TingShijie",
+      "style": {
+        "type": "list"
+      }
     },
     {
       "key": "豆瓣4",
