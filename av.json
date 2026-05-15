@@ -1,0 +1,104 @@
+{
+  "wallpaper": "美美影视提示：不要外传！不要外传！不要外传！",
+    "logo": "https://s1.aigei.com/prevfiles/68f66953f939418b93cb63dd604cf560.gif?e=2051020800&token=P7S2Xpzfz11vAkASLTkfHN7Fw-oOZBecqeJaxypL:zQuZVbKvUMUYt39j8bSGJnsj__k=",
+  "sites": [
+       {
+      "key": "zp100",
+      "name": "传播后果自负！ 点我换源！",
+      "type": 0,
+      "api": "https://lbapi9.com/api.php/provide/vod/at/xml/",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 0
+    },
+           {
+      "key": "直播",
+      "name": "花花-直连",
+      "type": 3,
+      "searchable": 0,
+      "changeable": 0,
+      "api": "https://gh-proxy.org/https://raw.githubusercontent.com/Jsnzkpg/Jsnzkpg/Jsnzkpg/stymei/zbzdb.js",
+      "ext": "./txt/zbzdb.json"
+    },
+    {
+        "key":"vnzyz.com",
+        "name":"越南-直连",
+        "type":1,
+        "api":"https://vnzyz.com/api.php/provide/vod/?ac=list",
+        "searchable":1,
+        "filterable":1
+        },
+    {"key":"jingpinx.com","name":"精品-翻墙","type":1,"api":"https://www.jingpinx.com//api.php/provide/vod/?ac=list","searchable":1,"filterable":1},
+   {
+      "key": "656b916e-94fe-5b57-b300-80ccc1be1cea",
+      "name": "辣椒-翻墙",
+      "type": 1,
+      "api": "https://apilj.com/api.php/provide/vod/at/json/",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
+      "key": "b0684274-ce9e-5d4f-bf54-f61afbdaf49d",
+      "name": "玉兔-翻墙",
+      "type": 1,
+      "api": "https://apiyutu.com/api.php/provide/vod/?ac=list",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
+      "key": "70f4c18c-3276-50f1-adaa-85614f5441eb",
+      "name": "森林-翻墙",
+      "type": 1,
+      "api": "https://slapibf.com/api.php/provide/vod/?ac=list",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
+      "key": "9d8974ba-ddfc-5e53-b008-29f37e5fc88b",
+      "name": "155-翻墙",
+      "type": 1,
+      "api": "https://155api.com/api.php/provide/vod/?ac=list",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
+      "key": "a93050f8-e282-521d-9c92-cdbbf5add205",
+      "name": "色猫-翻墙",
+      "type": 1,
+      "api": "https://caiji.semaozy.net/inc/apijson_vod.php",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+    {
+      "key": "07b96ce7-0791-5f19-9321-ba6085145eef",
+      "name": "91麻豆-翻墙",
+      "type": 0,
+      "api": "https://91md.me/api.php/provide/vod/at/xml/",
+      "searchable": 2,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+          {"key":"非非影视","name":"非非-翻墙","type":1,"api":"https://apilsbzy1.com/api.php/provide/vod/?ac=list","searchable":1,"filterable":1},
+    {"key": "3影视","name":"丝丝-翻墙","type":1,"api":"https://www.siwazyw.tv/api.php/provide/vod/","searchable": 1,"quickSearch": 1,"filterable": 1},
+    {"key": "诚诚影视","name":"诚诚-翻墙","type": 1,"searchable": 1,"quickSearch": 1,"filterable": 1,"api":"http://lbapiby.com/api.php/provide/vod/"},
+    {"key": "ss19","name": "易易-翻墙","type":1,"api": "https://api.yikanapi.com/api.php/provide/vod/","searchable": 1,"quickSearch": 1},
+    {"key":"didizy.com","name":"滴滴-翻墙","type":1,"api":"https://api.ddapi.cc/api.php/provide/vod/?ac=list","searchable":1,"filterable":1},
+    {"key":"地地资源","name":"地地-翻墙","type":0,"api":"https://dadiapi.com/api.php","searchable":1,"quickSearch":0},
+    {"key":"www.caoliuzyw.com","name":"榴榴-翻墙","type":1,"api":"https://www.caoliuzyw.com/api.php/provide/vod/?ac=list","searchable":1,"filterable":1},
+    {"key": "1影视","name": "百百-翻墙","type":1,"api": "https://caiji.putaozyw.net/inc/apijson_vod.php","searchable": 1,"quickSearch": 1,"filterable": 0},
+            {
+        "key":"19q.cc",
+        "name":"麻豆-翻墙",
+        "type":1,
+        "api":"https://19q.cc/api.php/provide/vod/",
+        "searchable":1,
+        "filterable":1
+        },
+    {"key": "ss9","name": "国国-翻墙","type":1,"api": "https://api.sexnguon.com/api.php/provide/vod/","searchable": 1,"quickSearch": 1,"filterable": 1}
+  ]
+}
