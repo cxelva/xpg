@@ -564,6 +564,17 @@
       "changeable": 0,
       "ext": {}
     },
+	   {
+      "key": "文才",
+      "name": "🍎文才🔹影视",
+      "type": 3,
+      "api": "./py/文才影视.py",
+      "searchable": 1,
+      "changeable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "playerType": 2
+    },
 	  {
       "key": "华数",
       "name": "🍎华数🔹TV",
