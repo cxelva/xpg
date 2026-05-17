@@ -66,6 +66,19 @@
       "api": "./lib/fy.py"
     },
 	      {
+      "key": "移动",
+      "name": "🍎移动🔹视轨",
+      "type": 3,
+      "api": "csp_PanWebSharePT",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "changeable": 0,
+      "style": {
+        "type": "list"
+      }
+    },
+	      {
       "key": "动漫天堂",
       "name": "🍎漫堂🔹APP",
       "type": 3,
@@ -311,7 +324,7 @@
     },
     {
       "key": "奴娜",
-      "name": "🍎奴娜丨APP",
+      "name": "🍎奴娜🔹APP",
       "type": 3,
       "api": "csp_AppYsV2",
       "searchable": 1,
@@ -331,7 +344,7 @@
     },
     {
       "key": "飞飞",
-      "name": "🍎飞飞丨APP",
+      "name": "🍎飞飞🔹APP",
       "type": 3,
       "api": "csp_AppYsV2",
       "searchable": 1,
