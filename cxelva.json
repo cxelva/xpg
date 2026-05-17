@@ -508,13 +508,6 @@
       "api": "csp_Tvyb",
       "ext": "http://www.tvyb03.com"
     },
-	      {
-      "key": "韩圈",
-      "name": "☕韩圈🔹蓝光",
-      "type": 3,
-      "api": "csp_Hxq",
-      "ext": "http://www.小不点.com/api/2026/fishhxq.php"
-    },
 	   {
       "key": "新韩剧网",
       "name": "☕韩剧🔹专区",
