@@ -82,14 +82,16 @@
       "key": "四叶草",
       "name": "🍎四叶🔹APP",
       "type": 3,
-      "api": "csp_App99",
+      "api": "csp_AppGet",
+	  "jar": "./demo.jpg",
       "ext": "https://yzysap.oss-cn-hangzhou.aliyuncs.com/sss.txt|wNCwbXzr0Bm6cS2C|V122|okhttp/3.10.0"
     },
     {
       "key": "猪猪",
       "name": "🍎猪猪🔹APP",
       "type": 3,
-      "api": "csp_App99",
+      "api": "csp_AppGet",
+	  "jar": "./demo.jpg",
       "ext": "https://qj4.catbb.xyz|eecbio48dsq13kkk|V122|okhttp/3.10.0"
     },
     {
@@ -98,7 +100,8 @@
       "type": 3,
       "searchable": 1,
       "changeable": 1,
-      "api": "csp_App99",
+      "api": "csp_AppGet",
+	  "jar": "./demo.jpg",
       "ext": "https://aysappto.oss-cn-chengdu.aliyuncs.com/q23.txt|nzEqOgYk3QzHuEP8|V122|okhttp/3.10.0"
     },
     {
