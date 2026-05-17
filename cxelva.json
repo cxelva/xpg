@@ -1785,21 +1785,21 @@
       "name": "🍎小腾｜1920",
       "type": 3,
       "api": "./lib/drpy2.min.js",
-      "ext": "./lib/小腾.png"
+      "ext": "./py/小腾.png"
     },
     {
       "key": "小芒",
       "name": "🍎小芒｜1920",
       "type": 3,
       "api": "./lib/drpy2.min.js",
-      "ext": "./lib/小芒.png"
+      "ext": "./py/小芒.png"
     },
     {
       "key": "小爱",
       "name": "🍎小爱｜1920",
       "type": 3,
       "api": "./lib/drpy2.min.js",
-      "ext": "./lib/小爱.png"
+      "ext": "./py/小爱.png"
     }
   ],
 "lives": [
