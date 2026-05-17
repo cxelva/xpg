@@ -1779,27 +1779,6 @@
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1
-    },
-	      {
-      "key": "小腾",
-      "name": "🍎小腾｜1920",
-      "type": 3,
-      "api": "https://gh-proxy.com/https://raw.githubusercontent.com/IY-CPU/IY/main/lib/drpy2.min.js",
-      "ext": "./py/小腾.png"
-    },
-    {
-      "key": "小芒",
-      "name": "🍎小芒｜1920",
-      "type": 3,
-      "api": "https://gh-proxy.com/https://raw.githubusercontent.com/IY-CPU/IY/main/lib/drpy2.min.js",
-      "ext": "./py/小芒.png"
-    },
-    {
-      "key": "小爱",
-      "name": "🍎小爱｜1920",
-      "type": 3,
-      "api": "https://gh-proxy.com/https://raw.githubusercontent.com/IY-CPU/IY/main/lib/drpy2.min.js",
-      "ext": "./py/小爱.png"
     }
   ],
 "lives": [
