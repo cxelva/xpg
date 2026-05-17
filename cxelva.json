@@ -570,15 +570,6 @@
       "filterable": 1,
       "playerType": 2
     },
-	   {
-      "key": "移动",
-      "name": "🍎移动🔹影视",
-      "type": 3,
-      "api": "csp_YDjisu",
-	  "jar": "./yd.jar",
-      "searchable": 1,
-      "quickSearch": 1
-    },
     {
       "key": "骚火影视",
       "name": "🍎骚火🔹影视",
