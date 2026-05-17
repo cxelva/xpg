@@ -66,19 +66,6 @@
       "api": "./lib/fy.py"
     },
 	      {
-      "key": "移动",
-      "name": "🍎移动🔹视轨",
-      "type": 3,
-      "api": "csp_PanWebSharePT",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "changeable": 0,
-      "style": {
-        "type": "list"
-      }
-    },
-	      {
       "key": "动漫天堂",
       "name": "🍎漫堂🔹APP",
       "type": 3,
@@ -678,6 +665,19 @@
       "searchable": 1,
       "quickSearch": 0,
       "filterable": 0
+    },
+	    {
+      "key": "移动",
+      "name": "🍎移动🔹视轨",
+      "type": 3,
+      "api": "csp_PanWebSharePT",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "changeable": 0,
+      "style": {
+        "type": "list"
+      }
     },
     {
       "key": "荐片",
