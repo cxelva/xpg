@@ -45,6 +45,13 @@
       "quickSearch": 1,
       "filterable": 1
     },
+	      {
+      "key": "橘子py",
+      "name": "🍎橘子🔹影视",
+      "type": 3,
+      "api": "./lib/jd4k.py",
+      "ext": "https://dmc.yy-fun.cc/feiapp"
+    },
     {
       "key": "三秋影视",
       "name": "🍎三秋🔹APP",
