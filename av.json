@@ -11,6 +11,14 @@
       "quickSearch": 1,
       "filterable": 0
     },
+     {
+      "key": "大奶子资源",
+      "name": "🔞大奶子-直连",
+      "type": 1,
+      "api": "https://apidanaizi.com/api.php/provide/vod/?ac=list",
+      "searchable": 1,
+      "quickSearch": 1
+    },
            {
       "key": "直播",
       "name": "花花-直连",
