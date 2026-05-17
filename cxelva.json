@@ -52,6 +52,19 @@
       "api": "./lib/jd4k.py",
       "ext": "https://dmc.yy-fun.cc/feiapp"
     },
+	      {
+      "key": "皮皮虾",
+      "name": "🍎皮虾🔹影视",
+      "type": 3,
+      "api": "./lib/ppx.py",
+      "ext": "http://154.94.224.98:8762"
+    },
+	      {
+      "key": "fy",
+      "name": "🍎枫叶🔹影视",
+      "type": 3,
+      "api": "./lib/fy.py"
+    },
     {
       "key": "三秋影视",
       "name": "🍎三秋🔹APP",
