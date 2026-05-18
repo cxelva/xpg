@@ -12,21 +12,12 @@
       "filterable": 0
     },
      {
-      "key": "大奶子资源",
-      "name": "🔞大奶子-直连",
+      "key": "美美资源",
+      "name": "美美-直连",
       "type": 1,
       "api": "https://apidanaizi.com/api.php/provide/vod/?ac=list",
       "searchable": 1,
       "quickSearch": 1
-    },
-           {
-      "key": "直播",
-      "name": "花花-直连",
-      "type": 3,
-      "searchable": 0,
-      "changeable": 0,
-      "api": "https://gh-proxy.org/https://raw.githubusercontent.com/Jsnzkpg/Jsnzkpg/Jsnzkpg/stymei/zbzdb.js",
-      "ext": "./txt/zbzdb.json"
     },
     {
         "key":"vnzyz.com",
