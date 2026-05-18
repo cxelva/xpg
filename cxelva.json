@@ -344,6 +344,7 @@
       "name": "🍎云播🔹APP",
       "type": 3,
       "api": "csp_AppFox",
+		"jar": "https://ym.wya6.cn/tz/wyxs.php;md5;c93ec11c288c461bc5bfded3e1424529",
       "searchable": 1,
       "changeable": 1,
       "ext": {
