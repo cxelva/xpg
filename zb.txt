@@ -101,11 +101,13 @@ CGTN,http://bobohome.ignorelist.com:20247/migu?id=609017205.m3u8
 
 
 🍎卫视频道,#genre#,DE=3
+北京卫视,http://hlsztemgsplive.miguvideo.com:8080/migu/kailu/bjws/51/20251127/index.m3u8?msisdn=f863b466d46e2ff46401579155d4a125&mdspid=&spid=600697&netType=4&sid=5910022306&pid=2028597139&timestamp=20260518113832&Channel_ID=0116_2600037000-99000-200300220105332&ProgramID=630287636&ParentNodeID=-99&assertID=5910022306&client_ip=113.6.228.33&SecurityKey=20260518113832&promotionId=&mvid=5101042960&mcid=500020&playurlVersion=WX-A1-9.5.1-RELEASE&userid=1834153345&jmhm=f863b466d46e2ff46401579155d4a125&videocodec=h264&appCode=miguvideo_android&bean=mgspad&tid=android&conFee=0&encrypt=d05bae390749ef8047058fb4a86f997e
 北京卫视,http://60.10.139.113:8801/hls/20/index.m3u8
 北京卫视,http://36.110.54.118:866/hls/51/index.m3u8
 东方卫视,http://hlsztemgsplive.miguvideo.com:8080/wd_r4/dfl/dongfangwshd/1200/index.m3u8?msisdn=f863b466d46e2ff46401579155d4a125&mdspid=&spid=600697&netType=4&sid=5910022185&pid=2028597139&timestamp=20260518113912&Channel_ID=0116_2600037000-99000-200300220105333&ProgramID=651632648&ParentNodeID=-99&assertID=5910022185&client_ip=113.6.228.34&SecurityKey=20260518113912&promotionId=&mvid=5100043384&mcid=500020&playurlVersion=WX-A1-9.5.1-RELEASE&userid=1834153345&jmhm=f863b466d46e2ff46401579155d4a125&videocodec=h264&appCode=miguvideo_android&bean=mgspad&tid=android&conFee=0&encrypt=68c2e527e3363aca697acd41edaaa259
-东方卫视,http://36.110.54.118:866/hls/28/index.m3u8
+东方卫视,http://hlsztemgsplive.miguvideo.com:8080/ws_w/2018/gdws/gdws2000/2000/index.m3u8?msisdn=f863b466d46e2ff46401579155d4a125&mdspid=&spid=699054&netType=4&sid=2202428795&pid=2028597139&timestamp=20260518111400&Channel_ID=0116_2600037000-99000-200300220105302&ProgramID=608831231&ParentNodeID=-99&assertID=2202428795&client_ip=113.6.228.7&SecurityKey=20260518111400&promotionId=&mvid=2202428795&mcid=500020&playurlVersion=WX-A1-9.5.1-RELEASE&userid=1834153345&jmhm=f863b466d46e2ff46401579155d4a125&videocodec=h264&appCode=miguvideo_android&bean=mgspad&tid=android&conFee=0&encrypt=00f5edc3c1b2939f0bd39640bd258137
 东方卫视,http://60.10.139.113:8801/hls/22/index.m3u8
+广东卫视,http://36.110.54.118:866/hls/32/index.m3u8
 广东卫视,http://36.110.54.118:866/hls/32/index.m3u8
 深圳卫视,http://36.110.54.118:866/hls/26/index.m3u8
 深圳卫视,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=szwshd
@@ -129,12 +131,15 @@ CGTN,http://bobohome.ignorelist.com:20247/migu?id=609017205.m3u8
 安徽卫视,http://60.10.139.113:8801/hls/99/index.m3u8
 湖南卫视,http://60.10.139.113:8801/hls/17/index.m3u8
 湖南卫视,rtmp://39.108.129.193:1935/hnws/nz40_hnws
+湖北卫视,http://hlsztemgsplive.miguvideo.com:8080/wd_r2/2018/ocn/hubeiwshd/2000/index.m3u8?msisdn=f863b466d46e2ff46401579155d4a125&mdspid=&spid=600633&netType=4&sid=5910022163&pid=2028597139&timestamp=20260518111043&Channel_ID=0116_2600037000-99000-200300220105298&ProgramID=947472496&ParentNodeID=-99&assertID=5910022163&client_ip=113.6.228.2&SecurityKey=20260518111043&promotionId=&mvid=5900004355&mcid=500020&playurlVersion=WX-A1-9.5.1-RELEASE&userid=1834153345&jmhm=f863b466d46e2ff46401579155d4a125&videocodec=h264&appCode=miguvideo_android&bean=mgspad&tid=android&conFee=0&encrypt=9a57b454e180b4108d9d61e54f1bced8
 湖北卫视,http://60.10.139.113:8801/hls/29/index.m3u8
+江西卫视,http://hlsztemgsplive.miguvideo.com:8080/migu/kailu/jxwshd/51/20190820/index.m3u8?msisdn=f863b466d46e2ff46401579155d4a125&mdspid=&spid=600633&netType=4&sid=5910021492&pid=2028597139&timestamp=20260518111120&Channel_ID=0116_2600037000-99000-200300220105299&ProgramID=783847495&ParentNodeID=-99&assertID=5910021492&client_ip=113.6.228.2&SecurityKey=20260518111120&promotionId=&mvid=5900004351&mcid=500020&playurlVersion=WX-A1-9.5.1-RELEASE&userid=1834153345&jmhm=f863b466d46e2ff46401579155d4a125&videocodec=h264&appCode=miguvideo_android&bean=mgspad&tid=android&conFee=0&encrypt=b4b7ca92e846d244c3ef3fef7fbc42c1
 江西卫视,http://60.10.139.113:8801/hls/37/index.m3u8
 云南卫视,http://60.10.139.113:8801/hls/51/index.m3u8
 贵州卫视,http://60.10.139.113:8801/hls/36/index.m3u8
 四川卫视,http://60.10.139.113:8801/hls/30/index.m3u8
 重庆卫视,http://60.10.139.113:8801/hls/31/index.m3u8
+东南卫视,http://hlsztemgsplive.miguvideo.com:8080/migu/kailu/dongnanws/51/20230724/index.m3u8?msisdn=f863b466d46e2ff46401579155d4a125&mdspid=&spid=600717&netType=4&sid=5910022182&pid=2028597139&timestamp=20260518120021&Channel_ID=0116_2600037000-99000-200300220105342&ProgramID=849116810&ParentNodeID=-99&assertID=5910022182&client_ip=113.6.228.41&SecurityKey=20260518120021&promotionId=&mvid=5900006229&mcid=500020&playurlVersion=WX-A1-9.5.1-RELEASE&userid=1834153345&jmhm=f863b466d46e2ff46401579155d4a125&videocodec=h264&appCode=miguvideo_android&bean=mgspad&tid=android&conFee=0&encrypt=028474ede1ef47eabfdbe4d5ed66bba0
 东南卫视,http://60.10.139.113:8801/hls/21/index.m3u8
 广西卫视,http://60.10.139.113:8801/hls/52/index.m3u8
 陕西卫视,http://60.10.139.113:8801/hls/53/index.m3u8
@@ -142,6 +147,7 @@ CGTN,http://bobohome.ignorelist.com:20247/migu?id=609017205.m3u8
 青海卫视,http://60.10.139.113:8801/hls/56/index.m3u8
 宁夏卫视,http://60.10.139.113:8801/hls/57/index.m3u8
 山东卫视,http://58.17.89.7:8081/hls/46/index.m3u8
+湖南卫视,http://hlsal-ldvt.qing.mgtv.com/nn_live/nn_x64/Y2RuZXhfaWQ9YWxfaGxzX2xkdnQmZT02OTE0NjA0JnY9MSZpZD1ITldTWkdTVCZzPTcwN2RiYTc2YzJjNmJmMTQ4MmUyZGYzOWU2NWM3YWFi/HNWSZGST.m3u8
 湖南卫视,http://58.17.89.7:8081/hls/31/index.m3u8
 安徽卫视,http://58.17.89.7:8081/hls/32/index.m3u8
 重庆卫视,http://58.17.89.7:8081/hls/35/index.m3u8
@@ -151,6 +157,7 @@ CGTN,http://bobohome.ignorelist.com:20247/migu?id=609017205.m3u8
 河北卫视,http://58.17.89.7:8081/hls/43/index.m3u8
 东南卫视,http://58.17.89.7:8081/hls/47/index.m3u8
 湖北卫视,http://58.17.89.7:8081/hls/48/index.m3u8
+辽宁卫视,http://hlsztemgsplive.miguvideo.com:8080/wd_r2/2018/ocn/liaoningwshd/2000/index.m3u8?msisdn=f863b466d46e2ff46401579155d4a125&mdspid=&spid=600572&netType=4&sid=5910022198&pid=2028597139&timestamp=20260518111012&Channel_ID=0116_2600037000-99000-200300220105297&ProgramID=630291707&ParentNodeID=-99&assertID=5910022198&client_ip=113.6.228.2&SecurityKey=20260518111012&promotionId=&mvid=5101043014&mcid=500020&playurlVersion=WX-A1-9.5.1-RELEASE&userid=1834153345&jmhm=f863b466d46e2ff46401579155d4a125&videocodec=h264&appCode=miguvideo_android&bean=mgspad&tid=android&conFee=0&encrypt=8d79c71838bf5765efc8b4d050926a86
 辽宁卫视,http://58.17.89.7:8081/hls/49/index.m3u8
 江西卫视,http://58.17.89.7:8081/hls/50/index.m3u8
 湖南卫视,http://36.110.54.118:866/hls/24/index.m3u8
