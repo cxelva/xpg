@@ -15,7 +15,7 @@
       "key": "美美资源",
       "name": "美美-直连",
       "type": 1,
-      "api": "https://apidanaizi.com/api.php/provide/vod/?ac=list",
+      "api": "https://apidanaizi.com/api.php/provide/vod/?ac=list&token=abc123",
       "searchable": 1,
       "quickSearch": 1
     },
