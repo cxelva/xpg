@@ -1,4 +1,4 @@
-私密频道,#genre#,DE=3
+私密频道,#genre#
 移动网专用,
 惊艳,http://15.204.105.50:25461/live/G2s9zK2n9m/xDtwVfWM8T/85.ts
 潘多啦,http://15.204.105.50:25461/live/G2s9zK2n9m/xDtwVfWM8T/86.ts
@@ -628,25 +628,25 @@ TPPN-174奏音花音,https://videozm.whqhyg.com:8091/20210601/QQp5l88Y/1000kb/hl
 東熱治療,https://vip2.slbfsl.com/20230410/isRQj64n/index.m3u8
 東京ホパト1,https://vip2.slbfsl.com/20230410/AItFaYor/index.m3u8
 口礼物,https://t23a.cdn2020.com/video/m3u8/2023/12/28/2840c3ea/index.m3u8
-??优_,https://t25.cdn2020.com/video/m3u8/2024/04/20/93b11115/index.m3u8
-??二位仆,https://videojc.hndtl.com:8091/20190913/XER9p5np/1000kb/hls/index.m3u8
-??山下绫香,https://videojc.hndtl.com:8091/20190913/6Vm6zaHC/1000kb/hls/index.m3u8
-??漂亮妹妹,https://videojc.hndtl.com:8091/20191025/ZVobIuVL/1000kb/hls/index.m3u8
-1制服??,https://videos3.m8t9ew.com/20220416/220327a0438/index.m3u8
-2制服??,https://videos3.m8t9ew.com/20220406/220327a0274/index.m3u8
-4制服??,https://videos3.m8t9ew.com/20220416/220327a0436/index.m3u8
-3制服??,https://videos3.m8t9ew.com/20220406/220327a0274/index.m3u8
-6制服??,https://videos3.m8t9ew.com/20220406/220327a0211/index.m3u8
-5制服??,https://videos3.m8t9ew.com/20220421/220327a0890/index.m3u8
-1墙间??,https://videos3.m8t9ew.com/20220406/220327a0355/index.m3u8
-2墙间??,https://videos3.m8t9ew.com/20220406/220327a0395/index.m3u8
-3墙间??,https://videos3.m8t9ew.com/20220406/220327a0236/index.m3u8
-4墙间??,https://videos3.m8t9ew.com/20220406/220327a0263/index.m3u8
-5墙间??,https://videos3.m8t9ew.com/20220406/220327a0242/index.m3u8
-7墙间??,https://videos3.m8t9ew.com/20220416/220327a0454/index.m3u8
-6墙间??,https://videos3.m8t9ew.com/20220426/220327a1175/index.m3u8
-8墙间??,https://videos3.m8t9ew.com/20220423/220327a0975/index.m3u8
-9墙间??,https://videos3.m8t9ew.com/20220427/220327a1340/index.m3u8
+♨️优_,https://t25.cdn2020.com/video/m3u8/2024/04/20/93b11115/index.m3u8
+♨️二位仆,https://videojc.hndtl.com:8091/20190913/XER9p5np/1000kb/hls/index.m3u8
+♨️山下绫香,https://videojc.hndtl.com:8091/20190913/6Vm6zaHC/1000kb/hls/index.m3u8
+♨️漂亮妹妹,https://videojc.hndtl.com:8091/20191025/ZVobIuVL/1000kb/hls/index.m3u8
+1制服♨️,https://videos3.m8t9ew.com/20220416/220327a0438/index.m3u8
+2制服♨️,https://videos3.m8t9ew.com/20220406/220327a0274/index.m3u8
+4制服♨️,https://videos3.m8t9ew.com/20220416/220327a0436/index.m3u8
+3制服♨️,https://videos3.m8t9ew.com/20220406/220327a0274/index.m3u8
+6制服♨️,https://videos3.m8t9ew.com/20220406/220327a0211/index.m3u8
+5制服♨️,https://videos3.m8t9ew.com/20220421/220327a0890/index.m3u8
+1墙间♨️,https://videos3.m8t9ew.com/20220406/220327a0355/index.m3u8
+2墙间♨️,https://videos3.m8t9ew.com/20220406/220327a0395/index.m3u8
+3墙间♨️,https://videos3.m8t9ew.com/20220406/220327a0236/index.m3u8
+4墙间♨️,https://videos3.m8t9ew.com/20220406/220327a0263/index.m3u8
+5墙间♨️,https://videos3.m8t9ew.com/20220406/220327a0242/index.m3u8
+7墙间♨️,https://videos3.m8t9ew.com/20220416/220327a0454/index.m3u8
+6墙间♨️,https://videos3.m8t9ew.com/20220426/220327a1175/index.m3u8
+8墙间♨️,https://videos3.m8t9ew.com/20220423/220327a0975/index.m3u8
+9墙间♨️,https://videos3.m8t9ew.com/20220427/220327a1340/index.m3u8
 日本动漫1,https://lbbf9.com/20191105/xAf8e6gN/index.m3u8
 日本动漫2,https://lbbf9.com/20191105/6dCdeenO/index.m3u8
 日韩2,https://m3u8.46cdn.com/videos/akex/1905/7vjtDwwP/7vjtDwwP.m3u8
@@ -654,8 +654,8 @@ TPPN-174奏音花音,https://videozm.whqhyg.com:8091/20210601/QQp5l88Y/1000kb/hl
 日韩4,https://m3u8.41cdn.com/videos/201910/0y7WTW0v/hls/0y7WTW0v.m3u8
 日韩5,https://m3u8.34cdn.com/videos/201908/8v33bdqt/hls/8v33bdqt.m3u8
 日韩6,https://m3u8.48cdn.com/videos/201908/sb6ksmxx/hls/sb6ksmxx.m3u8
-??,https://videos3.m8t9ew.com/20220406/220327a0385/index.m3u8
-?3,https://videos3.m8t9ew.com/20220418/220327a0805/index.m3u8
+♨️,https://videos3.m8t9ew.com/20220406/220327a0385/index.m3u8
+♨3,https://videos3.m8t9ew.com/20220418/220327a0805/index.m3u8
 日韩,https://aosikazy12.com/20220929/cTOx9X8F/index.m3u8
 
 122816_453,https://v.imgstream2.com/c/ggioidnjzv/ggioidnjzv.m3u8
@@ -1175,7 +1175,7 @@ C0930-hitozuma0875 暮岩 南,https://s3.aaaaa.io/c3daddeace0325eaf5d42bd8bc30d3
 C0930-hitozuma1159 小川原 紫鶴,https://s3.aaaaa.io/bae5eeec8f17202e7acfc08d262f8a5e/bae5eeec8f17202e7acfc08d262f8a5e.m3u8
 FNS-199 文化…与田りん,https://s3.aaaaa.io/ec6725b0327fa7430057e15a791ea09f/ec6725b0327fa7430057e15a791ea09f.m3u8
 
-私密频道2,#genre#,DE=3
+私密频道2,#genre#
 巨茹,http://krevonix.com/20240520/DN1ccCOX/index.m3u8
 双仁,https://t26.cdn2020.com/video/m3u8/2022/01/19/56a11163/index.m3u8
 jufe-131,https://t33.cdn2020.com/video/m3u8/2025/09/09/25fc50e8/index.m3u8
@@ -2776,7 +2776,7 @@ IPX-291 ピュア美少接吻とセックス 楓カレン,https://jkunnzyx.com/2
 IPX-278 白衣の神対応然も！ 楓カレン,https://t33.cdn2020.com/video/m3u8/2019/07/24/4b2df664/index.m3u8
 IPX-484 彼女 楓カレン,https://t33.cdn2020.com/video/m3u8/2023/06/24/ba6bd43c/index.m3u8
 
-JAV點播,#genre#,DE=3
+JAV點播,#genre#
 10周年紀念特別篇著名演員,https://t33.cdn2020.com/video/m3u8/2024/10/03/922abb2b/index.m3u8
 18歲美少看似清純實際很蕩,https://t33.cdn2020.com/video/m3u8/2024/04/14/5f5c3a43/index.m3u8
 21發顏在美少臉-小阪七香,https://t33.cdn2020.com/video/m3u8/2024/08/22/079edb65/index.m3u8
@@ -3168,7 +3168,7 @@ NTR的救贖-架乃由羅,https://t33.cdn2020.com/video/m3u8/2024/08/25/cf8dfb68
 究極屁股豪華240分鐘-希島理,https://t33.cdn2020.com/video/m3u8/2024/07/16/fb9b1949/index.m3u8
 久別重逢後迫不及待的,https://t33.cdn2020.com/video/m3u8/2024/04/27/f062f8b6/index.m3u8
 酒吧NTR-水戸香奈,https://t33.cdn2020.com/video/m3u8/2024/08/08/448fb641/index.m3u8
-居然遇見了經理部的OL-明裡?,https://t33.cdn2020.com/video/m3u8/2024/07/27/21ad1f38/index.m3u8
+居然遇見了經理部的OL-明裡䌷,https://t33.cdn2020.com/video/m3u8/2024/07/27/21ad1f38/index.m3u8
 巨根-夢乃華,https://t33.cdn2020.com/video/m3u8/2024/08/19/9ac695a6/index.m3u8
 巨暴露制服-奧田咲,https://t33.cdn2020.com/video/m3u8/2024/07/04/59ca85a8/index.m3u8
 巨放題-彩美旬果,https://t33.cdn2020.com/video/m3u8/2024/08/27/a8d637f8/index.m3u8
