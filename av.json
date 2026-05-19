@@ -51,7 +51,7 @@
       "key": "b0684274-ce9e-5d4f-bf54-f61afbdaf49d",
       "name": "玉兔-翻墙",
       "type": 1,
-      "api": "https://apiyutu.com/api.php/provide/vod/?ac=list",
+      "api": "https://apiyutu.com/api.php/provide/vod/",
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1
