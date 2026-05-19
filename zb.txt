@@ -119,6 +119,7 @@ CGTN,http://bobohome.ignorelist.com:20247/migu?id=609017205.m3u8
 
 
 🍎卫视频道,#genre#,DE=3
+北京卫视,http://60.10.139.113:8801/hls/20/index.m3u8
 东方卫视,http://115.190.247.176:1111/651632648
 江苏卫视,http://115.190.247.176:1111/623899368
 广东卫视,http://115.190.247.176:1111/608831231
@@ -199,10 +200,8 @@ CGTN,http://bobohome.ignorelist.com:20247/migu?id=609017205.m3u8
 辽宁卫视,http://58.17.89.7:8081/hls/49/index.m3u8
 江西卫视,http://58.17.89.7:8081/hls/50/index.m3u8
 湖南卫视,http://36.110.54.118:866/hls/24/index.m3u8
-
 湖北卫视,http://36.110.54.118:866/hls/30/index.m3u8
 山东卫视,http://36.110.54.118:866/hls/33/index.m3u8
-
 辽宁卫视,http://112.27.235.94:8000/hls/24/index.m3u8
 山东卫视,http://112.27.235.94:8000/hls/25/index.m3u8
 安徽卫视,http://112.27.235.94:8000/hls/27/index.m3u8
@@ -210,7 +209,6 @@ CGTN,http://bobohome.ignorelist.com:20247/migu?id=609017205.m3u8
 湖南卫视,http://112.27.235.94:8000/hls/32/index.m3u8
 深圳卫视,http://112.27.235.94:8000/hls/34/index.m3u8
 湖南卫视,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=hnwshd
-
 湖北卫视,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=hbwshd
 甘肃卫视,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=gswshd
 吉林卫视,http://63.141.230.178:82/gslb/zbdq5.m3u8?id=jlwshd
