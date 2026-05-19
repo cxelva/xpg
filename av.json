@@ -27,7 +27,17 @@
         "searchable":1,
         "filterable":1
         },
-    {"key":"jingpinx.com","name":"精品-翻墙","type":1,"api":"https://www.jingpinx.com//api.php/provide/vod/?ac=list","searchable":1,"filterable":1},
+        {
+      "key": "av直播",
+      "name": "av-直播",
+      "type": 3,
+      "searchable": 0,
+      "changeable": 0,
+      "api": "https://gh-proxy.org/https://raw.githubusercontent.com/Jsnzkpg/Jsnzkpg/Jsnzkpg/stymei/zbzdb.js",
+      "ext": "./lib/zbzdb.json"
+    },
+    {
+      "key":"jingpinx.com","name":"精品-翻墙","type":1,"api":"https://www.jingpinx.com//api.php/provide/vod/?ac=list","searchable":1,"filterable":1},
    {
       "key": "656b916e-94fe-5b57-b300-80ccc1be1cea",
       "name": "辣椒-翻墙",
