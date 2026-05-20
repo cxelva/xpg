@@ -10,6 +10,19 @@
             "api": "csp_XBPQ",
             "ext": "./js/三上悠亚.json"
         },
+            {
+            "key": "菜佬湿倾情奉献",
+            "name": "菜佬湿特供资源",
+            "type": 3,
+            "api": "csp_XBPQ",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1,
+            "style": {
+                "ratio": 1.7
+            },
+            "ext": "./json/菜鸟资源.json"
+        },
     {
       "key": "lebozy.com",
       "name": "乐播-直连",
