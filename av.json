@@ -2,9 +2,16 @@
   "wallpaper": "美美影视提示：不要外传！不要外传！不要外传！",
     "logo": "https://s1.aigei.com/prevfiles/68f66953f939418b93cb63dd604cf560.gif?e=2051020800&token=P7S2Xpzfz11vAkASLTkfHN7Fw-oOZBecqeJaxypL:zQuZVbKvUMUYt39j8bSGJnsj__k=",
   "sites": [
+            {
+            "key": "三上悠亚🔥",
+            "name": "传播后果自负！ 点我换源！",
+            "type": 3,
+            "api": "csp_XBPQ",
+            "ext": "./js/三上悠亚.json"
+        },
     {
       "key": "lebozy.com",
-      "name": "传播后果自负！ 点我换源！",
+      "name": "乐播-直连",
       "type": 1,
       "api": "https://lbapi9.com/api.php/provide/vod/",
       "searchable": 1,
@@ -35,15 +42,6 @@
             "api": "./js/drpy2.min.js",
             "ext": "./js/Missav.js"
         },
-       {
-      "key": "zp100",
-      "name": "乐播-直连",
-      "type": 0,
-      "api": "https://lbapi9.com/api.php/provide/vod/at/xml/",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 0
-    },
      {
       "key": "美美资源",
       "name": "美美-直连",
