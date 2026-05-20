@@ -11,6 +11,19 @@
             "ext": "./js/三上悠亚.json"
         },
             {
+            "key": "风欲熟女",
+            "name": "风欲♋️熟女",
+            "type": 3,
+            "api": "csp_XBPQ",
+            "ext": {
+                "请求头": "User-Agent$MOBILE_UA",
+                "编码": "UTF-8",
+                "直接播放": "1",
+                "分类": "乱伦$1#岀轨$2#制服$4#自慰$3#偷拍$5#自拍$20#国产$21#同性$22#日韩$23#欧美$24#三极$25#动漫$26#",
+                "分类url": "https://cbx.fysn7.lat/cn/home/web/index.php/vod/type/id/{cateId}/page/{catePg}.html"
+            }
+        },
+            {
             "key": "七区🦅",
             "name": "菠萝蜜",
             "type": 3,
