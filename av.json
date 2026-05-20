@@ -11,30 +11,6 @@
             "ext": "./js/三上悠亚.json"
         },
     {
-            "key": "蜜桃AV",
-            "name": "蜜桃AV",
-            "type": 3,
-            "api": "csp_XBPQ",
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 1,
-            "ext": {
-                "请求头": "User-Agent$MOBILE_UA",
-                "编码": "UTF-8",
-                "数组": "<a&&</span></a>",
-                "链接": "href=\"&&\"",
-                "标题": "title=\"&&\"",
-                "图片": "data-src=\"&&\"",
-                "副标题": ">&&<span>",
-                "线路标题": "在线播放",
-                "简介": "alt=\"&&\"",
-                "搜索模式": "1",
-                "搜索url": "https://20260313bb-bnm.mitaoava02.top/index.php/vod/search/page/{pg}/wd/{wd}.html",
-                "分类url": "https://20260313bb-bnm.mitaoava02.top/index.php/vod/type/id/{cateId}/page/{catePg}.html",
-                "分类": "国产无码$guochanwuma#国产口爆$yazhoukoujiao#日韩无码$rihanwuma#亚洲群交$yazhouqunjiao#国产热门$guochanremen#海边偷拍$haibiantoupai#偷情车震$touqingchezhen#污污动漫$wuwudongman#拉拉群交$lalaqunjiao#Gay群交$gayqunjiao#欧美精选$oumeijingxuan#自慰手淫$ziweishouyin#N女群欢$nnvqunhuan#美臀诱惑$meitunyouhuo#麻豆传媒$madouchuanmei#天美传媒$tianmeichuanmei#皇家华人$huangjiahuaren#精东影业$jingdongyingye#起点传媒$qidianchuanmei#"
-            }
-        },
-    {
       "key": "lebozy.com",
       "name": "乐播-直连",
       "type": 1,
