@@ -122,6 +122,29 @@
         "searchable":1,
         "filterable":1
         },
+    {
+            "key": "爱看伦理",
+            "name": "爱看伦理",
+            "type": 3,
+            "api": "./js/drpy2.min.js",
+            "ext": "./js/爱看伦理.js"
+        },
+        {
+            "key": "要看伦理",
+            "name": "要看♋️伦理",
+            "type": 3,
+            "api": "csp_XBPQ",
+            "ext": {
+                "请求头": "User-Agent$MOBILE_UA",
+                "编码": "UTF-8",
+                "播放数组": "tab-content&&</ul>",
+                "播放列表": "<a&&a>",
+                "播放标题": ">&&<[不包含:夸克网盘]",
+                "播放链接": "href=\"&&\"",
+                "分类": "欧美视频$oumeilunli#香港伦理$xiangganglunli#韩国伦理$hanguolunli#日本伦理$ribenlunli#",
+                "分类url": "https://www.yklunli.top/{cateId}/p{catePg}.html"
+            }
+        },
         {
       "key": "av直播",
       "name": "av-直播",
