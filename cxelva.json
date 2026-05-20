@@ -33,7 +33,7 @@
       "filterable": 1,
       "order_num": 0,
       "changeable": 1,
-      "api": "./lib/drpy2.min.js",
+      "api": "https://17426.kstore.space/lib/drpy2.min.js",
       "ext": "./lib/暗黑4k奇迹.js"
     },
 	    {
