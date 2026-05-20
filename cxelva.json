@@ -6,7 +6,7 @@
   "sites": [
     {
       "key": "豆瓣",
-      "name": "🍎小苹果影视  全新源码  播放选4K  直播速度快  更新5.15！",
+      "name": "🍎小苹果影视  全新源码  播放选4K  直播速度快  更新5.20！",
       "type": 3,
       "api": "csp_Douban",
       "searchable": 0
@@ -26,7 +26,7 @@
     },
 	      {
       "key": "新腾极4k",
-      "name": "🍎腾讯🔹4K  ",
+      "name": "🍎融融🔹4K  ",
       "type": 3,
       "searchable": 1,
       "quickSearch": 1,
