@@ -6,7 +6,7 @@
       "key": "zp100",
       "name": "传播后果自负！ 点我换源！",
       "type": 0,
-      "api": "https://lbapi9.com/api.php/provide/vod/at/xml/",
+      "api": "https://lbapi9.com/api.php/provide/vod/",
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 0
