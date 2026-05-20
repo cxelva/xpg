@@ -34,6 +34,32 @@
             },
             "ext": "./js/菜鸟资源.json"
         },
+            {
+            "key": "野鸡资源",
+            "name": "野鸡资源",
+            "type": 3,
+            "api": "csp_XBPQ",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1,
+            "ext": {
+                "请求头": "User-Agent$MOBILE_UA",
+                "主页url": "https://wap.yejiav2.cc/yj/",
+                "数组": "vod-img&&/div></div>",
+                "标题": "+vod-txt*\">&&</a",
+                "图片": "data-original=\"&&\"",
+                "副标题": "<p&&/p>",
+                "链接": "href=\"&&\"",
+                "简介": "description\" content=\"&&\"",
+                "分类url": "https://wap.yejiav2.cc/yj/index.php/vod/type/id/{cateId}/page/{catePg}.html",
+                "线路标题": "&&",
+                "播放数组": "<div class=\"group-box\"&&</div>",
+                "播放列表": "<a&&/a>",
+                "播放标题": ">&&</",
+                "播放链接": "href=\"&&\"",
+                "分类": "奥斯卡资源$119#野鸡资源$267#冷库资源$206#玉兔资源$302#155资源$244#国产精品$269#国产乱伦$322#日本无码$124#日本有码$123"
+            }
+        },
     {
       "key": "lebozy.com",
       "name": "乐播-直连",
