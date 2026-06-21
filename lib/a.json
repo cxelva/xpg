@@ -41,7 +41,7 @@
             "key": "高清仓库",
             "name": "🔞高清仓库",
             "type": 3,
-            "api": "./av/高清仓库.py",
+            "api": "./a/高清仓库.py",
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 1,
@@ -125,7 +125,7 @@
             "key": "色播",
             "name": "🔞色播直播",
             "type": 3,
-            "api": "./av/apiv2134色播.js",
+            "api": "./a/apiv2134色播.js",
             "searchable": 1,
             "changeable": 0
         },
@@ -136,13 +136,13 @@
             "api": "csp_XMVideo",
             "searchable": 1,
             "filterable": 1,
-            "jar": "./av/182.jar"
+            "jar": "./a/182.jar"
         },
 	   {
             "key": "推特",
             "name": "🔞推特",
             "type": 3,
-            "api": "./av/推特APP.py",
+            "api": "./a/推特APP.py",
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 1,
@@ -157,7 +157,7 @@
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 1,
-            "ext": "./av/高清SEX国产.js"
+            "ext": "./a/高清SEX国产.js"
         },
      {
       "key": "csp_黄色仓库1",
@@ -207,7 +207,7 @@
             "key": "七区🦅",
             "name": "🔞七区",
             "type": 3,
-            "api": "./av/七区.py",
+            "api": "./a/七区.py",
             "searchable": 1,
             "changeable": 1,
             "quickSearch": 1,
@@ -219,7 +219,7 @@
             "name": "🔞三上悠亚",
             "type": 3,
             "api": "csp_XBPQ",
-            "ext": "./av/三上悠亚.json"
+            "ext": "./a/三上悠亚.json"
         },
 	  {"key": "slyzy", "name": "🔞湿乐园", "type": 1, "api": "https://xxavs.com/api.php/provide/vod", "searchable": 1, "quickSearch": 1, "filterable": 1},
             {
@@ -250,7 +250,7 @@
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 1,
-            "ext": "./av/高清SEX国产.js"
+            "ext": "./a/高清SEX国产.js"
         },
             {
             "key": "4AAAA",
@@ -261,13 +261,13 @@
             "filterable": 1,
             "changeable": 1,
             "api": "csp_XBPQ",
-            "ext": "./av/4AAAA.json"
+            "ext": "./a/4AAAA.json"
         },
             {
             "key": "七区🦅",
             "name": "🔞菠萝蜜",
             "type": 3,
-            "api": "./av/七区.py",
+            "api": "./a/七区.py",
             "searchable": 1,
             "changeable": 1,
             "quickSearch": 1,
@@ -285,7 +285,7 @@
             "style": {
                 "ratio": 1.7
             },
-            "ext": "./av/菜鸟资源.json"
+            "ext": "./a/菜鸟资源.json"
         },
             {
             "key": "乱姐黑料",
@@ -356,8 +356,8 @@
             "key": "Missav🔥🔞",
             "name": "🔞Missav",
             "type": 3,
-            "api": "./av/drpy2.min.js",
-            "ext": "./av/Missav.js"
+            "api": "./a/drpy2.min.js",
+            "ext": "./a/Missav.js"
         },
             {
             "key": "花心小妞",
@@ -421,7 +421,7 @@
       "searchable": 0,
       "changeable": 0,
       "api": "https://gh-proxy.org/https://raw.githubusercontent.com/Jsnzkpg/Jsnzkpg/Jsnzkpg/stymei/zbzdb.js",
-      "ext": "./lib/zbzdb.json"
+      "ext": "./a/zbzdb.json"
     },
      {
             "key": "蜜桃AV",
@@ -458,7 +458,7 @@
             },
             "quickSearch": 1,
             "filterable": 1,
-            "ext": "./av/桃花.json"
+            "ext": "./a/桃花.json"
         },
 		        {
             "key": "公子别走",
@@ -471,7 +471,7 @@
             },
             "quickSearch": 1,
             "filterable": 1,
-            "ext": "./av/公子别走.json"
+            "ext": "./a/公子别走.json"
         },
 		        {
             "key": "超级精品",
@@ -484,7 +484,7 @@
             },
             "quickSearch": 1,
             "filterable": 1,
-            "ext": "./av/超级精品.json"
+            "ext": "./a/超级精品.json"
         },
         {
             "key": "小红薯APP.py",
@@ -493,7 +493,7 @@
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 1,
-            "api": "./av/小红薯APP.py",
+            "api": "./a/小红薯APP.py",
             "order_num": 5,
             "ext": ""
         },
@@ -508,7 +508,7 @@
             },
             "quickSearch": 1,
             "filterable": 1,
-            "ext": "./av/七色谷.json"
+            "ext": "./a/七色谷.json"
         },
 		        {
             "key": "魔法少女",
@@ -521,7 +521,7 @@
             },
             "quickSearch": 1,
             "filterable": 1,
-            "ext": "./av/魔法少女.json"
+            "ext": "./a/魔法少女.json"
         },
 		        {
             "key": "偷拍自拍",
@@ -532,7 +532,7 @@
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 1,
-            "ext": "./av/偷拍自拍.json"
+            "ext": "./a/偷拍自拍.json"
         },
 		{
             "key": "成鸡思汉",
@@ -543,7 +543,7 @@
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 1,
-            "ext": "./av/成鸡思汉.json"
+            "ext": "./a/成鸡思汉.json"
         },
 		{
             "key": "麻豆",
@@ -572,7 +572,7 @@
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 1,
-            "ext": "./av/55视频.json"
+            "ext": "./a/55视频.json"
         },
 		 {
             "key": "一个纯粹的x站",
@@ -583,7 +583,7 @@
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 1,
-            "ext": "./av/一个纯粹的x站.json"
+            "ext": "./a/一个纯粹的x站.json"
         },
  {
             "key": "经典三部曲",
@@ -596,7 +596,7 @@
       },
 "quickSearch": 1,
 "filterable": 1,
-"ext": "./av/经典三部曲.json"},
+"ext": "./a/经典三部曲.json"},
 {
             "key": "py_kemono优化",
             "name": "🔞kemon",
@@ -604,7 +604,7 @@
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 1,
-            "api": "./av/kemon.py",
+            "api": "./a/kemon.py",
             "order_num": 5,
             "ext": ""
         },
@@ -617,7 +617,7 @@
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 1,
-            "ext": "./av/椰子蛋.json"
+            "ext": "./a/椰子蛋.json"
         },
 		 {
             "key": "✨盲盒✨",
@@ -628,7 +628,7 @@
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 1,
-            "ext": "./av/盲盒.json"
+            "ext": "./a/盲盒.json"
         },
 		 {
             "key": "✨凡人✨",
@@ -639,7 +639,7 @@
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 1,
-            "ext": "./av/凡人修色传.json"
+            "ext": "./a/凡人修色传.json"
         },
 		 {
             "key": "APP",
@@ -648,7 +648,7 @@
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 1,
-            "api": "./av/E佬通用视频.py",
+            "api": "./a/E佬通用视频.py",
             "order_num": 5,
             "ext": ""
         },
@@ -661,7 +661,7 @@
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 1,
-            "ext": "./av/精工厂.json"
+            "ext": "./a/精工厂.json"
         },
 		        {
             "key": "fullhd.py",
@@ -670,7 +670,7 @@
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 1,
-            "api": "./av/fullhd.py",
+            "api": "./a/fullhd.py",
             "order_num": 5,
             "ext": ""
         }, 
@@ -691,7 +691,7 @@
             "key": "😸不良",
             "name": "🔞不良AV-翻墙",
             "type": 3,
-            "api": "./av/不良.js"
+            "api": "./a/不良.js"
         },
      {
             "key": "爆料记者",
