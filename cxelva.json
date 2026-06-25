@@ -147,6 +147,15 @@
             "ext": "./lib/腾4k.png"
         },
 	          {
+            "key": "芒果弹幕",
+            "name": "🍎芒果🔹4k",
+            "type": 3,
+            "api": "./lib/drpy2.min.js",
+            "searchable": 1,
+            "changeable": 1,
+            "ext": "./lib/茫.png"
+        },
+	          {
             "key": "枫叶",
             "name": "🍎专享🔹4K",
             "type": 3,
