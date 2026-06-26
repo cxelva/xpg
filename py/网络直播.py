@@ -455,8 +455,6 @@ class Spider(Spider):
         ids = ids[0].split('@@')
         if ids[0] == 'wangyi':
             vod = self.wyccDetail(ids)
-        elif ids[0] == 'bili':
-            vod = self.biliDetail(ids)
         elif ids[0] == 'huya':
             vod = self.huyaDetail(ids)
         elif ids[0] == 'douyu':
@@ -1061,8 +1059,6 @@ class Spider(Spider):
             p = 1
             if ids[0] in ['wangyi']:
                 p, url = 0, json.loads(self.d64(ids[1]))
-            elif ids[0] == 'bili':
-                p, url = self.biliplay(ids)
             elif ids[0] == 'huya':
                 p, url = self.huyaplay(ids)
             elif ids[0] == 'douyu':
