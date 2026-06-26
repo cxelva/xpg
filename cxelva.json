@@ -24,6 +24,13 @@
         "ratio": 1.597
       }
     },
+	   {
+      "key": "聚合采集",
+      "name": "🍎融融🔹采集",
+      "type": 3,
+      "api": "./lib/drpy2.min.js",
+      "ext": "./py/采集之王.js?type=url&params=./py/采集静态.json"
+    },
 	  {
       "key": "聚合备用",
       "name": "🍎聚合🔹直播",
