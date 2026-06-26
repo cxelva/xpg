@@ -43,12 +43,14 @@
       "type": 3,
       "api": "./py/哔哩.py"
     },
-	      {
-      "key": "电台直播",
+	   {
+      "key": "蜻蜓FM",
       "name": "🍎全国🔹电台",
       "type": 3,
-      "api": "./lib/drpy2.min.js",
-      "ext": "./lib/蜻蜓FM.js"
+      "api": "csp_QingtingFM",
+      "style": {
+        "type": "list"
+      }
     },
 	   {
       "key": "苹果",
@@ -1565,15 +1567,6 @@
       }
     },
     {
-      "key": "蜻蜓FM",
-      "name": "🍎蜻蜓🔹FM",
-      "type": 3,
-      "api": "csp_QingtingFM",
-      "style": {
-        "type": "list"
-      }
-    },
-    {
       "key": "世界听书",
       "name": "🍎世界🔹听书",
       "type": 3,
@@ -1590,12 +1583,6 @@
       "style": {
         "type": "list"
       }
-    },
-    {
-      "key": "爱听音乐",
-      "name": "🍎爱听🔹音乐",
-      "type": 3,
-      "api": "./lib/爱听音乐.py"
     },
     {
       "key": "push_agent1",
