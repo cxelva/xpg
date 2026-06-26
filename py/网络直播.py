@@ -210,8 +210,7 @@ class Spider(Spider):
         cateManual = {
             "虎牙": "huya",
             "斗鱼": "douyu",
-            "网易": "wangyi",
-            "B站": "bili"
+            "网易": "wangyi"
         }
         classes = []
         filters = {
