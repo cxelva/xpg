@@ -31,27 +31,6 @@
       "api": "https://cdn.jsdmirror.com/gh/ouhaibo1980/tvbox@main/js/drpy2.min.js",
       "ext": "https://cdn.jsdmirror.com/gh/ouhaibo1980/tvbox@main/js/采集之王.js?type=url&params=https://cdn.jsdmirror.com/gh/ouhaibo1980/tvbox@main/json/采集静态.json"
     },
-	  {
-      "key": "聚合备用",
-      "name": "🍎聚合🔹直播",
-      "type": 3,
-      "api": "./py/网络直播.py"
-    },
-	   {
-      "key": "哔哩直播",
-      "name": "🍎哔哩🔹直播",
-      "type": 3,
-      "api": "./py/哔哩.py"
-    },
-	   {
-      "key": "蜻蜓FM",
-      "name": "🍎全国🔹电台",
-      "type": 3,
-      "api": "csp_QingtingFM",
-      "style": {
-        "type": "list"
-      }
-    },
 	   {
       "key": "苹果",
       "name": "🍎苹果🔹4K",
@@ -1580,6 +1559,27 @@
       "name": "🍎戏曲🔹多多",
       "type": 3,
       "api": "csp_AppLY",
+      "style": {
+        "type": "list"
+      }
+    },
+	   {
+      "key": "聚合备用",
+      "name": "🍎聚合🔹直播",
+      "type": 3,
+      "api": "./py/网络直播.py"
+    },
+	   {
+      "key": "哔哩直播",
+      "name": "🍎哔哩🔹直播",
+      "type": 3,
+      "api": "./py/哔哩.py"
+    },
+	   {
+      "key": "蜻蜓FM",
+      "name": "🍎全国🔹电台",
+      "type": 3,
+      "api": "csp_QingtingFM",
       "style": {
         "type": "list"
       }
