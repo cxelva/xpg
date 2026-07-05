@@ -191,6 +191,30 @@
             "switchable": 1
         },
 	  {
+    "key": "XBPQ_chcl_v7",
+    "name": "🍎小站🔹1080",
+    "type": 3,
+    "api": "csp_XBPQ",
+    "searchable": 1,
+    "quickSearch": 1,
+    "filterable": 1,
+    "ext": {
+        "作者": "集多",
+        "编码": "UTF-8",
+        "请求头": "User-Agent$MOBILE_UA",
+        "播放请求头": "User-Agent$MOBILE_UA",
+        "主页url": "https://chcl.org.cn",
+        "起始页": "1",
+        "线路数组": "<a data-toggle=\"tab\"&&/a>",
+        "线路标题": ">小站<",
+        "分类url": "https://chcl.org.cn/show/{cateId}-{area}-hits-{class}-{lang}-------{catePage}.html",
+        "分类": "电影$1#电视剧$2#综艺$3#动漫$4#短剧大全$5",
+        "搜索模式": "1",
+        "搜索url": "https://chcl.org.cn/search.html?wd={wd}",
+        "跳转播放链接": "var player_*\"url\":\"&&\""
+    }
+},
+	  {
       "key": "独家免扫4K",
       "name": "🍎独家🔹APP",
       "type": 3,
