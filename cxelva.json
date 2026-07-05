@@ -31,6 +31,12 @@
       "api": "https://cdn.jsdmirror.com/gh/ouhaibo1980/tvbox@main/js/drpy2.min.js",
       "ext": "https://cdn.jsdmirror.com/gh/ouhaibo1980/tvbox@main/js/采集之王.js?type=url&params=https://cdn.jsdmirror.com/gh/ouhaibo1980/tvbox@main/json/采集静态.json"
     },
+	      {
+      "key": "融融",
+      "name": "🍎融融🔹4K",
+      "type": 3,
+      "api": "./py/shanzha.py"
+    },
 	   {
       "key": "苹果",
       "name": "🍎苹果🔹4K",
