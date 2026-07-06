@@ -180,7 +180,7 @@
             "type": 3,
             "api": "./lib/hy.js"
         },
-	   {
+	  	   {
             "key": "歪比┃4K",
             "name": "🍎歪比🔹4K",
             "type": 3,
@@ -190,6 +190,12 @@
             "searchable": 1,
             "switchable": 1
         },
+	   {
+      "key": "哲西蔚影视.js",
+      "name": "🍎哲西🔹影视",
+      "type": 3,
+      "api": "./py/哲西蔚影视.js"
+},
 	  {
     "key": "XBPQ_chcl_v7",
     "name": "🍎小站🔹1080",
