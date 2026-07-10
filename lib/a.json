@@ -31,6 +31,15 @@
       "filterable": 1,
       "ext": "./a/高清SEX国产.js"
     },
+	   {
+      "key": "XMVideo",
+      "name": "🔞XMVideo",
+      "type": 3,
+      "api": "csp_XMVideo",
+      "searchable": 1,
+      "filterable": 1,
+      "jar": "./a/182.jar"
+    },
     {
       "key": "七区🦅",
       "name": "🔞七区",
@@ -129,15 +138,7 @@
       "filterable": 1,
       "changeable": 1
     },
-    {
-      "key": "XMVideo",
-      "name": "🔞XMVideo",
-      "type": 3,
-      "api": "csp_XMVideo",
-      "searchable": 1,
-      "filterable": 1,
-      "jar": "./a/182.jar"
-    },
+   
     {
       "key": "csp_黄色仓库1",
       "name": "🔞私人专属",
