@@ -20,20 +20,9 @@
     }
   ],
   "sites": [
-        {
-      "key": "✨高清SEX国产",
-      "name": "🔞高清SEX国产  传播后果自负！ 视频没有弹出来，点我换源！",
-      "type": 3,
-      "playerType": 2,
-      "api": "csp_XBPQ",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "ext": "./a/高清SEX国产.js"
-    },
 	   {
       "key": "XMVideo",
-      "name": "🔞XMVideo",
+      "name": "🔞XMVideo   传播后果自负！ 视频没有弹出来，点我换源！",
       "type": 3,
       "api": "csp_XMVideo",
       "searchable": 1,
@@ -148,6 +137,17 @@
         "分类url": "https://xiangjiao.10010288.xyz/index.php/vod/type/id/{cateId}.html",
         "分类": "无码中字$28#有码中字$29#国产视频$30#欧美高清$31#动漫剧情$32"
       }
+    },
+	   {
+      "key": "✨高清SEX国产",
+      "name": "🔞高清SEX国产 ",
+      "type": 3,
+      "playerType": 2,
+      "api": "csp_XBPQ",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "./a/高清SEX国产.js"
     },
     {
       "key": "风流视频",
