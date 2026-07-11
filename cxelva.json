@@ -496,6 +496,17 @@
         "decrypt": "0"
       }
     },
+	      {
+      "key": "段友影视",
+      "name": "🍎段友🔹影视",
+      "type": 3,
+      "api": "./py/段友.py",
+      "searchable": 1,
+	  "quickSearch": 1,
+      "filterable": 1,
+      "order_num": 0,
+      "changeable": 0
+    },
 	   {
       "key": "云播PY",
       "name": "🍎云播🔹py",
