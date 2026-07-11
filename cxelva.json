@@ -161,6 +161,17 @@
                 "dataIv": "8R33VQSxzmCaHpEX"
             }
         },
+	   {
+      "key": "枫叶4K",
+      "name": "🍎枫叶🔹4K",
+      "type": 3,
+      "api": "./lib/枫叶4K.js",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "changeable": 1,
+      "playable": 1
+    },
 	          {
             "key": "枫叶",
             "name": "🍎专享🔹4K",
