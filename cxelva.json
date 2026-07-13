@@ -1675,11 +1675,6 @@
       "name": "🍎融融TV直播",
       "type": 1,
       "url": "./zb.txt"
-    },
-	{
-      "name": "🍎自动TV直播",
-      "type": 1,
-      "url": "https://dogpan.com/f/WnwOsD/live.m3u"
     }
   ],
   "headers": [
