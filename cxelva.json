@@ -496,6 +496,16 @@
         "decrypt": "0"
       }
     },
+	      {   
+      "key": "丧尸片",
+      "name": "🍎丧尸🔹经典",
+      "type": 3,
+      "api": "./py/丧尸片.py",
+      "filterable": 1,
+      "quickSearch": 1,
+      "searchable": 1,
+      "switchable": 1   
+		   },
 	      {
       "key": "段友影视",
       "name": "🍎段友🔹影视",
