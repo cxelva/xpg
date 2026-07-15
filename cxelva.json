@@ -25,13 +25,6 @@
       }
     },
 	   {
-      "key": "聚合采集",
-      "name": "🍎融融🔹采集",
-      "type": 3,
-      "api": "https://cdn.jsdmirror.com/gh/ouhaibo1980/tvbox@main/js/drpy2.min.js",
-      "ext": "https://cdn.jsdmirror.com/gh/ouhaibo1980/tvbox@main/js/采集之王.js?type=url&params=https://cdn.jsdmirror.com/gh/ouhaibo1980/tvbox@main/json/采集静态.json"
-    },
-	   {
       "key": "奈飞4K",
       "name": "🍎奈飞🔹4K",
       "type": 1,
@@ -147,19 +140,6 @@
         "ratio": 1.33
       },
       "changeable": 1
-    },
-	      {
-      "key": "四叶草",
-      "name": "🍎幸运🔹4K",
-      "type": 3,
-      "api": "./lib/get.js",
-      "ext": {
-        "host": "./lib/sss.txt",
-        "key": "wNCwbXzr0Bm6cS2C",
-        "init": "V122",
-        "api": 2,
-        "ua": "okhttp/3.10.0"
-      }
     },
 	          {
             "key": "葫芦get",
@@ -394,22 +374,6 @@
       }
     },
     {
-      "key": "咕噜99",
-      "name": "🍎咕噜🔹APP",
-      "type": 3,
-      "api": "csp_App99",
-      "ext": {
-        "host": "http://103.45.132.22:19987/app/bn",
-        "LoginPath": "/app/log",
-        "appkey": "d1f0c269eab74d93821fffc9befdbbba",
-        "versionName": "1.9.5",
-        "name": "咕噜咕噜",
-        "package": "com.bd.tool.gulu",
-        "buildNumber": "2001",
-        "buildSignature": "B07C8F6DBEBD3ABEE6A4A4DE2BFBBF29A0AC3F984D532A39448EC3BF5DD36311"
-      }
-    },
-    {
       "key": "剧圈99",
       "name": "🍎剧圈🔹APP",
       "type": 3,
@@ -438,22 +402,6 @@
         "package": "com.yingfu.mobile.android.pgsp",
         "buildNumber": "2003",
         "buildSignature": "054FA8DDA4319C6B6A9B954CA5777541C993F00B1B0BD4394F7EDE48184C4594"
-      }
-    },
-    {
-      "key": "顾我99",
-      "name": "🍎顾我🔹APP",
-      "type": 3,
-      "api": "csp_App99",
-      "ext": {
-        "host": "http://117.50.200.113:19987/app/bn",
-        "LoginPath": "/app/log",
-        "appkey": "040f9b1bc5e942569b5c3e63943306ab",
-        "versionName": "4.3.1",
-        "name": "顾我追剧",
-        "package": "com.guwozhuijux.app",
-        "buildNumber": "2001",
-        "buildSignature": "5AD4436C4730FFE26910C86278B80F3E661C317FFC3616F702D20A729262624A"
       }
     },
     {
@@ -496,16 +444,6 @@
         "decrypt": "0"
       }
     },
-	      {   
-      "key": "丧尸片",
-      "name": "🍎丧尸🔹经典",
-      "type": 3,
-      "api": "./py/丧尸片.py",
-      "filterable": 1,
-      "quickSearch": 1,
-      "searchable": 1,
-      "switchable": 1   
-		   },
 	      {
       "key": "段友影视",
       "name": "🍎段友🔹影视",
@@ -516,12 +454,6 @@
       "filterable": 1,
       "order_num": 0,
       "changeable": 0
-    },
-	   {
-      "key": "云播PY",
-      "name": "🍎云播🔹py",
-      "type": 3,
-      "api": "./py/天天影视.py"
     },
 	      {
       "key": "威士PY",
@@ -550,36 +482,6 @@
       "type": 3
     },
     {
-      "key": "久久",
-      "name": "🍎久久🔹APP",
-      "type": 3,
-      "api": "csp_AppYsV2",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "ext": "http://99cms.jj99.icu:8199/api.php/app/"
-    },
-    {
-      "key": "闪影",
-      "name": "🍎闪影🔹APP",
-      "type": 3,
-      "api": "csp_AppYsV2",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "ext": "http://38.47.213.61:41271/mogai_api.php/v1.vod"
-    },
-    {
-      "key": "飞飞",
-      "name": "🍎飞飞🔹APP",
-      "type": 3,
-      "api": "csp_AppYsV2",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "ext": "https://qpcj.69mini.com/api.php/app/"
-    },
-    {
       "key": "金牌",
       "name": "🍎金牌🔹APP",
       "type": 3,
@@ -596,33 +498,6 @@
       }
     },
     {
-      "key": "老鹰",
-      "name": "🍎老鹰🔹APP",
-      "type": 3,
-      "api": "csp_AppQi",
-      "searchable": 1,
-      "changeable": 1,
-      "ext": {
-        "site": "./lib/maotouyinghb.txt",
-        "dataKey": "zxPtEUDGVllIUhDB",
-        "dataIv": "zxPtEUDGVllIUhDB",
-        "ua": "okhttp/3.10.0"
-      }
-    },
-    {
-      "key": "映画",
-      "name": "🍎映画🔹APP",
-      "type": 3,
-      "api": "csp_AppGet",
-      "searchable": 1,
-      "changeable": 1,
-      "ext": {
-        "url": "https://cms140.yhg.one",
-        "dataKey": "bM7iC9eA3oZ1nB7z",
-        "dataIv": "bM7iC9eA3oZ1nB7z"
-      }
-    },
-    {
       "key": "王子",
       "name": "🍎王子🔹APP",
       "type": 3,
@@ -633,32 +508,6 @@
         "url": "https://app.95112475.xyz",
         "dataKey": "5a9w6x58dsq6z3a6",
         "dataIv": "5a9w6x58dsq6z3a6"
-      }
-    },
-    {
-      "key": "茉莉",
-      "name": "🍎茉莉🔹APP",
-      "type": 3,
-      "api": "csp_AppGet",
-      "searchable": 1,
-      "changeable": 1,
-      "ext": {
-        "site": "./lib/9.txt",
-        "dataKey": "88689667dce61725",
-        "dataIv": "88689667dce61725"
-      }
-    },
-    {
-      "key": "灵虎",
-      "name": "🍎灵虎🔹APP",
-      "type": 3,
-      "api": "csp_AppGet",
-      "searchable": 1,
-      "changeable": 1,
-      "ext": {
-        "site": "./lib/89.txt",
-        "dataKey": "#getapp@TMD@2025",
-        "dataIv": "#getapp@TMD@2025"
       }
     },
 	   {
@@ -681,17 +530,6 @@
       "api": "csp_Jpys",
       "ext": "https://m.610pkea.com,https://y2s52n7.com,https://m.hkybqufgh.com,https://m.sizhengxt.com,https://m.9zhoukj.com,https://m.sizhengxt.com,https://m.jiabaide.cn"
     },
-	   {
-      "key": "新韩剧网",
-      "name": "☕韩剧🔹专区",
-      "type": 3,
-      "api": "./py/新韩剧网.py",
-      "searchable": 1,
-      "quickSearch": 0,
-      "filterable": 0,
-      "changeable": 0,
-      "ext": {}
-    },
 	     {
             "key": "2400部恐怖电影",
             "name": "🍎恐怖🔹电影",
@@ -711,16 +549,6 @@
       "ext": {
         "site": "https://m.hkybqufgh.com,https://m.sizhengxt.com,https://m.9zhoukj.com,https://m.sizhengxt.com,https://m.jiabaide.cn"
       }
-    },
-	  {
-      "key": "58ys",
-      "name": "️​🍎58🔹影视",
-      "type": 3,
-      "api": "./py/58ys.py",
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 1,
-      "filterable": 1
     },
     {
       "key": "骚火影视",
@@ -768,40 +596,11 @@
       }
     },
     {
-      "key": "小镇影视",
-      "name": "🍎小镇🔹影视",
-      "type": 3,
-      "api": "csp_XBPQ",
-      "ext": "./lib/小镇影视.json"
-    },
-    {
       "key": "永乐影视",
       "name": "🍎永乐🔹影视",
       "type": 3,
       "api": "csp_XBPQ",
       "ext": "./lib/永乐影视.json"
-    },
-    {
-      "key": "1905",
-      "name": "🍎1905🔹影视",
-      "type": 3,
-      "api": "csp_Web1905",
-      "searchable": 1,
-      "quickSearch": 0,
-      "filterable": 0
-    },
-	    {
-      "key": "移动",
-      "name": "🍎移动🔹视轨",
-      "type": 3,
-      "api": "csp_PanWebSharePT",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "changeable": 0,
-      "style": {
-        "type": "list"
-      }
     },
 	          {
             "key": "TVTⅤ2影视",
@@ -885,54 +684,6 @@
                 "类型": "动作片$7#喜剧片$8#爱情片$9#科幻片$10#恐怖片$11#剧情片$12#战争片$29#纪录片$13||国产剧$14#港剧$15#台湾剧$16#韩剧$17#日剧$18#泰剧$31#欧美剧$19#海外剧$20||大陆综艺$21#日韩综艺$22#港台综艺$23#欧美综艺$24||国产动漫$25#日本动漫$26#欧美动漫$27#海外动漫$28||空||空"
             }
         },
-	  {
-            "key": "HDVD影视",
-            "name": "🍎HDVD🔹影视",
-            "type": 3,
-            "api": "csp_XBPQ",
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 1,
-            "ext": {
-                "作者": "冰水",
-                "站名": "HDVD影视260127",
-                "请求头": "User-Agent$MOBILE_UA",
-                "编码": "UTF-8",
-                "主页url": "https://www.hdvd.cc/",
-                "首页": "120",
-                "起始页": "1",
-                "分类url": "https://www.hdvd.cc/ReMen-{cateId}-{catePg}/by/{by}.html;;mrc",
-                "分类": "电影$dianying#电视剧$dianshiju#综艺$zongyi#动漫$dongman#短剧$duanju",
-                "二次截取": "",
-                "数组": "myui-vodbox-content\"&&</a",
-                "标题": "div class=\"title\"&&</div>",
-                "图片": "img src=\"&&\"",
-                "副标题": "right\">&&</+｜+评分:+score\">&&<",
-                "链接": "href=\"&&\"",
-                "影片类型": "tags text-overflow\"&&</div>",
-                "状态": "fire-icon\"></div>&&</div>",
-                "导演": "+导演:</div>&&</div>",
-                "主演": "+主演:</div>&&</div>",
-                "简介": "请勿相信影片中的广告+简介：&&</div",
-                "线路二次截取": "",
-                "线路数组": "swiper-slide player_name&&/li>",
-                "线路标题": "+>&&[排序:LZ线路>BF线路]",
-                "播放二次截取": "tab-content&&猜你喜欢[替换:myui-vodbox>>tab-pane lists-box]",
-                "播放数组": "fade in&&tab-pane lists-box",
-                "倒序": "1",
-                "嗅探词": ".mp4#.m3u8",
-                "播放列表": "<a&&/a>",
-                "播放标题": "+>&&<",
-                "播放链接": "href=\"&&\"",
-                "跳转播放链接": "iframe*src=\"/p.html?url=&&\"",
-                "搜索请求头": "User-Agent$MOBILE_UA",
-                "搜索url": "/ReMen-id?wd={wd}&page={pg}",
-                "排序": "最新上映&超高人气&全网热播&高分好评&人气高低",
-                "排序值": "time&hits&up&score&hits_week",
-                "筛选": "1",
-                "类型": "动作片$dongzuo#喜剧片$xiju#科幻片$kehuan#恐怖片$kongbu#爱情片$aiqing#战争片$zhanzheng#剧情片$juqing||国产$guochan#韩剧$hanju#短剧$duanju#泰剧$taiju#美剧$meiju#港剧$gangju#日剧$riju#台剧$taibei||空||空||空"
-            }
-        },
 	   {
             "key": "首播影院",
             "name": "🍎首播🔹影院",
@@ -957,57 +708,6 @@
                 "分类url": "https://www.4f7lw7.cn/4f7lw7tp/{cateId}-{catePg}.html"
             }
         },
-	  {
-            "key": "薇雪影视",
-            "name": "🍎薇雪🔹影视",
-            "type": 3,
-            "api": "csp_XBPQ",
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 1,
-            "ext": {
-                "作者": "冰水",
-                "站名": "薇雪影视260208",
-                "请求头": "User-Agent$MOBILE_UA",
-                "编码": "UTF-8",
-                "主页url": "https://www.hbyunxue.com/",
-                "首页": "120",
-                "图片代理": "1",
-                "起始页": "1",
-                "分类url": "/vodshow/{cateId}-{area}-{by}-{class}-{lang}-{letter}---{catePg}---{year}.html;;mrc",
-                "分类": "电影$1#电视剧$2#综艺$3#动漫$4#爽文短剧$51",
-                "二次截取": "",
-                "数组": "lazyload\"&&</a",
-                "标题": "title=\"&&\"",
-                "图片": "data-original=\"&&\"",
-                "副标题": "+right\">&&</",
-                "链接": "href=\"&&\"",
-                "影片年代": "年份：&&</p",
-                "影片地区": "地区：&&</p",
-                "影片类型": "类型：&&</p",
-                "状态": "状态：&&</p",
-                "导演": "导演：&&</p",
-                "主演": "主演：&&</p",
-                "简介": "请勿相信影片中的广告??+sketch content\"&&</p",
-                "线路二次截取": "",
-                "线路数组": "\\#playlist&&/li>",
-                "线路标题": "+>&&<",
-                "播放二次截取": "",
-                "播放数组": "list sort-list clearfix&&</ul>",
-                "倒序": "0",
-                "嗅探词": ".mp4#.m3u8",
-                "播放列表": "<a&&/a>",
-                "播放标题": "+>&&<",
-                "播放链接": "href=\"&&\"",
-                "跳转播放链接": "var player_*\"url\":\"&&\"",
-                "搜索请求头": "User-Agent$MOBILE_UA",
-                "搜索url": "/vodsearch/{wd}----------{pg}---.html",
-                "排序": "最新上映&超高人气&全网热播&高分好评",
-                "排序值": "time&hits&up&score",
-                "筛选": "1",
-                "类型": "动作片$7#喜剧片$8#爱情片$9#科幻片$10#恐怖片$11#剧情片$12#战争片$20#纪录片$29#新爱情片$30#动漫电影$33#预告片$46#邵氏电影$48#影视解说$50||港台剧$14#日剧$15#美剧$16#韩剧$31#泰剧$32#海外剧$36||大陆综艺$25#港台综艺$26#日韩综艺$37#欧美综艺$38#演唱会$43||国产动漫$21#日本动漫$22#欧美动漫$23#其他动漫$24#港台动漫$41||空"
-            }
-        },
 	          {
             "key": "狐狸君",
             "name": "🍎狐狸🔹磁力",
@@ -1019,18 +719,6 @@
             "filterable": 1,
             "ext": "./lib/狐狸君.json"
         },
-    {
-      "key": "七味",
-      "name": "🍎七味🔹磁力",
-      "type": 3,
-      "api": "csp_QnMp4",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "ext": {
-        "url": "https://www.qwnull.com,https://www.qwmkv.com,https://www.qwfilm.com,https://www.qnmp4.com,https://www.qnnull.com,https://www.qnhot.com,https://www.qncool.com"
-      }
-    },
     {
       "key": "电影天堂",
       "name": "🍎天堂🔹磁力",
@@ -1076,6 +764,13 @@
         "欧美综艺",
         "伦理"
       ]
+    },
+	  {
+      "key": "聚合采集",
+      "name": "🍎融融🔹采集",
+      "type": 3,
+      "api": "https://cdn.jsdmirror.com/gh/ouhaibo1980/tvbox@main/js/drpy2.min.js",
+      "ext": "https://cdn.jsdmirror.com/gh/ouhaibo1980/tvbox@main/js/采集之王.js?type=url&params=https://cdn.jsdmirror.com/gh/ouhaibo1980/tvbox@main/json/采集静态.json"
     },
    {
       "key": "ryzycj",
