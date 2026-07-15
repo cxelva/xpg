@@ -1108,18 +1108,6 @@
       }
     },
     {
-      "key": "番薯动漫",
-      "name": "🍎番薯🔹动漫",
-      "type": 3,
-      "searchable": 1,
-      "api": "csp_AppGet",
-      "ext": {
-        "url": "https://new.app.bytegooty.com",
-        "dataKey": "N4yj7l7xKxHF4*gz",
-        "dataIv": "N4yj7l7xKxHF4*gz"
-      }
-    },
-    {
       "key": "曼波动漫",
       "name": "🍎曼波🔹动漫",
       "type": 3,
@@ -1295,15 +1283,6 @@
       "name": "🏆瓜子🔹体育",
       "type": 3,
       "api": "csp_GuaziTY",
-      "style": {
-        "type": "list"
-      }
-    },
-    {
-      "key": "919体育",
-      "name": "🏆919🔹体育",
-      "type": 3,
-      "api": "csp_919TY",
       "style": {
         "type": "list"
       }
