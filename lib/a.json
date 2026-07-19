@@ -4,8 +4,19 @@
   "logo": "https://s1.aigei.com/prevfiles/68f66953f939418b93cb63dd604cf560.gif?e=2051020800&token=P7S2Xpzfz11vAkASLTkfHN7Fw-oOZBecqeJaxypL:zQuZVbKvUMUYt39j8bSGJnsj__k=",
   "sites": [
 	   {
+      "key": "✨高清SEX国产",
+      "name": "🔞传播后果自负！ 视频没有弹出来，点我换源！",
+      "type": 3,
+      "playerType": 2,
+      "api": "csp_XBPQ",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "./a/高清SEX国产.js"
+    },
+	   {
       "key": "XMVideo",
-      "name": "🔞XMVideo   传播后果自负！ 视频没有弹出来，点我换源！",
+      "name": "🔞XMVideo",
       "type": 3,
       "api": "csp_XMVideo",
       "searchable": 1,
@@ -21,17 +32,6 @@
         "分类url": "https://xiangjiao.10010288.xyz/index.php/vod/type/id/{cateId}.html",
         "分类": "无码中字$28#有码中字$29#国产视频$30#欧美高清$31#动漫剧情$32"
       }
-    },
-	   {
-      "key": "✨高清SEX国产",
-      "name": "🔞高清SEX国产 ",
-      "type": 3,
-      "playerType": 2,
-      "api": "csp_XBPQ",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "ext": "./a/高清SEX国产.js"
     },
     {
       "key": "风流视频",
@@ -74,41 +74,6 @@
       "filterable": 1,
       "changeable": 1
     },
-    {
-      "key": "美美影视资源",
-      "name": "🔞美影视资",
-      "type": 1,
-      "searchable": 0,
-      "quickSearch": 1,
-      "filterable": 1,
-      "api": "https://apidanaizi.com/api.php/provide/vod/",
-      "categories": [
-        "精品推荐",
-        "自拍偷拍",
-        "足浴撩妹",
-        "清纯学生",
-        "中文字幕",
-        "国产主播",
-        "国产乱伦",
-        "港台辣妹",
-        "强奸乱伦",
-        "多人群交",
-        "人妻熟女",
-        "野外露出",
-        "女同性恋",
-        "变性伪娘",
-        "主奴调教",
-        "制服丝袜",
-        "传媒探花",
-        "网曝事件",
-        "反差母狗",
-        "AI换脸",
-        "制服诱惑",
-        "凌辱快感",
-        "欧美激情"
-      ]
-    },
-	   
 	    {
       "key": "bhziyuan",
       "name": "🔞百花",
@@ -749,6 +714,40 @@
         "传媒-CCAV成人头条",
         "传媒-渡边传媒",
         "传媒-辣椒原创"
+      ]
+    },
+	   {
+      "key": "美美影视资源",
+      "name": "🔞美影视资",
+      "type": 1,
+      "searchable": 0,
+      "quickSearch": 1,
+      "filterable": 1,
+      "api": "https://apidanaizi.com/api.php/provide/vod/",
+      "categories": [
+        "精品推荐",
+        "自拍偷拍",
+        "足浴撩妹",
+        "清纯学生",
+        "中文字幕",
+        "国产主播",
+        "国产乱伦",
+        "港台辣妹",
+        "强奸乱伦",
+        "多人群交",
+        "人妻熟女",
+        "野外露出",
+        "女同性恋",
+        "变性伪娘",
+        "主奴调教",
+        "制服丝袜",
+        "传媒探花",
+        "网曝事件",
+        "反差母狗",
+        "AI换脸",
+        "制服诱惑",
+        "凌辱快感",
+        "欧美激情"
       ]
     },
     {
