@@ -438,28 +438,6 @@
       "ext": "./a/成鸡思汉.json"
     },
     {
-      "key": "py_kemono优化",
-      "name": "🔞kemon",
-      "type": 3,
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "api": "./a/kemon.py",
-      "order_num": 5,
-      "ext": ""
-    },
-    {
-      "key": "✨椰子蛋✨",
-      "name": "🔞椰子蛋",
-      "type": 3,
-      "playerType": 2,
-      "api": "csp_XBPQ",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "ext": "./a/椰子蛋.json"
-    },
-    {
       "key": "✨盲盒✨",
       "name": "🔞盲盒",
       "type": 3,
@@ -469,28 +447,6 @@
       "quickSearch": 1,
       "filterable": 1,
       "ext": "./a/盲盒.json"
-    },
-    {
-      "key": "✨凡人✨",
-      "name": "🔞凡人修色传",
-      "type": 3,
-      "playerType": 2,
-      "api": "csp_XBPQ",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "ext": "./a/凡人修色传.json"
-    },
-    {
-      "key": "APP",
-      "name": "🔞佬通用视频",
-      "type": 3,
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "api": "./a/E佬通用视频.py",
-      "order_num": 5,
-      "ext": ""
     },
     {
       "key": "精工厂",
