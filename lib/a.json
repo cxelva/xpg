@@ -438,59 +438,6 @@
       "ext": "./a/成鸡思汉.json"
     },
     {
-      "key": "麻豆",
-      "name": "🔞麻豆👊",
-      "type": 3,
-      "changeable": 1,
-      "filterable": 1,
-      "api": "csp_XBPQ",
-      "style": {
-        "ratio": 1.7
-      },
-      "ext": {
-        "发布url": "www.njav.sbs",
-        "搜索url": "http://gcmd.cc/index.php/vod/search/page/{pg}/wd/{wd}.html",
-        "分类": "日本视频$1#麻豆视频$2#国产视频$3",
-        "分类url": "http://gcmd.cc/index.php/vod/show/class/{class}/id/{cateId}/page/{catePg}.html",
-        "直接播放": "1"
-      }
-    },
-    {
-      "key": "55视频",
-      "name": "🔞55视频",
-      "type": 3,
-      "playerType": 2,
-      "api": "csp_XBPQ",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "ext": "./a/55视频.json"
-    },
-    {
-      "key": "一个纯粹的x站",
-      "name": "🔞纯粹的x站",
-      "type": 3,
-      "playerType": 2,
-      "api": "csp_XBPQ",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "ext": "./a/一个纯粹的x站.json"
-    },
-    {
-      "key": "经典三部曲",
-      "name": "🔞经典三部曲",
-      "type": 3,
-      "api": "csp_XBPQ",
-      "searchable": 1,
-      "style": {
-        "ratio": 1.43
-      },
-      "quickSearch": 1,
-      "filterable": 1,
-      "ext": "./a/经典三部曲.json"
-    },
-    {
       "key": "py_kemono优化",
       "name": "🔞kemon",
       "type": 3,
