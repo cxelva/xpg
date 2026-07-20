@@ -445,6 +445,28 @@
         "decrypt": "0"
       }
     },
+	  {
+      "key": "小影",
+      "name": "🍎小影🔹影视",
+      "type": 3,
+      "api": "./py/莫小影.py",
+      "searchable": 1,
+	  "quickSearch": 1,
+      "filterable": 1,
+      "order_num": 0,
+      "changeable": 0
+    },
+	   {
+      "key": "青春",
+      "name": "🍎青春🔹影视",
+      "type": 3,
+      "api": "./py/共青春.py",
+      "searchable": 1,
+	  "quickSearch": 1,
+      "filterable": 1,
+      "order_num": 0,
+      "changeable": 0
+    },
 	      {
       "key": "段友影视",
       "name": "🍎段友🔹影视",
