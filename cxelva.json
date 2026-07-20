@@ -479,13 +479,6 @@
       "changeable": 0
     },
 	      {
-      "key": "威士PY",
-      "name": "🍎威士🔹PY",
-      "type": 3,
-      "api": "./py/威士.py",
-      "ext": "http://v.2video.cc"
-    },
-	      {
       "key": "八戒PY",
       "name": "🍎八戒🔹PY",
       "type": 3,
@@ -553,13 +546,6 @@
       "api": "csp_Jpys",
       "ext": "https://m.610pkea.com,https://y2s52n7.com,https://m.hkybqufgh.com,https://m.sizhengxt.com,https://m.9zhoukj.com,https://m.sizhengxt.com,https://m.jiabaide.cn"
     },
-	     {
-            "key": "2400部恐怖电影",
-            "name": "🍎恐怖🔹电影",
-            "type": 3,
-            "api": "./lib/apiv121916.js",
-            "ext": "./lib/2400.js"
-        },
 	      {
       "key": "文才影视",
       "name": "🍎文才🔹影视",
