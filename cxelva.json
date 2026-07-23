@@ -190,7 +190,7 @@
         },
 	      {
       "key": "ppx",
-      "name": "🍎皮皮虾🔹影视",
+      "name": "🍎皮皮🔹影视",
       "type": 3,
       "api": "./py/皮皮虾.py",
       "ext": "http://43.248.117.123:4680"
@@ -557,51 +557,6 @@
       "playerType": 2,
       "ext": {
         "site": "https://m.hkybqufgh.com,https://m.sizhengxt.com,https://m.9zhoukj.com,https://m.sizhengxt.com,https://m.jiabaide.cn"
-      }
-    },
-    {
-      "key": "骚火影视",
-      "name": "🍎骚火🔹影视",
-      "type": 3,
-      "api": "csp_SaoHuo",
-      "ext": "https://shdy5.us"
-    },
-	      {
-      "key": "夕云",
-      "name": "🍎夕云🔹影视",
-      "type": 3,
-      "api": "csp_XBPQ",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "changeable": 1,
-      "ext": {
-        "站名": "夕云影视",
-        "主页url": "https://www.xyxy.live/",
-        "搜索Url": "https://www.xyxy.live/index.php/vod/search.html?wd={wd}",
-        "分类url": "https://www.xyxy.live/index.php/vod/show/by/{by}/id/{cateId}/page/{catePg}/year/{year}.html",
-        "分类": "电影$20#电视剧$39#综艺$47#动漫$46"
-      }
-    },
-	   {
-      "key": "五一影视",
-      "name": "🍎五一🔹影视",
-      "type": 3,
-      "api": "csp_XBPQ",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "ext": {
-        "请求头": "User-Agent$MOBILE_UA",
-        "编码": "UTF-8",
-        "数组": "lazyload\"&&</a>",
-        "标题": "title=\"&&\"",
-        "图片": "data-original=\"&&\"",
-        "链接": "href=\"&&\"",
-        "主页url": "https://www.51kjy.com",
-        "搜索url": "https://www.51kjy.com/vodsearch/{wd}----------{pg}---.html",
-        "分类url": "https://www.51kjy.com/vodshow/{cateId}-{area}--{class}-{lang}-------{year}.html",
-        "分类": "电影$1#电视剧$2#综艺$3#动漫$4#动画片$35#短剧$36#动作片$6#喜剧片$7#爱情片$8#科幻片$9#恐怖片$10#剧情片$11#战争片$12#纪录片$24#国产剧$13#港剧$14#台剧$15#日剧$16#泰剧$20#韩剧$21"
       }
     },
     {
