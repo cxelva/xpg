@@ -683,15 +683,6 @@
             "filterable": 1,
             "ext": "./lib/狐狸君.json"
         },
-    {
-      "key": "电影天堂",
-      "name": "🍎天堂🔹磁力",
-      "type": 3,
-      "api": "csp_DyGod",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1
-    },
    {
       "key": "天涯",
       "name": "🍎天涯🔹蓝光",
@@ -1023,19 +1014,6 @@
             "type": 3,
             "api": "./py/Acfun4K.py"
         },
-	      {
-      "key": "动漫天堂",
-      "name": "🍎漫堂🔹APP",
-      "type": 3,
-      "api": "./lib/get.js",
-      "ext": {
-        "host": "./lib/500.txt",
-        "key": "1vi33w2pAHEm8Y6U",
-        "init": "V122",
-        "api": 2,
-        "ua": "okhttp/3.10.0"
-      }
-    },
     {
       "key": "哆啦新番社",
       "name": "🍎哆啦🔹番社",
