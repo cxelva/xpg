@@ -25,6 +25,17 @@
       }
     },
 	   {
+      "key": "韩小圈.py",
+      "name": "🍎韩小🔹小圈",
+      "type": 3,
+      "api": "./py/韩小圈.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "order_num": 0,
+      "changeable": 0
+    },
+	   {
       "key": "奈飞4K",
       "name": "🍎奈飞🔹4K",
       "type": 1,
