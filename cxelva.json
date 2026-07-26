@@ -26,7 +26,7 @@
     },
 	   {
       "key": "韩小圈.py",
-      "name": "🍎韩小🔹小圈",
+      "name": "🍎韩小🔹圈",
       "type": 3,
       "api": "./py/韩小圈.py",
       "searchable": 1,
@@ -177,12 +177,6 @@
       "changeable": 1,
       "playable": 1
     },
-	          {
-            "key": "枫叶",
-            "name": "🍎专享🔹4K",
-            "type": 3,
-            "api": "./lib/fy.py"
-        },
 	   {
             "key": "火云",
             "name": "🍎火云🔹4k",
