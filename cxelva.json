@@ -111,16 +111,6 @@
         "decrypt": "1"
       }
     },
-	          {
-            "key": "极影",
-            "name": "🍎极影🔹4K",
-            "type": 3,
-            "api": "./lib/apiv1051AppYsV2.js",
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 1,
-            "ext": "http://cmsyun2.qijiyun.vip/api.php/app/"
-        },
 	      {
       "key": "橘汁",
       "name": "🍎橘汁🔹4K",
@@ -167,17 +157,6 @@
             }
         },
 	   {
-      "key": "枫叶4K",
-      "name": "🍎枫叶🔹4K",
-      "type": 3,
-      "api": "./lib/枫叶4K.js",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "changeable": 1,
-      "playable": 1
-    },
-	   {
             "key": "火云",
             "name": "🍎火云🔹4k",
             "type": 3,
@@ -200,30 +179,6 @@
       "api": "./py/皮皮虾.py",
       "ext": "http://43.248.117.123:4680"
     },
-	  {
-    "key": "XBPQ_chcl_v7",
-    "name": "🍎小站🔹1080",
-    "type": 3,
-    "api": "csp_XBPQ",
-    "searchable": 1,
-    "quickSearch": 1,
-    "filterable": 1,
-    "ext": {
-        "作者": "集多",
-        "编码": "UTF-8",
-        "请求头": "User-Agent$MOBILE_UA",
-        "播放请求头": "User-Agent$MOBILE_UA",
-        "主页url": "https://chcl.org.cn",
-        "起始页": "1",
-        "线路数组": "<a data-toggle=\"tab\"&&/a>",
-        "线路标题": ">小站<",
-        "分类url": "https://chcl.org.cn/show/{cateId}-{area}-hits-{class}-{lang}-------{catePage}.html",
-        "分类": "电影$1#电视剧$2#综艺$3#动漫$4#短剧大全$5",
-        "搜索模式": "1",
-        "搜索url": "https://chcl.org.cn/search.html?wd={wd}",
-        "跳转播放链接": "var player_*\"url\":\"&&\""
-    }
-},
 	  {
       "key": "独家免扫4K",
       "name": "🍎独家🔹APP",
@@ -314,71 +269,6 @@
         "dataIv": "x5Bep6Q78VCeYnPS"
       }
     },
-	      {
-      "key": "橙子99",
-      "name": "🍎橙子🔹APP",
-      "type": 3,
-      "api": "csp_App99",
-      "ext": {
-        "host": "http://113.31.180.218:19987/app/bn",
-        "LoginPath": "/app/log",
-        "appkey": "6e8f3764a0644f3686ab5cdd57bcdf48",
-        "versionName": "4.3.1",
-        "name": "小橙子",
-        "package": "com.xchengzix.app",
-        "buildNumber": "2001",
-        "buildSignature": "99DA983CF878CEC016616175464A91A94775E20A489F07F76FCDEA1A0F2B6B45"
-      }
-    },
-	   {
-      "key": "无极99",
-      "name": "🍎无极🔹APP",
-      "type": 3,
-      "api": "csp_App99",
-      "ext": {
-        "host": "http://111.170.140.70:19987/app/bn",
-        "LoginPath": "/app/log",
-        "version": "",
-        "appkey": "c403317c2a2946659b0bcbabdd5de43a",
-        "versionName": "1.0.1",
-        "name": "无极影视",
-        "package": "com.wujiys.app",
-        "buildNumber": "2001",
-        "buildSignature": "A0859BDC35AD3E81D4051E2A4678C77C62773EDB3423DDF1DEFF94CB331D398E"
-      }
-    },
-    {
-      "key": "听心99",
-      "name": "🍎听心🔹APP",
-      "type": 3,
-      "api": "csp_App99",
-      "ext": {
-        "host": "https://api.12321app.com/api",
-        "LoginPath": "/app/log",
-        "appkey": "a0a18659a9977a47e53442cd084b536c",
-        "versionName": "2.8.1",
-        "name": "听心视频",
-        "package": "com.iksp.adsys.jjsp",
-        "buildNumber": "2001",
-        "buildSignature": "03DD38CE4C3D62D0F0DEFACC06768D14EB382C7BD77A05B2EBF4D66E154A0D47"
-      }
-    },
-    {
-      "key": "追番99",
-      "name": "🍎追番🔹APP",
-      "type": 3,
-      "api": "csp_App99",
-      "ext": {
-        "host": "https://api.hboqy.cn.hboqy.cn/api",
-        "LoginPath": "/app/log",
-        "appkey": "a0a18659a9977a47e53442cd084b536c",
-        "versionName": "6.1.7",
-        "name": "追番达人",
-        "package": "com.android.packageinstaller",
-        "buildNumber": "2002",
-        "buildSignature": "A40DA80A59D170CAA950CF15C18C454D47A39B26989D8B640ECD745BA71BF5DC"
-      }
-    },
     {
       "key": "剧圈99",
       "name": "🍎剧圈🔹APP",
@@ -450,16 +340,6 @@
         "decrypt": "0"
       }
     },
-	  {
-      "key": "小影",
-      "name": "🍎小影🔹影视",
-      "type": 3,
-      "api": "./py/莫小影.py",
-      "filterable": 1,
-      "quickSearch": 1,
-      "searchable": 1,
-      "type": 3
-    },
 	   {
       "key": "青春",
       "name": "🍎青春🔹影视",
@@ -475,16 +355,6 @@
       "name": "🍎段友🔹影视",
       "type": 3,
       "api": "./py/段友.py",
-      "filterable": 1,
-      "quickSearch": 1,
-      "searchable": 1,
-      "type": 3
-    },
-	      {
-      "key": "八戒PY",
-      "name": "🍎八戒🔹PY",
-      "type": 3,
-      "api": "./py/八戒影视.py",
       "filterable": 1,
       "quickSearch": 1,
       "searchable": 1,
@@ -568,18 +438,6 @@
       "api": "csp_XBPQ",
       "ext": "./lib/永乐影视.json"
     },
-	          {
-            "key": "TVTⅤ2影视",
-            "name": "🍎TV🔹影视",
-            "type": 3,
-            "api": "csp_XBPQ",
-            "ext": {
-                "请求头": "User-Agent$MOBILE_UA",
-                "编码": "UTF-8",
-                "分类": "电影$movie#剧集$tv#综艺$variety#动漫$anime#短剧$duanju#",
-                "分类url": "https://www.tvtv2.com/v_show/{cateId}-{catePg}.html"
-            }
-        },
 	  {
             "key": "乐乐",
             "name": "🍎乐乐🔹影视",
