@@ -4,8 +4,18 @@
   "logo": "https://s1.aigei.com/prevfiles/68f66953f939418b93cb63dd604cf560.gif?e=2051020800&token=P7S2Xpzfz11vAkASLTkfHN7Fw-oOZBecqeJaxypL:zQuZVbKvUMUYt39j8bSGJnsj__k=",
   "sites": [
 	   {
-      "key": "✨高清SEX国产",
+      "key": "六速社区",
       "name": "🔞传播后果自负！ 视频没有弹出来，点我换源！",
+      "type": 3,
+      "api": "./a/六速社区.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "changeable": 1
+    },
+	   {
+      "key": "✨高清SEX国产",
+      "name": "🔞高清SEX国产",
       "type": 3,
       "playerType": 2,
       "api": "csp_XBPQ",
