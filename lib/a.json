@@ -13,6 +13,16 @@
       "filterable": 1,
       "changeable": 1
     },
+	  {
+      "key": "花都影视",
+      "name": "🔞花都影视",
+      "type": 3,
+      "api": "./a/花都影视.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "changeable": 1
+    },
 	   {
       "key": "✨高清SEX国产",
       "name": "🔞高清SEX国产",
