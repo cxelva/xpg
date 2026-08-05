@@ -56,16 +56,6 @@
         "Netflix自制剧"
       ]
     },
-	   {
-      "key": "云朵4K",
-      "name": "🍎云朵🔹4K",
-      "type": 3,
-      "api": "csp_YunDuo",
-      "jar": "./py/云朵.jar",
-      "searchable": 1,
-      "changeable": 1,
-      "filterable": 1
-    },
 	      {
       "key": "融融",
       "name": "🍎融融🔹4K",
@@ -92,22 +82,6 @@
         "decrypt": "0"
       }
     },
-	    {
-  "key": "爱影",
-  "name": "🍎爱影🔹4K",
-  "type": 3,
-  "api": "csp_AppQi",
-  "searchable": 1,
-  "changeable": 1,
-  "ext": {
-    "site": "./lib/q26.txt",
-    "dataKey": "0UKM8jkasM8tdzgW",
-    "dataIv": "0UKM8jkasM8tdzgW",
-    "init": "initV122",
-    "search": "mineInfo",
-    "ua": "okhttp/3.10.0"
-  }
-}, 
 	      {
       "key": "华谊",
       "name": "🍎华谊🔹4K",
