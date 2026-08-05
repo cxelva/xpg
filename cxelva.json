@@ -42,15 +42,6 @@
       "order_num": 0,
       "changeable": 0
     },
-	  {
-            "key": "剧OK影视",
-            "name": "🍎影视🔹4K",
-            "type": 3,
-		  "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-            "api": "./js/剧OK影视.js"
-        },
 	   {
       "key": "奈飞4K",
       "name": "🍎奈飞🔹4K",
