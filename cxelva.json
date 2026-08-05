@@ -44,39 +44,12 @@
     },
 	  {
             "key": "剧OK影视",
-            "name": "🍎OK🔹影视🔹",
+            "name": "🍎影视🔹4K",
             "type": 3,
 		  "searchable": 1,
       "quickSearch": 1,
       "filterable": 1,
             "api": "./js/剧OK影视.js"
-        },
-	  {
-            "key": "太乙",
-            "name": "🍎太乙🔹4k",
-            "type": 3,
-		  "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-            "api": "./js/太乙.js"
-        },
-	  {
-            "key": "云游",
-            "name": "🍎云游🔹4k",
-            "type": 3,
-		  "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-            "api": "./js/云游.js"
-        },
-	  {
-            "key": "鱼塘社",
-            "name": "🍎鱼塘🔹4k",
-            "type": 3,
-		  "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-            "api": "./js/鱼塘社.js"
         },
 	   {
       "key": "奈飞4K",
