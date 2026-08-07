@@ -24,10 +24,70 @@
       "changeable": 1
     },
 	  {
-      "key": "花都影视",
-      "name": "🔞花都影视",
+      "key": "8x8x_spider",
+      "name": "🔞8x8x",
       "type": 3,
-      "api": "./a/花都影视.py",
+      "api": "./a/8x8x_spider.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "changeable": 1
+    },
+	   {
+      "key": "91黑料网",
+      "name": "🔞91黑料网",
+      "type": 3,
+      "api": "./a/91黑料网.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "changeable": 1
+    },
+	   {
+      "key": "91热爆",
+      "name": "🔞91热爆",
+      "type": 3,
+      "api": "./a/91热爆.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "changeable": 1
+    },
+	  {
+      "key": "清纯人妻",
+      "name": "🔞清纯人妻",
+      "type": 3,
+      "api": "./a/清纯人妻.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "changeable": 1
+    },
+	   {
+      "key": "丝袜乐土",
+      "name": "🔞丝袜乐土",
+      "type": 3,
+      "api": "./a/丝袜乐土.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "changeable": 1
+    },
+	   {
+      "key": "淫母原味",
+      "name": "🔞淫母原味",
+      "type": 3,
+      "api": "./a/淫母原味.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "changeable": 1
+    },
+	  {
+      "key": "小心御欲",
+      "name": "🔞小心御欲",
+      "type": 3,
+      "api": "./a/小心御欲.py",
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1,
