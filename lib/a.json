@@ -22,7 +22,16 @@
       "quickSearch": 1,
       "filterable": 1,
       "changeable": 1
-    },
+    },  {
+            "key": "六速社区视频",
+            "name": "🔞蜜桃AV",
+            "type": 3,
+            "api": "./a/蜜桃AV.py",
+            "searchable": 1,
+            "quickSearch": 1,
+            "filterable": 1,
+            "changeable": 1
+        },
 	  {
       "key": "8x8x_spider",
       "name": "🔞8x8x",
