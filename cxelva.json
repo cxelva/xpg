@@ -212,18 +212,6 @@
       "type": 3,
       "api": "csp_App3Q"
     },
-	   {
-      "key": "八天App",
-      "name": "🍎八天🔹APP",
-      "type": 3,
-      "searchable": 1,
-      "changeable": 1,
-      "api": "csp_AppGet",
-      "ext": {
-        "host": "https://dy.8ttv.cn/",
-        "datakey": "1111111111111111"
-      }
-    },
 	      {
       "key": "电影先生",
       "name": "🍎电影🔹APP",
