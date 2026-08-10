@@ -43,16 +43,6 @@
       "changeable": 0
     },
 	   {
-      "key": "极影4K",
-      "name": "🍎极影🔹4K",
-      "type": 3,
-      "api": "https://dogpan.com/f/MjZntz/4K免扫码.js",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "ext": "http://cmsyun2.qijiyun.vip/api.php/app/"
-    },
-	   {
       "key": "云朵4K",
       "name": "🍎云朵🔹4K",
       "type": 3,
