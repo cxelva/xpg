@@ -36,16 +36,6 @@
       "changeable": 0
     },
 	   {
-      "key": "云朵4K",
-      "name": "🍎云朵🔹4K",
-      "type": 3,
-      "api": "csp_YunDuo",
-      "jar": "https://qiniu.gongxueyun.com/upload/1175457/2026-07-25/avatar/569288413_5_1784984049293.jar",
-      "searchable": 1,
-      "changeable": 1,
-      "filterable": 1
-    },
-	   {
       "key": "奈飞4K",
       "name": "🍎奈飞🔹4K",
       "type": 1,
