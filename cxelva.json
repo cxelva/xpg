@@ -6,7 +6,7 @@
   "sites": [
     {
       "key": "豆瓣",
-      "name": "🍎小苹果影视  更新8月11日！",
+      "name": "🍎小苹果影视  更新8月14日！",
       "type": 3,
       "api": "csp_Douban",
       "searchable": 0
@@ -37,7 +37,7 @@
     },
 	  {
       "key": "腾优爱芒B",
-      "name": "📺腾优🔹爱芒",
+      "name": "🍎腾优🔹爱芒",
       "type": 3,
       "api": "./py/腾爱优b站.js",
       "changeable": 0
