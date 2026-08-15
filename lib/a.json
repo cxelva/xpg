@@ -14,6 +14,16 @@
       "changeable": 1
     },
 	  {
+      "key": "VV视频",
+      "name": "🔞VV视频",
+      "type": 3,
+      "api": "./a/VV.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "changeable": 1
+    },
+	  {
       "key": "萝莉岛",
       "name": "🔞萝莉岛",
       "type": 3,
