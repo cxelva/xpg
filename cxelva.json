@@ -148,55 +148,6 @@
         "decrypt": "1"
       }
     },
-	   {
-      "key": "布布",
-      "name": "🍎布布🔹4K",
-      "type": 3,
-      "api": "./py/布布.py",
-      "style": {
-        "type": "rect",
-        "ratio": 1.33
-      },
-      "changeable": 1
-    },
-	          {
-            "key": "葫芦get",
-            "name": "🍎葫芦🔹4K",
-            "type": 3,
-            "api": "csp_AppQi",
-            "searchable": 1,
-            "changeable": 1,
-            "filterable": 1,
-            "ext": {
-                "site": "./lib/maccos_config.txt",
-                "dataKey": "8R33VQSxzmCaHpEX",
-                "dataIv": "8R33VQSxzmCaHpEX"
-            }
-        },
-	   {
-            "key": "火云",
-            "name": "🍎火云🔹4k",
-            "type": 3,
-            "api": "./lib/hy.js"
-        },
-	  	   {
-            "key": "歪比┃4K",
-            "name": "🍎歪比🔹4K",
-            "type": 3,
-            "api": "./py/歪比影视.py",
-            "filterable": 1,
-            "quickSearch": 1,
-            "searchable": 1,
-            "switchable": 1
-        },
-	      {
-      "key": "首发",
-      "name": "🍎首发🔹APP",
-      "type": 3,
-      "api": "csp_Qiji",
-	  "jar": "https://jihulab.com/yoursmile7/TVBox/-/raw/main/Yoursmile.jar;md5;c6aaf6a9498e1e1d07126779c687bdd8",
-      "ext": "7lj763gg402i7942483l849kk10ljji4g6li98059ijj72225j5255l2k95g5i1h1g985ggj905j86ig3604gi80lgl30jk3hk637h53ghk49hgl689125k7738h7947igg3k5h3gk6j12718k402802hlkh6k527581gk4936hkj49i8i9g2hh53l320l3i3197"
-    },
 	      {
       "key": "ppx",
       "name": "🍎皮皮🔹影视",
