@@ -62,6 +62,19 @@
       "type": 3,
       "api": "./py/shanzha.py"
     },
+	  {
+      "key": "秒看",
+      "name": "🍎秒看🔹4K",
+      "type": 3,
+      "api": "csp_AppGet",
+      "playerType": 2,
+      "ext": {
+        "url": "https://mk1080.top/",
+        "dataKey": "c60d88b2eep53za8",
+        "dataIv": "c60d88b2eep53za8",
+        "token": "0e4bdd6893d319dcd405b6b06890debfd94fc4676702613921b05682f488dd8c"
+      }
+    },
 	   {
       "key": "苹果",
       "name": "🍎苹果🔹4K",
