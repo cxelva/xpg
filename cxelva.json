@@ -148,6 +148,16 @@
         "decrypt": "1"
       }
     },
+	   {
+            "key": "枫叶4K",
+            "name": "🍎枫叶🔹4K",
+            "type": 3,
+            "api": "./py/枫叶4K.py",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "switchable": 1
+        },
 	      {
       "key": "ppx",
       "name": "🍎皮皮🔹影视",
