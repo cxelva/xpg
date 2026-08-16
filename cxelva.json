@@ -76,6 +76,19 @@
       }
     },
 	   {
+      "key": "4K影院",
+      "name": "🍎光影🔹4K",
+      "type": 3,
+      "api": "./lib/get.js",
+      "ext": {
+        "host": "./lib/603.txt",
+        "key": "FTgP4Gq8zPiqbt7M",
+        "init": "V122",
+        "api": 2,
+        "ua": "okhttp/3.10.0"
+      }
+    },
+	   {
       "key": "苹果",
       "name": "🍎苹果🔹4K",
       "type": 3,
