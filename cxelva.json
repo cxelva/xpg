@@ -199,6 +199,16 @@
       }
     },
 	      {
+      "key": "金牌",
+      "name": "🍎金牌🔹APP",
+      "type": 3,
+      "api": "csp_Jpys",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "7lj763gg402i7942463j9j9jh8579590k3hjii5gi4i73l2k5l"
+    },
+	      {
       "key": "三秋影视",
       "name": "🍎三秋🔹APP",
       "type": 3,
