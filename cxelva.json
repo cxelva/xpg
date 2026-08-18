@@ -360,6 +360,13 @@
         "decrypt": "0"
       }
     },
+	   { "key": "ssssdffc",
+  "name": "🍎4K🔹电影",
+  "type": 3,
+  "api": "./py/4K电影网.py",
+  "searchable": 1,
+  "quickSearch": 1
+},
 	   {
       "key": "青春",
       "name": "🍎青春🔹影视",
