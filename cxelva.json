@@ -35,13 +35,6 @@
       "order_num": 0,
       "changeable": 0
     },
-	  {
-      "key": "腾优爱芒B",
-      "name": "🍎腾优🔹爱芒",
-      "type": 3,
-      "api": "./py/腾爱优b站.js",
-      "changeable": 0
-    }, 
 	   {
       "key": "奈飞4K",
       "name": "🍎奈飞🔹4K",
