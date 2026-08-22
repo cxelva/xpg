@@ -256,6 +256,26 @@
             "searchable": 1,
             "switchable": 1
         },
+	  {
+            "key": "厂长影视",
+            "name": "🍎厂长🔹影视",
+            "type": 3,
+            "api": "./py/厂长影视.py",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "switchable": 1
+        },
+	  {
+            "key": "云朵影视",
+            "name": "🍎云朵🔹影视",
+            "type": 3,
+            "api": "./py/云朵影视.py",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "switchable": 1
+        },
 	     {
       "key": "爱看剧",
       "name": "🍎看剧🔹影视",
