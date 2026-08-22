@@ -55,6 +55,16 @@
       "type": 3,
       "api": "./py/shanzha.py"
     },
+	   {
+            "key": "云朵影视",
+            "name": "🍎云朵🔹4K",
+            "type": 3,
+            "api": "./py/云朵影视.py",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "switchable": 1
+        },
 	  {
       "key": "秒看",
       "name": "🍎秒看🔹4K",
@@ -261,16 +271,6 @@
             "name": "🍎厂长🔹影视",
             "type": 3,
             "api": "./py/厂长影视.py",
-            "filterable": 1,
-            "quickSearch": 1,
-            "searchable": 1,
-            "switchable": 1
-        },
-	  {
-            "key": "云朵影视",
-            "name": "🍎云朵🔹影视",
-            "type": 3,
-            "api": "./py/云朵影视.py",
             "filterable": 1,
             "quickSearch": 1,
             "searchable": 1,
