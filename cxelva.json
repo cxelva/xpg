@@ -56,6 +56,16 @@
       "api": "./py/shanzha.py"
     },
 	   {
+            "key": "多多影视",
+            "name": "🍎多多🔹4K",
+            "type": 3,
+            "api": "./py/多多影视.py",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "switchable": 1
+        },
+	   {
             "key": "云朵影视",
             "name": "🍎云朵🔹4K",
             "type": 3,
