@@ -14,16 +14,6 @@
       "changeable": 1
     },
 	  {
-      "key": "萝莉聚集",
-      "name": "🔞萝莉聚集",
-      "type": 3,
-      "api": "./a/萝莉聚集.py",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "changeable": 1
-    },
-	  {
       "key": "VV视频",
       "name": "🔞VV视频",
       "type": 3,
