@@ -50,6 +50,20 @@
       ]
     },
 	      {
+      "key": "YunZhenXiang",
+      "name": "🍎秒播🔹帧享",
+      "type": 3,
+      "api": "csp_YunZhenXiang",
+	  "jar": "./wy.php",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": {
+        "index_url": "./lib/com.huohuavideo.app.json",
+        "key_api": "https://www.tangsan.fun/zx.php"
+      }
+    },
+	      {
       "key": "融融",
       "name": "🍎融融🔹4K",
       "type": 3,
