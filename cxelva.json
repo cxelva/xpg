@@ -64,6 +64,17 @@
       }
     },
 	      {
+      "key": "Hkyb",
+      "name": "🍎秒播🔹世界",
+      "type": 3,
+      "api": "csp_HkybSpider",
+	  "jar": "./wy.php;md5;66b59c319e75082a0ed3b8e199517bdc",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": ""
+    },
+	      {
       "key": "融融",
       "name": "🍎融融🔹4K",
       "type": 3,
