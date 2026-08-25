@@ -49,19 +49,15 @@
         "Netflix自制剧"
       ]
     },
-	      {
-      "key": "YunZhenXiang",
-      "name": "🍎秒播🔹帧享",
+	        {
+      "key": "ygys",
+      "name": "🍎秒播🔹壹哥",
       "type": 3,
-      "api": "csp_YunZhenXiang",
+      "api": "csp_YiYs",
 	  "jar": "./wy.php;md5;66b59c319e75082a0ed3b8e199517bdc",
       "searchable": 1,
       "quickSearch": 1,
-      "filterable": 1,
-      "ext": {
-        "index_url": "./lib/com.huohuavideo.app.json",
-        "key_api": "https://www.tangsan.fun/zx.php"
-      }
+      "filterable": 1
     },
 	      {
       "key": "Hkyb",
@@ -247,10 +243,14 @@
       "ext": "7lj763gg402i7942463j9j9jh8579590k3hjii5gi4i73l2k5l"
     },
 	      {
-      "key": "三秋影视",
+      "key": "sqys",
       "name": "🍎三秋🔹APP",
       "type": 3,
-      "api": "csp_App3Q"
+      "api": "csp_App3Q",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 0,
+      "ext": "https://yc.wya6.cn/zhwj/php/app3q.php?site=sq"
     },
 	      {
       "key": "电影先生",
