@@ -192,6 +192,17 @@
             "searchable": 1,
             "switchable": 1
         },
+	  {
+      "key": "AiKan",
+      "name": "🍎秒播🔹爱看",
+      "type": 3,
+      "api": "csp_AiKan",
+      "jar": "./wy.jar",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "./rr.json"
+    },
 	      {
       "key": "ppx",
       "name": "🍎皮皮🔹影视",
