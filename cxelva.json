@@ -973,6 +973,22 @@
       "type": 3,
       "api": "csp_XYQHiker",
       "ext": "./lib/巴士动漫.json"
+    },    
+	  {
+      "key": "HonHon",
+      "name": "🍎红红🔹短剧",
+      "type": 3,
+      "api": "csp_HonHon",
+	  "jar": "./wy.jar",
+      "searchable": 1,
+      "quickSearch": 1,
+      "genre": "shortdrama",
+      "filterable": 1,
+      "ext": {
+        "host": "https://short.fishcloud.top",
+        "quality": "1080p",
+        "danmu": false
+      }
     },
     {
       "key": "围观短剧",
