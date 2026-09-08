@@ -86,16 +86,26 @@
             "searchable": 1,
             "switchable": 1
         },
-	   {
-            "key": "云朵影视",
-            "name": "🍎云朵🔹4K",
-            "type": 3,
-            "api": "./py/云朵影视.py",
-            "filterable": 1,
-            "quickSearch": 1,
-            "searchable": 1,
-            "switchable": 1
-        },
+	  {
+      "key": "sqys",
+      "name": "🍎三秋🔹APP",
+      "type": 3,
+      "api": "csp_App3Q",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 0,
+      "ext": "https://yc.wya6.cn/zhwj/php/app3q.php?site=sq"
+    },
+    {
+      "key": "ydys",
+      "name": "🍎云朵🔹APP",
+      "type": 3,
+      "api": "csp_App3Q",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 0,
+      "ext": "https://yc.wya6.cn/zhwj/php/app3q.php?site=yd"
+    },
 	  {
       "key": "秒看",
       "name": "🍎秒看🔹4K",
