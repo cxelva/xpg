@@ -87,28 +87,6 @@
             "switchable": 1
         },
 	  {
-      "key": "sqys",
-      "name": "🍎三秋🔹APP",
-      "type": 3,
-      "api": "csp_App3Q",
-		  "jar": "./wy.jar",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 0,
-      "ext": "https://yc.wya6.cn/zhwj/php/app3q.php?site=sq"
-    },
-    {
-      "key": "ydys",
-      "name": "🍎云朵🔹APP",
-      "type": 3,
-      "api": "csp_App3Q",
-		"jar": "./wy.jar",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 0,
-      "ext": "https://yc.wya6.cn/zhwj/php/app3q.php?site=yd"
-    },
-	  {
       "key": "秒看",
       "name": "🍎秒看🔹4K",
       "type": 3,
