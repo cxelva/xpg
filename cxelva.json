@@ -73,6 +73,32 @@
         "key_api": "https://www.tangsan.fun/zx.php"
       }
     },
+	  {
+      "key": "4Kys1",
+      "name": "🍎世界🔹影视",
+      "type": 3,
+      "api": "csp_AppGet",
+      "quickSearch": 1,
+      "timeout": 12,
+      "ext": "https://appcms.4ksj.app|O3K6rYx75Q4xtiIE|V119"
+    },
+	      {
+      "key": "bubu",
+      "name": "🍎大鹅🔹影视",
+      "type": 3,
+      "api": "csp_YunDuo",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": {
+        "host": "https://323433ssdfd.top",
+        "finger": "WF-2c064bc5b3400788f31b848849bc3a60f835423ba2dfe69d7ea93974c216e4f2",
+        "aid": "com.web.player",
+        "sk": "WEB-50a8e9c84a1dc05669a692ded99a2dac46527229e607a7be15db88dbc59059d1",
+        "client": "8f3d2a1c7b6e5d4c9a0b1f2e3d4c5b6a",
+        "sign": "ddtvf65f3a83d6d9ad6f"
+      }
+    },
 	      {
       "key": "融融",
       "name": "🍎融融🔹4K",
