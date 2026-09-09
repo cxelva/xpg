@@ -99,6 +99,16 @@
         "sign": "ddtvf65f3a83d6d9ad6f"
       }
     },
+	   {
+      "key": "fyys",
+      "name": "🍎枫叶🔹影视",
+      "type": 3,
+      "api": "csp_FengYe",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 0,
+      "ext": "https://www.vip1949.com/"
+    },
 	      {
       "key": "融融",
       "name": "🍎融融🔹4K",
