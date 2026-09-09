@@ -59,20 +59,6 @@
       "quickSearch": 1,
       "filterable": 1
     },
-	      {
-      "key": "YunZhenXiang",
-      "name": "🍎秒播🔹帧享",
-      "type": 3,
-      "api": "csp_YunZhenXiang",
-	 "jar": "./wyjk.php",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "ext": {
-        "index_url": "https://ss.trgfd.cn/cache/index/com.huohuavideo.app.json",
-        "key_api": "https://www.tangsan.fun/zx.php"
-      }
-    },
 	  {
       "key": "4Kys1",
       "name": "🍎世界🔹影视",
