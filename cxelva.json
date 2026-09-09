@@ -49,16 +49,6 @@
         "Netflix自制剧"
       ]
     },
-	        {
-      "key": "ygys",
-      "name": "🍎秒播🔹壹哥",
-      "type": 3,
-      "api": "csp_YiYs",
-	  "jar": "./wy.jar",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1
-    },
 	      {
       "key": "Hkyb",
       "name": "🍎融融🔹影视",
