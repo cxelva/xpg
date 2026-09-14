@@ -87,6 +87,16 @@
         "sign": "ddtvf65f3a83d6d9ad6f"
       }
     },
+	  {
+            "key": "开心影院",
+            "name": "🍎开心🔹影院",
+            "type": 3,
+            "api": "./py/开心影院.py",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "switchable": 1
+        },
 	   {
       "key": "fyys",
       "name": "🍎枫叶🔹影视",
