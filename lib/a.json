@@ -13,6 +13,26 @@
       "filterable": 1,
       "changeable": 1
     },
+	    {
+      "key": "✨高清SEX国产",
+      "name": "🔞高清SEX国产",
+      "type": 3,
+      "playerType": 2,
+      "api": "csp_XBPQ",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": "./a/高清SEX国产.js"
+    },
+	   {
+      "key": "XMVideo",
+      "name": "🔞XMVideo",
+      "type": 3,
+      "api": "csp_XMVideo",
+      "searchable": 1,
+      "filterable": 1,
+      "jar": "./a/182.jar"
+    },
 	  {
       "key": "VV视频",
       "name": "🔞VV视频",
@@ -112,17 +132,6 @@
       "changeable": 1
     },
 	   {
-      "key": "✨高清SEX国产",
-      "name": "🔞高清SEX国产",
-      "type": 3,
-      "playerType": 2,
-      "api": "csp_XBPQ",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "ext": "./a/高清SEX国产.js"
-    },
-	   {
       "key": "推特",
       "name": "🔞推特",
       "type": 3,
@@ -131,44 +140,6 @@
       "quickSearch": 1,
       "filterable": 1,
       "changeable": 1
-    },
-	   {
-      "key": "花心小妞",
-      "name": "🔞花心小妞",
-      "type": 3,
-      "api": "csp_XBPQ",
-      "ext": {
-        "分类url": "https://i3j4k5l6.hxxn19.cc/vodtype/{cateId}-{catePg}.html;;z",
-        "发布": "hxxn99.cc",
-        "数组": "<dl>&&</dl>",
-        "标题": "<h3>&&</h3>",
-        "图片": "data-original=\"&&\"",
-        "副标题": "观影愉快",
-        "链接": "href=\"&&\"[替换:voddetail>>vodplay#.html>>-1-1.html]",
-        "分类数组": "<dd>&&</dd>",
-        "分类标题": ">&&</a>",
-        "分类": "乌鸦传媒$29#精东传媒$27#大象传媒$34#开心鬼传媒$35#麻豆传媒$21#迷你传媒$33#星空传媒$26#杏吧传媒$31#萝莉社$38#兔子先生$30#糖心视频$37#热门黑料$223#户外野战$224#偷拍自拍$225#顶流网红$229#日本字幕$41#国产视频$40#强奸乱伦$46#日本无码$44#欧美无码$45#国产传媒$42#制服诱惑$47#网曝黑料$53#激情动漫$49#影片解说$55#美女主播$48#明星换脸$50#抖阴视频$51#伦理三级$54#女优明星$52#捆绑调教$56#网红头条$60#极品媚黑$58#萝莉少女$57#VR视角$63#人妖系列$61#韩国主播$62#女同性恋$198#乱伦精品$210#欧美大炮$211#极品学妹$215#国产视频$216",
-        "简介": ""
-      }
-    },
-	  {
-  "api": "https://fzcrym-tgfilebot.hf.space/性运机场.py",
-  "filterable": 1,
-  "key": "性运机场",
-  "name": "🔞性运机场",
-  "quickSearch": 1,
-  "searchable": 1,
-  "type": 3,
-  "jar": "https://fzcrym-tgfilebot.hf.space/TGFileBotTV.py"
-},
-	   {
-      "key": "XMVideo",
-      "name": "🔞XMVideo",
-      "type": 3,
-      "api": "csp_XMVideo",
-      "searchable": 1,
-      "filterable": 1,
-      "jar": "./a/182.jar"
     },
 	      {
       "key": "csp_黄色仓库1",
@@ -179,15 +150,6 @@
         "分类url": "https://xiangjiao.10010288.xyz/index.php/vod/type/id/{cateId}.html",
         "分类": "无码中字$28#有码中字$29#国产视频$30#欧美高清$31#动漫剧情$32"
       }
-    },
-	    {
-      "key": "bhziyuan",
-      "name": "🔞百花",
-      "type": 1,
-      "api": "https://bhziyuan.com/api.php/provide/vod/?ac=list",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1
     },
 	{
       "key": "hlxzy",
@@ -213,37 +175,7 @@
       "changeable": 0
     },
     {
-      "key": "VHUB",
-      "name": "🔞VHUB",
-      "type": 3,
-      "api": "./a/VHUB.py",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "changeable": 1
-    },
-    {
-      "key": "slyzy",
-      "name": "🔞湿乐园",
-      "type": 1,
-      "api": "https://xxavs.com/api.php/provide/vod",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1
-    },
-    {
-      "key": "4AAAA",
-      "name": "🔞四A合集",
-      "type": 3,
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "changeable": 1,
-      "api": "csp_XBPQ",
-      "ext": "./a/4AAAA.json"
-    },
-    {
-      "key": "七区🦅",
+      "key": "七区11🦅",
       "name": "🔞菠萝蜜",
       "type": 3,
       "api": "./a/七区.py",
