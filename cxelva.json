@@ -35,6 +35,28 @@
       "order_num": 0,
       "changeable": 0
     },
+	    {
+      "key": "热播影视",
+      "name": "🍎热播🔹APP",
+      "type": 3,
+      "api": "csp_AppRJ",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 0,
+      "ext": {
+        "url": "http://v.rbotv.cn"
+      }
+    },
+	   {
+            "key": "瓜子┃4K",
+            "name": "🍎瓜子🔹影视",
+            "type": 3,
+            "api": "./py/瓜子影视.py",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "switchable": 1
+        },
 	   {
       "key": "奈飞4K",
       "name": "🍎奈飞🔹4K",
@@ -275,28 +297,6 @@
         "分类": "电影$dy#剧集$juji#动漫$dongman#综艺$zongyi"
       }
     },
-	    {
-      "key": "热播影视",
-      "name": "🍎热播🔹APP",
-      "type": 3,
-      "api": "csp_AppRJ",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 0,
-      "ext": {
-        "url": "http://v.rbotv.cn"
-      }
-    },
-	   {
-            "key": "瓜子┃4K",
-            "name": "🍎瓜子🔹影视",
-            "type": 3,
-            "api": "./py/瓜子影视.py",
-            "filterable": 1,
-            "quickSearch": 1,
-            "searchable": 1,
-            "switchable": 1
-        },
 	  {
             "key": "厂长影视",
             "name": "🍎厂长🔹影视",
