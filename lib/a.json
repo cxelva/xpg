@@ -23,19 +23,6 @@
       "filterable": 1,
       "changeable": 1
     },
-	   {
-      "key": "风流视频",
-      "name": "🔞风流视频",
-      "type": 3,
-      "api": "csp_XBPQ",
-      "ext": {
-        "请求头": "User-Agent$MOBILE_UA",
-        "编码": "UTF-8",
-        "直接播放": "1",
-        "分类": "日韩$1#偷拍$21#无码$22#自拍$23#巨乳$24#华人$25#嫩模$26#剧情$27#动漫$28#熟女$29#丝袜$30#欧美$32#有码$33#制服$34#口交$35#三级$31#",
-        "分类url": "https://hekody.flsp8.boats/vodtype/{cateId}-{catePg}.html"
-      }
-    },
     {
       "key": "三上悠亚🔥",
       "name": "🔞三上悠亚",
@@ -74,16 +61,7 @@
         "分类": "大陆&香港&台湾&美国&法国&英国&日本&韩国&德国&泰国&印度&意大利&西班牙&加拿大&其他"
       }
     },
-	  {
-      "key": "萝莉岛",
-      "name": "🔞萝莉岛-翻墙",
-      "type": 3,
-      "api": "./a/萝莉岛app.py",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "changeable": 1
-    },  {
+	 {
             "key": "六速社区视频",
             "name": "🔞蜜桃AV",
             "type": 3,
@@ -123,41 +101,11 @@
       "filterable": 1,
       "changeable": 1
     },
-	  {
-      "key": "清纯人妻",
-      "name": "🔞清纯人妻",
-      "type": 3,
-      "api": "./a/清纯人妻.py",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "changeable": 1
-    },
 	   {
       "key": "丝袜乐土",
       "name": "🔞丝袜乐土",
       "type": 3,
       "api": "./a/丝袜乐土.py",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "changeable": 1
-    },
-	   {
-      "key": "淫母原味",
-      "name": "🔞淫母原味",
-      "type": 3,
-      "api": "./a/淫母原味.py",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "changeable": 1
-    },
-	  {
-      "key": "小心御欲",
-      "name": "🔞小心御欲",
-      "type": 3,
-      "api": "./a/小心御欲.py",
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1,
@@ -761,6 +709,16 @@
         "欧美激情"
       ]
     },
+	    {
+      "key": "萝莉岛",
+      "name": "🔞萝莉岛-翻墙",
+      "type": 3,
+      "api": "./a/萝莉岛app.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "changeable": 1
+    }, 
     {
       "key": "19q.cc",
       "name": "🔞麻豆-翻墙",
