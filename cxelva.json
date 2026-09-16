@@ -950,19 +950,52 @@
       "ext": "./lib/巴士动漫.json"
     }, 
     {
-      "key": "围观短剧",
-      "name": "🍎围观🔹短剧",
+      "name": "🎬豪堪🔹短剧",
+      "key": "HHkk",
       "type": 3,
-      "api": "csp_WeiguanDJ",
+      "api": "csp_HHkkAmns",
       "searchable": 1,
-      "changeable": 1,
       "quickSearch": 1,
-      "filterable": 1,
-      "genre": "shortdrama"
+      "changeable": 0,
+      "genre": "shortdrama",
+      "jar": "./dg.png"
+    },
+    {
+      "name": "🎬拜拜🔹短剧",
+      "key": "Bddj",
+      "type": 3,
+      "api": "csp_BddjAmns",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "genre": "shortdrama",
+      "jar": "./dg.png"
+    },
+    {
+      "name": "🎬围观🔹短剧",
+      "key": "Wgdj",
+      "type": 3,
+      "api": "csp_WgdjAmns",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "genre": "shortdrama",
+      "jar": "./dg.png"
+    },
+    {
+      "name": "🎬喵喵🔹短剧",
+      "key": "Qmdj",
+      "type": 3,
+      "api": "csp_QmdjAmns",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 0,
+      "genre": "shortdrama",
+      "jar": "./dg.png"
     },
     {
       "key": "星芽短剧",
-      "name": "🍎星芽🔹短剧",
+      "name": "🎬星芽🔹短剧",
       "type": 3,
       "api": "./lib/星芽短剧.py",
       "searchable": 1,
