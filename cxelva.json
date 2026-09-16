@@ -411,26 +411,6 @@
   "searchable": 1,
   "quickSearch": 1
 },
-	   {
-      "key": "青春",
-      "name": "🍎青春🔹影视",
-      "type": 3,
-      "api": "./py/共青春.py",
-      "filterable": 1,
-      "quickSearch": 1,
-      "searchable": 1,
-      "type": 3
-    },
-	      {
-      "key": "段友影视",
-      "name": "🍎段友🔹影视",
-      "type": 3,
-      "api": "./py/段友.py",
-      "filterable": 1,
-      "quickSearch": 1,
-      "searchable": 1,
-      "type": 3
-    },
 	      {
       "key": "猎手PY",
       "name": "🍎猎手🔹PY",
