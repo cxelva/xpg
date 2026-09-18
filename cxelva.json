@@ -35,13 +35,6 @@
       "order_num": 0,
       "changeable": 0
     },
-	   {
-      "key": "藤藤",
-      "name": "🍎藤藤🔹4K",
-      "type": 3,
-      "api": "./lib/drpy2.min.js",
-      "ext": "./lib/藤藤.png"
-    },
     {
       "key": "bl",
       "name": "🍎小哩🔹4K",
@@ -1209,6 +1202,13 @@
       "style": {
         "type": "list"
       }
+    },
+	   {
+      "key": "藤藤",
+      "name": "🍎藤藤🔹4K",
+      "type": 3,
+      "api": "./lib/drpy2.min.js",
+      "ext": "./lib/藤藤.png"
     },
     {
       "key": "push_agent1",
