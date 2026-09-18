@@ -305,6 +305,12 @@
             "searchable": 1,
             "switchable": 1
         },
+	   {
+      "key": "移动",
+      "name": "🍎移动🔹1920",
+      "type": 3,
+      "api": "csp_Yidong4K"
+    },
 	     {
       "key": "爱看剧",
       "name": "🍎看剧🔹影视",
