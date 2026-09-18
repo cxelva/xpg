@@ -184,9 +184,39 @@
     },
 	   {
       "key": "高清点播",
-      "name": "🍎高清🔹4K",
+      "name": "🍎高清🔹线路",
       "type": 3,
       "api": "./lib/gq.js"
+    },
+	   {
+      "key": "蓝鹰",
+      "name": "🍎蓝鹰🔹线路",
+      "type": 3,
+      "api": "csp_AppQi",
+      "searchable": 1,
+      "changeable": 1,
+      "ext": {
+        "url": "http://103.217.190.91:5566",
+        "dataKey": "hagYExMdMkeWfemK",
+        "dataIv": "hagYExMdMkeWfemK",
+        "init": "initV122",
+        "ua": "okhttp/3.10.0"
+      }
+    },
+    {
+      "key": "蓝鸟",
+      "name": "🍎蓝鸟🔹线路",
+      "type": 3,
+      "api": "csp_AppQi",
+      "searchable": 1,
+      "changeable": 1,
+      "ext": {
+        "site": "https://lanyingjisu.oss-cn-wuhan-lr.aliyuncs.com/lyjszx.txt",
+        "dataKey": "oW5UxZ5kWVr1DI69",
+        "dataIv": "oW5UxZ5kWVr1DI69",
+        "init": "initV122",
+        "ua": "okhttp/3.10.0"
+      }
     },
 	      {
       "key": "ppx",
