@@ -6,7 +6,7 @@
   "sites": [
     {
       "key": "豆瓣",
-      "name": "🍎小苹果影视  更新9月11日！",
+      "name": "🍎小苹果影视  更新9月18日！",
       "type": 3,
       "api": "csp_Douban",
       "searchable": 0
@@ -37,14 +37,14 @@
     },
 	   {
       "key": "藤藤",
-      "name": "🍎藤藤🔹4K测试",
+      "name": "🍎藤藤🔹4K",
       "type": 3,
       "api": "./lib/drpy2.min.js",
       "ext": "./lib/藤藤.png"
     },
     {
       "key": "bl",
-      "name": "🍎小哩🔹4K测试",
+      "name": "🍎小哩🔹4K",
       "type": 3,
       "api": "./lib/bl.py"
     },
