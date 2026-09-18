@@ -106,17 +106,6 @@
       "ext": "https://www.vip1949.com/"
     },
 	   {
-      "key": "LIBVIO🔹4K",
-      "name": "🍎LIBVIO🔹4K",
-      "type": 3,
-      "api": "./py/LIBVIO.py",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "order_num": 0,
-      "changeable": 0
-    },
-	   {
             "key": "多多影视",
             "name": "🍎多多🔹4K",
             "type": 3,
