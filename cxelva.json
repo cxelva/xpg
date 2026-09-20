@@ -77,6 +77,16 @@
         "Netflix自制剧"
       ]
     },
+	   {
+            "key": "咕噜影院",
+            "name": "🍎咕噜🔹4k",
+            "type": 3,
+            "api": "./py/咕噜.py",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "switchable": 1
+        },
 	  {
             "key": "开心影院",
             "name": "🍎苹果🔹影院",
