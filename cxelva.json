@@ -269,15 +269,16 @@
         "buildSignature": "A40DA80A59D170CAA950CF15C18C454D47A39B26989D8B640ECD745BA71BF5DC"
       }
     },
-	      {
-      "key": "金牌1",
-      "name": "🍎金牌🔹APP",
+	     {
+      "key": "金牌.py",
+      "name": "🍎金牌🔹影视",
       "type": 3,
-      "api": "csp_Jpys",
+      "api": "./py/金牌.py",
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1,
-      "ext": "7lj763gg402i7942483i93j6h95h84jil1g7i7"
+      "order_num": 0,
+      "changeable": 0
     },
 	      {
       "key": "电影先生",
@@ -434,22 +435,6 @@
       "quickSearch": 1,
       "searchable": 1,
       "type": 3
-    },
-    {
-      "key": "金牌",
-      "name": "🍎金牌🔹APP",
-      "type": 3,
-      "api": "csp_AppQi",
-      "searchable": 1,
-      "changeable": 1,
-      "ext": {
-        "url": "https://qj4.catbb.xyz",
-        "dataKey": "eecbio48dsq13kkk",
-        "dataIv": "eecbio48dsq13kkk",
-        "search": "searchList4",
-        "init": "initV122",
-        "ua": "okhttp/3.10.0"
-      }
     },
     {
       "key": "王子",
