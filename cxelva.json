@@ -98,17 +98,6 @@
             "switchable": 1
         },
 	   {
-      "key": "fyys",
-      "name": "🍎枫叶🔹影视",
-      "type": 3,
-      "api": "csp_FengYe",
-		    "jar": "./wyjk.php",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 0,
-      "ext": "https://www.vip1949.com/"
-    },
-	   {
             "key": "多多影视",
             "name": "🍎多多🔹4K",
             "type": 3,
