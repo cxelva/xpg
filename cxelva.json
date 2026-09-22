@@ -44,6 +44,15 @@
       "quickSearch": 1,
       "filterable": 1
     },
+	   {
+      "key": "剧下饭",
+      "name": "🍎下饭🔹4K",
+      "type": 3,
+      "api": "./py/jxf.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
 	    {
       "key": "热播影视",
       "name": "🍎热播🔹APP",
