@@ -39,10 +39,8 @@
       "key": "bl",
       "name": "🍎小哩🔹4K",
       "type": 3,
-      "api": "./py/bl.py",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1
+      "api": "./lib/bl.py",
+      "searchable": 1
     },
 	    {
       "key": "热播影视",
