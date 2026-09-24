@@ -24,6 +24,15 @@
         "ratio": 1.597
       }
     },
+	  {
+   "key": "py_hongguo",
+   "name": "🍎红果🔹短剧",
+   "type": 3,
+   "api": "./py/hongguo.py",
+   "searchable": 1,
+   "quickSearch": 1,
+   "filterable": 1
+  },
 	   {
       "key": "韩小圈.py",
       "name": "🍎韩小🔹圈",
