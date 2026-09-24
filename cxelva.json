@@ -195,7 +195,7 @@
     },
 	  {
    "key": "py_maple",
-   "name": "🍎枫叶🔹线路",
+   "name": "🍎枫叶🔹[py]",
    "type": 3,
    "api": "./py/maple.py",
    "searchable": 1,
@@ -209,6 +209,15 @@
     ],
     "sitesIndex": 0
    }
+  },
+	  {
+   "key": "py_juzong",
+   "name": "🍎剧踪🔹[py]",
+   "type": 3,
+   "api": "./py/juzong.py",
+   "searchable": 1,
+   "quickSearch": 1,
+   "filterable": 1
   },
 	   {
       "key": "高清点播",
