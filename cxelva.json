@@ -193,6 +193,23 @@
         "decrypt": "1"
       }
     },
+	  {
+   "key": "py_maple",
+   "name": "🍎枫叶🔹线路",
+   "type": 3,
+   "api": "./py/maple.py",
+   "searchable": 1,
+   "quickSearch": 1,
+   "filterable": 1,
+   "ext": {
+    "sites": [
+     "https://www.zzztool.com",
+     "https://maihaolian.com",
+     "https://www.cd-zj.com"
+    ],
+    "sitesIndex": 0
+   }
+  },
 	   {
       "key": "高清点播",
       "name": "🍎高清🔹线路",
