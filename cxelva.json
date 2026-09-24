@@ -202,6 +202,15 @@
         "decrypt": "1"
       }
     },
+	    {
+   "key": "py_yunduo",
+   "name": "🍎云朵🔹影视",
+   "type": 3,
+   "api": "./py/yunduo.py",
+   "searchable": 1,
+   "quickSearch": 1,
+   "changeable": 1
+  },
 	  {
    "key": "py_maple",
    "name": "🍎枫叶🔹[py]",
