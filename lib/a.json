@@ -53,6 +53,13 @@
       "filterable": 1,
       "changeable": 1
     },
+	   {
+   "key": "py_shaofu36",
+   "name": "🔞少妇喝了",
+   "type": 3,
+   "api": "./a/shaofu36.py",
+   "ext": ""
+  },
     {
       "key": "三上悠亚🔥",
       "name": "🔞三上悠亚",
