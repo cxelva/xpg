@@ -6,7 +6,7 @@
   "sites": [
     {
       "key": "豆瓣",
-      "name": "🍎小苹果影视  更新9月20日！",
+      "name": "🍎小苹果影视  更新9月24日！增加多个影视接口！",
       "type": 3,
       "api": "csp_Douban",
       "searchable": 0
@@ -224,6 +224,24 @@
    "name": "🍎剧踪🔹[py]",
    "type": 3,
    "api": "./py/juzong.py",
+   "searchable": 1,
+   "quickSearch": 1,
+   "filterable": 1
+  },
+	  {
+   "key": "py_kkys",
+   "name": "🍎可可🔹追剧",
+   "type": 3,
+   "api": "./py/kkys.py",
+   "searchable": 1,
+   "quickSearch": 1,
+   "filterable": 1
+  },
+  {
+   "key": "py_bubuzhuiju",
+   "name": "🍎布布🔹追剧",
+   "type": 3,
+   "api": "./py/bubuzhuiju.py",
    "searchable": 1,
    "quickSearch": 1,
    "filterable": 1
