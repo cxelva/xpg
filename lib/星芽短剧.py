@@ -260,7 +260,7 @@ class Spider(Spider):
                 bofang = bofang + str(name) + '$' + id + '#'
 
             bofang = bofang[:-1] if bofang.endswith('#') else bofang
-            xianlu = '星芽'
+            xianlu = '融融'
         else:
             # 如果没有theaters数据，检查是否有单个视频URL
             if 'video_url' in data['data'] and data['data']['video_url']:
