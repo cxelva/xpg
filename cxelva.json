@@ -1093,17 +1093,6 @@
       "jar": "./dg.png"
     },
     {
-      "key": "星芽短剧",
-      "name": "🎬星芽🔹短剧",
-      "type": 3,
-      "api": "./lib/星芽短剧.py",
-      "searchable": 1,
-      "changeable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "genre": "shortdrama"
-    },
-    {
       "key": "哔哩合集",
       "name": "🍎哔哩🔹合集",
       "type": 3,
