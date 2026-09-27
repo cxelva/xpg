@@ -1048,6 +1048,15 @@
       "api": "csp_XYQHiker",
       "ext": "./lib/巴士动漫.json"
     }, 
+	   {
+   "key": "星芽短剧",
+   "name": "🎬星芽🔹短剧",
+   "type": 3,
+   "api": "./lib/星芽短剧.py",
+   "searchable": 1,
+   "quickSearch": 1,
+   "filterable": 1
+  },
     {
       "name": "🎬豪堪🔹短剧",
       "key": "HHkk",
