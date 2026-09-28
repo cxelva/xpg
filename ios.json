@@ -5,8 +5,17 @@
   "warningText": "🍎小苹果影视提示：📢亲戚朋友试用，不要外传！",
   "sites": [
 	   {
+   "key": "小苹果影视",
+   "name": "🍎小苹果影视",
+   "type": 3,
+   "api": "./py/热播APP.py",
+   "searchable": 1,
+   "quickSearch": 1,
+   "filterable": 1
+  },
+	   {
             "key": "瓜子┃4K",
-            "name": "🍎小苹果影视",
+            "name": "🍎瓜子🔹影视",
             "type": 3,
             "api": "./py/瓜子影视.py",
             "filterable": 1,
