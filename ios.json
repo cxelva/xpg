@@ -4,9 +4,18 @@
   "logo": "https://d.kstore.dev/download/6474/tvbox/img/v0.png",
   "warningText": "🍎小苹果影视提示：📢亲戚朋友试用，不要外传！",
   "sites": [
+	  {
+      "key": "py_douban",
+      "name": "🍎小苹果影视",
+      "type": 3,
+      "api": "./py/douban.py",
+      "changeable": 0,
+      "searchable": 0,
+      "filterable": 0
+    },
 	   {
             "key": "瓜子┃4K",
-            "name": "🍎小苹果影视",
+            "name": "🍎瓜子🔹影视",
             "type": 3,
             "api": "./py/瓜子影视.py",
             "filterable": 1,
