@@ -224,15 +224,6 @@
     "sitesIndex": 0
    }
   },
-	   {
-   "key": "天星剧院",
-   "name": "🍎天星🔹剧院",
-   "type": 3,
-   "api": "./py/绿色影视.py",
-   "searchable": 1,
-   "quickSearch": 1,
-   "filterable": 1
-  },
 	  {
    "key": "py_juzong",
    "name": "🍎剧踪🔹[py]",
