@@ -49,6 +49,15 @@
       "quickSearch": 1,
       "filterable": 1
     },
+	  	   {
+      "key": "人人影视",
+      "name": "🍎人人🔹影视",
+      "type": 3,
+      "api": "./py/人人影视.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
 	   {
       "key": "剧下饭",
       "name": "🍎下饭🔹4K",
