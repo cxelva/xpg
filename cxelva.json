@@ -30,15 +30,6 @@
    "filterable": 1
   },
 	   {
-      "key": "人人影视",
-      "name": "🍎人人🔹影视",
-      "type": 3,
-      "api": "./py/人人影视.py",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1
-    },
-	   {
       "key": "韩小圈.py",
       "name": "🍎韩小🔹圈",
       "type": 3,
@@ -98,6 +89,24 @@
             "searchable": 1,
             "switchable": 1
         },
+	   {
+      "key": "剧迷影视",
+      "name": "🍎剧迷🔹影视",
+      "type": 3,
+      "api": "./py/剧迷.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+	   {
+      "key": "山有木兮",
+      "name": "🍎山有🔹木兮",
+      "type": 3,
+      "api": "./py/山有木兮.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
 	   {
       "key": "奈飞4K",
       "name": "🍎奈飞🔹4K",
