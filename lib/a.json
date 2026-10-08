@@ -22,6 +22,13 @@
       "filterable": 1,
       "jar": "./a/182.jar"
     },
+	  {
+      "key": "三上悠亚🔥",
+      "name": "🔞三上悠亚",
+      "type": 3,
+      "api": "csp_XBPQ",
+      "ext": "./a/三上悠亚.json"
+    },
 	   {
       "key": "黄果短剧",
       "name": "🔞黄果短剧（翻墙）",
@@ -60,13 +67,6 @@
    "api": "./a/shaofu36.py",
    "ext": ""
   },
-    {
-      "key": "三上悠亚🔥",
-      "name": "🔞三上悠亚",
-      "type": 3,
-      "api": "csp_XBPQ",
-      "ext": "./a/三上悠亚.json"
-    },
     {
       "key": "七区🦅",
       "name": "🔞七区",
