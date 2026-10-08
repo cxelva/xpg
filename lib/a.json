@@ -13,6 +13,15 @@
       "filterable": 1,
       "changeable": 1
     },
+	  {
+      "key": "XMVideo",
+      "name": "🔞熊猫视频",
+      "type": 3,
+      "api": "csp_XMVideo",
+      "searchable": 1,
+      "filterable": 1,
+      "jar": "./a/182.jar"
+    },
 	   {
       "key": "黄果短剧",
       "name": "🔞黄果短剧（翻墙）",
@@ -33,15 +42,6 @@
       "quickSearch": 1,
       "filterable": 1,
       "ext": "./a/高清SEX国产.js"
-    },
-	   {
-      "key": "XMVideo",
-      "name": "🔞XMVideo",
-      "type": 3,
-      "api": "csp_XMVideo",
-      "searchable": 1,
-      "filterable": 1,
-      "jar": "./a/182.jar"
     },
 	  {
       "key": "VV视频",
