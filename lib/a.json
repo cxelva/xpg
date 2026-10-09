@@ -30,6 +30,16 @@
       "ext": "./a/三上悠亚.json"
     },
 	   {
+      "key": "xn69",
+      "name": "🔞xn69",
+      "type": 3,
+      "api": "./a/xn69.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "changeable": 1
+    },
+	   {
       "key": "黄果短剧",
       "name": "🔞黄果短剧（翻墙）",
       "type": 3,
