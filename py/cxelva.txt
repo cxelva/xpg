@@ -4,8 +4,6 @@ vless://ea6cb0bc-b613-405b-8da9-da941cf73efc@www.5h.com:443?encryption=none&secu
 vless://ea6cb0bc-b613-405b-8da9-da941cf73efc@columbia.edu:443?encryption=none&security=tls&sni=cx.cxelva8.kdns.fr&fp=chrome&ech=cloudflare-ech.com%2Bhttps%3A%2F%2Fdns.alidns.com%2Fdns-query&type=ws&host=cx.cxelva8.kdns.fr&path=%2F#%F0%9F%87%AD%F0%9F%87%B0-%E5%93%A5%E4%BC%A6%E6%AF%94%E4%BA%9A
 hysteria2://3BD4NGFeb5lv2w%2B3hZYQGO2VNHyTcpIo@157.230.39.58:8443?insecure=1&obfs=salamander&obfs-password=ApOILKovdtCDyF6Bhu8jF3E4PTBqE4uz#hy2-157-230-39-58
 vless://ebdec762-050b-4d54-b7bf-0406ce22f734@154.37.216.186:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=www.bing.com&fp=chrome&pbk=KkSH2hoA6PuNJL5ZNUDGuWoAYe5kIwcGbrbCYuxHTx8&sid=f39ad9d9eb26df47&type=tcp&headerType=none#HK-REALITY
-hysteria2://usqmqUKJFIlCmvkCNSY64L3k@8.209.247.109:443?sni=bing.com&insecure=1#aliUS-jp1%E2%88%9A
-hysteria2://u63SxILNwtrQZ7Y1ZrFaZfsA@8.211.175.236:8443?sni=bing.com&insecure=1#ali-hy2%20jp%E2%88%9A
 anytls://6725d134ee80@56481.df6h451rh.xin:443?insecure=1&security=tls&sni=images.ctfassets.net&fp=chrome&type=tcp&headerType=none#%E6%98%9F%E9%93%BE%E5%8A%A0%E9%80%9F%E5%99%A8
 trojan://16db1e7c-975c-4b8d-9317-13b49e55404a@nodeseek.trafficmanager.net:16103?allowInsecure=1&insecure=1&security=tls&sni=teambition-file.oss-cn-zhangjiakou.aliyuncs.com&type=tcp&headerType=none#G-103%20%E9%A6%99%E6%B8%AF
 trojan://16db1e7c-975c-4b8d-9317-13b49e55404a@nodeseek.trafficmanager.net:16104?allowInsecure=1&insecure=1&security=tls&sni=teambition-file.oss-cn-zhangjiakou.aliyuncs.com&type=tcp&headerType=none#G-104%20%E9%A6%99%E6%B8%AF
