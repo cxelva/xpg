@@ -117,6 +117,15 @@
       "filterable": 1
     },
 	   {
+      "key": "蔡蔡影视",
+      "name": "🍎蔡蔡🔹影视",
+      "type": 3,
+      "api": "./py/e1aeef83.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+	   {
       "key": "山有木兮",
       "name": "🍎山有🔹木兮",
       "type": 3,
