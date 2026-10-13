@@ -88,6 +88,16 @@
       }
     },
 	   {
+            "key": "4K",
+            "name": "🍎4K🔹影视",
+            "type": 3,
+            "api": "./py/gz.py",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "switchable": 1
+        },
+	   {
             "key": "瓜子┃4K",
             "name": "🍎瓜子🔹影视",
             "type": 3,
