@@ -30,45 +30,52 @@ CCTV9纪录,http://113.98.11.46:3000/673168140
 CCTV9纪录,http://mg.cttv.vip/migu.php?pid=673168140
 
 CCTV10科教,http://113.98.11.46:3000/624878405
-CCTV10科教,http://121.29.157.193:7788/624878405
+CCTV10科教,http://mg.cttv.vip/migu.php?pid=624878405
 
 CCTV11戏曲,http://113.98.11.46:3000/667987558
-CCTV11戏曲,http://121.29.157.193:7788/667987558
+CCTV11戏曲,http://mg.cttv.vip/migu.php?pid=667987558
 
 CCTV12社会与法,http://113.98.11.46:3000/673168185
-CCTV12社会与法,http://121.29.157.193:7788/673168185
+CCTV12社会与法,http://mg.cttv.vip/migu.php?pid=673168185
 
 CCTV13新闻,http://113.98.11.46:3000/608807423
-CCTV13新闻,http://121.29.157.193:7788/608807423
+CCTV13新闻,http://mg.cttv.vip/migu.php?pid=608807423
 
 CCTV14少儿,http://113.98.11.46:3000/624878440
-CCTV14少儿,http://121.29.157.193:7788/624878440
+CCTV14少儿,http://mg.cttv.vip/migu.php?pid=624878440
 
 CCTV15音乐,http://113.98.11.46:3000/673168223
-CCTV15音乐,http://121.29.157.193:7788/673168223
+CCTV15音乐,http://mg.cttv.vip/migu.php?pid=673168223
 
 CCTV17农业农村,http://113.98.11.46:3000/673168256
-CCTV17农业农村,http://121.29.157.193:7788/673168256
+CCTV17农业农村,http://mg.cttv.vip/migu.php?pid=673168256
 
 CCTV4欧洲,http://113.98.11.46:3000/608807419
-CCTV4欧洲,http://121.29.157.193:7788/608807419
+CCTV4欧洲,http://mg.cttv.vip/migu.php?pid=608807419
 
 CCTV4美洲,http://113.98.11.46:3000/608807416
+CCTV4美洲,http://mg.cttv.vip/migu.php?pid=608807416
 
 CGTN外语纪录,http://113.98.11.46:3000/609006487
+CGTN外语纪录,http://mg.cttv.vip/migu.php?pid=609006487
 
 CGTN阿拉伯语,http://113.98.11.46:3000/609154345
+CGTN阿拉伯语,http://mg.cttv.vip/migu.php?pid=609154345
 
 CGTN法语,http://113.98.11.46:3000/609006476
+CGTN法语,http://mg.cttv.vip/migu.php?pid=609006476
 
 老故事,http://113.98.11.46:3000/884121956
+老故事,http://mg.cttv.vip/migu.php?pid=884121956
 
 发现之旅,http://113.98.11.46:3000/624878970
+发现之旅,http://mg.cttv.vip/migu.php?pid=624878970
 
 中学生,http://113.98.11.46:3000/708869532
+中学生,http://mg.cttv.vip/migu.php?pid=708869532
 
 CGTN,http://113.98.11.46:3000/609017205
-
+CGTN,http://mg.cttv.vip/migu.php?pid=609017205
 
 🍎卫视,#genre#
 东方卫视,http://113.98.11.46:3000/651632648
