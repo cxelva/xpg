@@ -1,493 +1,236 @@
-# coding = utf-8
-#!/usr/bin/python
-import re
-import sys
-import json
-import time
-import base64
-import hashlib
-import random
-import string
-import urllib.parse
+import re, sys, json, base64
 from Crypto.Cipher import AES
-from Crypto.Util.Padding import pad, unpad
-from Crypto.PublicKey import RSA
-from Crypto.Cipher import PKCS1_v1_5
+from urllib.parse import urljoin, quote
+from Crypto.Util.Padding import unpad
 from base.spider import Spider
 
 sys.path.append('..')
 
+
 class Spider(Spider):
-    def __init__(self):
-        self.name = "瓜子"
-        self.hosts = [
-            'https://apinew.uozvr.com',
-            'https://api.w32z7vtd.com',
-            'https://api.6a7nnf7.com',
-            'https://api.umygrx3.com',
-            'https://api.rmedphk.com'
-        ]
-        self.host_index = 0
-        self.host = self.hosts[self.host_index]
+    headers = {'User-Agent': 'okhttp/4.12.0'}
+    # 解析接口请求头(与 PHP 端一致)
+    parse_headers = {'User-Agent': 'okhttp-okgo/jeasonlzy'}
 
-        # AES 固定密钥（与Java版一致）
-        self.AES_KEY = 'OITxa5OqAYjhswxx'
-        self.AES_IV = 'rCMNwZASNBKZ8mXV'
-
-        # RSA 公钥/私钥
-        self.RSA_PUBLIC_KEY = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDUM5+/y8sPsWkd1/RQS64X259EUwxFXFE5HlA65MqrxnPs0JqoSRojSDy5QhwvROlaD6TwRQHKMY2OAZ6SnQeUJsChTEFIR9qUkwrs3/MVUMxjsv6JS6Oe/juclyJGTgVmDhB55EafXsD0SQYVj/QXXsxR6ewR5E2kL52yAAD4yQIDAQAB"
-        self.RSA_PRIVATE_KEY = """-----BEGIN RSA PRIVATE KEY-----
-MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGAe6hKrWLi1zQmjTT1
-ozbE4QdFeJGNxubxld6GrFGximxfMsMB6BpJhpcTouAqywAFppiKetUBBbXwYsYU
-1wNr648XVmPmCMCy4rY8vdliFnbMUj086DU6Z+/oXBdWU3/b1G0DN3E9wULRSwcK
-ZT3wj/cCI1vsCm3gj2R5SqkA9Y0CAwEAAQKBgAJH+4CxV0/zBVcLiBCHvSANm0l7
-HetybTh/j2p0Y1sTXro4ALwAaCTUeqdBjWiLSo9lNwDHFyq8zX90+gNxa7c5EqcW
-V9FmlVXr8VhfBzcZo1nXeNdXFT7tQ2yah/odtdcx+vRMSGJd1t/5k5bDd9wAvYdI
-DblMAg+wiKKZ5KcdAkEA1cCakEN4NexkF5tHPRrR6XOY/XHfkqXxEhMqmNbB9U34
-saTJnLWIHC8IXys6Qmzz30TtzCjuOqKRRy+FMM4TdwJBAJQZFPjsGC+RqcG5UvVM
-iMPhnwe/bXEehShK86yJK/g/UiKrO87h3aEu5gcJqBygTq3BBBoH2md3pr/W+hUM
-WBsCQQChfhTIrdDinKi6lRxrdBnn0Ohjg2cwuqK5zzU9p/N+S9x7Ck8wUI53DKm8
-jUJE8WAG7WLj/oCOWEh+ic6NIwTdAkEAj0X8nhx6AXsgCYRql1klbqtVmL8+95KZ
-K7PnLWG/IfjQUy3pPGoSaZ7fdquG8bq8oyf5+dzjE/oTXcByS+6XRQJAP/5ciy1b
-L3NhUhsaOVy55MHXnPjdcTX0FaLi+ybXZIfIQ2P4rb19mVq1feMbCXhz+L1rG8oa
-t5lYKfpe8k83ZA==
------END RSA PRIVATE KEY-----"""
-
-        self.DEVICE_OLD_KEY = "aLFBMWpxBrIDAD1Si/KVvm41"
-
-        # 设备信息（随机生成）
-        self.deviceId = str(864150060000000 + random.randint(0, 9999))
-        self.deviceKey = ''.join(random.choices('0123456789ABCDEF', k=40))  # 20字节hex大写
-        self.token = ""
-        self.token_id = ""
-        self.registered = False
-
-        self.header = {
-            'User-Agent': 'Lavf/57.83.100',
-            'code': 'GZ0369',
-            'deviceId': self.deviceId,
-            'lang': 'zh_cn',
-            'Cache-Control': 'no-cache',
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Version': '2604028',
-            'PackageName': 'com.ae06aebdbb.y286327f5a.ofe849883320260517',
-            'Ver': '3.0.3.2',
-            'api-ver': '3.0.3.2',
-            'Referer': self.host
-        }
-
-        self.cache = {}
-        self.cache_timeout = 300
-
-        # 初始化token
-        self.init_token()
-
-    def getName(self):
-        return self.name
+    FIXED_CONFIG = {
+        'host': 'http://cms.lyyytv.cn',
+        'cmskey': 'wP5bvxoc3yv7FoBQENFZuAF0EUYr4LTy',
+        'RawPlayUrl': 0,
+        # ldmax 内置解析接口
+        'parse_api': 'http://61.184.23.217:6163/api/index?parsesId=4&appid=10001&videoUrl='
+    }
 
     def init(self, extend=''):
-        pass
+        self.host = self.FIXED_CONFIG['host']
+        self.cmskey = self.FIXED_CONFIG.get('cmskey', '')
+        self.parse_api = self.FIXED_CONFIG.get('parse_api', '')
+        raw_play_url = self.FIXED_CONFIG.get('RawPlayUrl', 0)
+        if raw_play_url == 1:
+            self.raw_play_url = 1
+        else:
+            self.raw_play_url = 0
 
-    # ---------- 设备注册与认证 ----------
-    def init_token(self):
-        """初始化token：注册设备 -> 刷新"""
-        print("===== 初始化设备认证 =====")
-        try:
-            if not self.registered:
-                self.sign_up()
-            # 刷新获取最终token
-            self.refresh_token()
-        except Exception as e:
-            print(f"初始化token失败: {e}")
-            # 兜底使用原有硬编码（几乎没用）
-            self.token = '024212ef0975c5306a1434e113a46463.bc77313e11a248558a6ca244ca980944ec3421fa480c50e0229ad91f1cb15aea582603202cd71796885c9e5163e500f1b72f737059aff1ddb8beea47c5a331d6760540345b7f88b2302a0e6e09589f9dcf3ff9175d8c905f990203f5fc04748008ea7a366571cbf5b09509a873dcfba3cf1d5590385f5f7ef6e01d1850974aa220eb5178c89e61c24411af9b9a19435e.06fde789ece48d9b33c5dc857e04e9b5838f08264d928b87237d3476c4484b46'
-
-    def sign_up(self):
-        """注册设备"""
-        print("注册新设备...")
-        params = {
-            "new_key": self.deviceKey,
-            "old_key": self.DEVICE_OLD_KEY,
-            "phone_type": 1,
-            "code": ""
-        }
-        result = self._auth_request('/App/Authentication/Device/signUp', params)
-        self._apply_auth(result)
-        self.registered = True
-
-    def sign_in(self):
-        print("设备登录...")
-        params = {
-            "new_key": self.deviceKey,
-            "old_key": self.DEVICE_OLD_KEY
-        }
-        result = self._auth_request('/App/Authentication/Device/signIn', params)
-        self._apply_auth(result)
-
-    def _apply_auth(self, result):
-        new_token = result.get('token', '')
-        if not new_token:
-            raise Exception("认证失败，无token返回: {}".format(result))
-        self.token = new_token
-        new_token_id = result.get('app_user_id', '')
-        if new_token_id:
-            self.token_id = new_token_id
-        print(f"获取token成功, token前缀: {self.token[:30]}...")
-
-    def refresh_token(self):
-        print("刷新token...")
-        result = self._auth_request('/App/Authentication/Authenticator/refresh', {})
-        self._apply_auth(result)
-
-    def _auth_request(self, path, params):
-        return self._send_encrypted_request(params, path, is_auth=True)
-
-    def ensure_token(self):
-        if not self.token or not self.token_id:
-            if self.registered:
-                self.sign_in()
-            else:
-                self.sign_up()
-            self.refresh_token()
-
-    def _send_encrypted_request(self, data, path, is_auth=False):
-       
-        try:
-            if not is_auth:
-                self.ensure_token()
-
-            # 1. 将参数转为JSON并AES加密
-            json_params = json.dumps(data)
-            encrypted = self.aes_encrypt(json_params, self.AES_KEY, self.AES_IV)
-            request_key = encrypted.upper()  # Java中是bytesToHex(encrypted).toUpperCase()
-
-            # 2. 生成keys (RSA加密 iv/key JSON)
-            key_json = json.dumps({"iv": self.AES_IV, "key": self.AES_KEY})
-            keys = self.rsa_encrypt(key_json, self.RSA_PUBLIC_KEY)
-
-            # 3. 生成签名
-            t = str(int(time.time()))
-            sign_str = f"token_id=,token={self.token},phone_type=1,request_key={request_key},app_id=1,time={t},keys={keys}*&zvdvdvddbfikkkumtmdwqppp?|4Y!s!2br"
-            signature = self.get_md5(sign_str) 
-            body = {
-                'token': self.token,
-                'token_id': '',
-                'phone_type': '1',
-                'time': t,
-                'phone_model': 'xiaomi-25031',
-                'keys': keys,
-                'request_key': request_key,
-                'signature': signature,
-                'app_id': '1',
-                'ad_version': '1'
-            }
-
-            url = f"{self.host}{path}"
-            response = self.post(url, headers=self.header, data=body, timeout=10)
-
-            if response.status_code != 200:
-                raise Exception(f"HTTP {response.status_code}")
-
-            resp_json = response.json()
-            if 'code' in resp_json and resp_json['code'] != 200:
-                print(f"业务错误码: {resp_json['code']}, 信息: {resp_json}")
-                raise Exception("业务错误")
-
-            data_section = resp_json.get('data')
-            if not data_section:
-                raise Exception("响应缺少data字段")
-
-            encrypted_response = data_section.get('response_key', '')
-            encrypted_keys = data_section.get('keys', '')
-
-            decrypted_keys_json = self.rsa_decrypt(encrypted_keys, self.RSA_PRIVATE_KEY)
-            key_info = json.loads(decrypted_keys_json)
-            resp_key = key_info['key']
-            resp_iv = key_info['iv']
-            decrypted_data = self.aes_decrypt(encrypted_response, resp_key, resp_iv)
-            return json.loads(decrypted_data)
-
-        except Exception as e:
-            print(f"请求失败 [{path}]: {e}")
+    def ldmax_decrypt(self, encrypted_base64, depth=0):
+        # 对应 PHP 的 LdmaxDecryptor::decrypt,递归解密 ldmax.cooom 加密链接
+        if depth > 5:
             return None
-
-    def get_data(self, data, path, use_cache=True):
+        # 严格 base64 解码(对应 PHP base64_decode 第二参 true),
+        # 非法 base64(如明文URL)直接原样返回
+        cleaned = re.sub(r'\s+', '', encrypted_base64)
         try:
-            cache_key = f"{path}_{hash(str(data))}" if use_cache else None
-            if use_cache and cache_key in self.cache:
-                cached_data, timestamp = self.cache[cache_key]
-                if time.time() - timestamp < self.cache_timeout:
-                    return cached_data
-
-            for attempt in range(3):
-                tried = 0
-                while tried < len(self.hosts):
-                    self.host = self.hosts[self.host_index]
-                    self.header['Referer'] = self.host
-                    result = self._send_encrypted_request(data, path)
-                    if result is not None:
-                        print(f"请求成功: {path}, 域名: {self.host}")
-                        if use_cache and cache_key:
-                            self.cache[cache_key] = (result, time.time())
-                        return result
-
-                    self.host_index = (self.host_index + 1) % len(self.hosts)
-                    tried += 1
-                if attempt < 2:
-                    print("所有域名失败，尝试重新认证...")
-                    try:
-                        self.ensure_token()
-                    except:
-                        pass
-                    self.host_index = 0
-                else:
-                    break
+            decoded = base64.b64decode(cleaned, validate=True).decode('utf-8', errors='ignore')
+        except Exception:
+            return encrypted_base64
+        url = re.sub(r'\s+', '', decoded)
+        if 'ldmax.cooom' not in url:
+            return url
+        path = re.sub(r'https?://ldmax\.cooom/', '', url)
+        if len(path) < 16:
             return None
-        except Exception as e:
-            print(f"get_data异常: {e}")
+        key = path[:16][::-1].encode('utf-8')
+        ciphertext_b64 = re.sub(r'\s+', '', path[16:])
+        try:
+            ciphertext = base64.b64decode(ciphertext_b64, validate=True)
+        except Exception:
             return None
-
-    def aes_encrypt(self, text, key, iv):
         try:
-            key_bytes = key.encode('utf-8')
-            iv_bytes = iv.encode('utf-8')
-            cipher = AES.new(key_bytes, AES.MODE_CBC, iv_bytes)
-            encrypted = cipher.encrypt(pad(text.encode('utf-8'), AES.block_size))
-            return encrypted.hex().upper()
-        except Exception as e:
-            print(f"AES加密失败: {e}")
-            return ""
-
-    def aes_decrypt(self, text, key, iv):
-        try:
-            key_bytes = key.encode('utf-8')
-            iv_bytes = iv.encode('utf-8')
-            cipher = AES.new(key_bytes, AES.MODE_CBC, iv_bytes)
-            encrypted_bytes = bytes.fromhex(text)
-            decrypted = unpad(cipher.decrypt(encrypted_bytes), AES.block_size)
-            return decrypted.decode('utf-8')
-        except Exception as e:
-            print(f"AES解密失败: {e}")
-            return ""
-
-    def rsa_encrypt(self, text, public_key_str):
-        try:
-            key = RSA.import_key("-----BEGIN PUBLIC KEY-----\n" + public_key_str + "\n-----END PUBLIC KEY-----")
-            cipher = PKCS1_v1_5.new(key)
-            encrypted = cipher.encrypt(text.encode('utf-8'))
-            return base64.b64encode(encrypted).decode('utf-8')
-        except Exception as e:
-            print(f"RSA加密失败: {e}")
-            return ""
-
-    def rsa_decrypt(self, encrypted_data, private_key_str):
-        try:
-            encrypted_bytes = base64.b64decode(encrypted_data)
-            rsa_key = RSA.import_key(private_key_str)
-            cipher = PKCS1_v1_5.new(rsa_key)
-            decrypted = cipher.decrypt(encrypted_bytes, None)
-            return decrypted.decode('utf-8') if decrypted else ""
-        except Exception as e:
-            print(f"RSA解密失败: {e}")
-            return ""
-
-    def get_md5(self, text):
-        return hashlib.md5(text.encode()).hexdigest().upper()  
-        
-    def homeContent(self, filter):
-        result = {}
-        classes = [
-            {"type_name": "电影", "type_id": "1"},
-            {"type_name": "电视剧", "type_id": "2"},
-            {"type_name": "动漫", "type_id": "4"},
-            {"type_name": "综艺", "type_id": "3"},
-            {"type_name": "短剧", "type_id": "64"},
-            {"type_name": "海外剧", "type_id": "5"},
-            {"type_name": "AI漫剧", "type_id": "74"},
-            {"type_name": "音乐", "type_id": "72"},
-            {"type_name": "电影解说", "type_id": "73"},
-            {"type_name": "电竞解说", "type_id": "70"},
-            {"type_name": "体育解说", "type_id": "71"}
-        ]
-        result['class'] = classes
-        filters = {}
-        for cate in classes:
-            tid = cate['type_id']
-            filters[tid] = [
-                {"key": "area", "name": "地区", "value": [
-                    {"n": "全部", "v": "0"}, {"n": "大陆", "v": "大陆"}, {"n": "香港", "v": "香港"},
-                    {"n": "台湾", "v": "台湾"}, {"n": "美国", "v": "美国"}, {"n": "韩国", "v": "韩国"},
-                    {"n": "日本", "v": "日本"}, {"n": "英国", "v": "英国"}, {"n": "法国", "v": "法国"},
-                    {"n": "泰国", "v": "泰国"}, {"n": "印度", "v": "印度"}, {"n": "其他", "v": "其他"}
-                ]},
-                {"key": "year", "name": "年份", "value": [
-                    {"n": "全部", "v": "0"}, {"n": "2025", "v": "2025"}, {"n": "2024", "v": "2024"},
-                    {"n": "2023", "v": "2023"}, {"n": "2022", "v": "2022"}, {"n": "2021", "v": "2021"},
-                    {"n": "2020", "v": "2020"}, {"n": "2019", "v": "2019"}, {"n": "2018", "v": "2018"},
-                    {"n": "2017", "v": "2017"}, {"n": "2016", "v": "2016"}, {"n": "2015", "v": "2015"},
-                    {"n": "2014", "v": "2014"}, {"n": "2013", "v": "2013"}, {"n": "2012", "v": "2012"},
-                    {"n": "2011", "v": "2011"}, {"n": "2010", "v": "2010"}, {"n": "2009", "v": "2009"},
-                    {"n": "2008", "v": "2008"}, {"n": "2007", "v": "2007"}, {"n": "2006", "v": "2006"},
-                    {"n": "2005", "v": "2005"}, {"n": "更早", "v": "2004"}
-                ]},
-                {"key": "sort", "name": "排序", "value": [
-                    {"n": "最新", "v": "d_id"}, {"n": "最热", "v": "d_hits"}, {"n": "推荐", "v": "d_score"}
-                ]}
-            ]
-        result['filters'] = filters
+            cipher = AES.new(key, AES.MODE_CBC, key)
+            decrypted = cipher.decrypt(ciphertext)
+        except Exception:
+            return None
+        if decrypted:
+            pad = decrypted[-1]
+            if 0 < pad <= 16:
+                decrypted = decrypted[:-pad]
+        result = decrypted.decode('utf-8', errors='ignore').strip()
+        if 'ldmax.cooom' in result:
+            return self.ldmax_decrypt(base64.b64encode(result.encode('utf-8')).decode('utf-8'), depth + 1)
         return result
 
+    def ldmax_parse(self, video_url):
+        # 对应 PHP 主流程:解密 -> 调用解析接口 -> 二次解密
+        decrypted = self.ldmax_decrypt(video_url)
+        if not decrypted or not re.match(r'^https?://', decrypted):
+            return None
+        try:
+            parse_url = self.parse_api + quote(decrypted, safe='')
+            resp = self.fetch(parse_url, headers=self.parse_headers, timeout=30).json()
+        except Exception:
+            return None
+        if not resp or resp.get('code') != 200 or not resp.get('url'):
+            return None
+        final_url = self.ldmax_decrypt(resp['url'])
+        if final_url and re.match(r'^https?://', final_url):
+            return {'url': final_url, 'type': resp.get('type', 'video')}
+        return None
+
     def homeVideoContent(self):
-        return {'list': []}
+        data = self.fetch(f"{self.host}/api.php/app/index_video?token=", headers=self.headers).json()
+        videos = []
+        for item in data['list']:
+            videos.extend(item['vlist'])
+        return {'list': videos}
+
+    def homeContent(self, filter):
+        data = self.fetch(f"{self.host}/api.php/app/nav?token=", headers=self.headers).json()
+        keys = ["class", "area", "lang", "year", "letter", "by", "sort"]
+        filters = {}
+        classes = []
+
+        for item in data['list']:
+            has_non_empty_field = False
+            jsontype_extend = item["type_extend"]
+            classes.append({"type_name": item["type_name"], "type_id": item["type_id"]})
+
+            for key in keys:
+                if key in jsontype_extend and jsontype_extend[key].strip() != "":
+                    has_non_empty_field = True
+                    break
+
+            if has_non_empty_field:
+                filters[str(item["type_id"])] = []
+
+            for dkey in jsontype_extend:
+                if dkey in keys and jsontype_extend[dkey].strip() != "":
+                    values = jsontype_extend[dkey].split(",")
+                    value_array = []
+                    for value in values:
+                        if value.strip() != "":
+                            value_array.append({"n": value.strip(), "v": value.strip()})
+                    filters[str(item["type_id"])].append({"key": dkey, "name": dkey, "value": value_array})
+
+        return {"class": classes, "filters": filters}
 
     def categoryContent(self, tid, pg, filter, extend):
-        videos = []
-        try:
-            body = {
-                "area": extend.get('area', '0'),
-                "year": extend.get('year', '0'),
-                "pageSize": "30",
-                "sort": extend.get('sort', 'd_id'),
-                "page": str(pg),
-                "tid": tid
-            }
-            cache_key = f"category_{tid}_{pg}_{hash(str(body))}"
-            data = self.get_cached_data(cache_key, body, '/App/IndexList/indexList')
-            if data and 'list' in data:
-                for item in data['list']:
-                    vod_continu = item.get('vod_continu', 0)
-                    remarks = '电影' if vod_continu == 0 else f'更新至{vod_continu}集'
-                    video = {
-                        "vod_id": f"{item.get('vod_id', '')}/{vod_continu}",
-                        "vod_name": item.get('vod_name', ''),
-                        "vod_pic": item.get('vod_pic', ''),
-                        "vod_remarks": remarks
-                    }
-                    videos.append(video)
-        except Exception as e:
-            print(f"获取分类内容失败: {e}")
-        return {'list': videos, 'page': int(pg), 'pagecount': 9999, 'limit': 30, 'total': 999999}
+        # 构建URL查询参数
+        query_params = [
+            f"tid={tid}",
+            f"pg={pg}",
+            f"limit=18"
+        ]
+        if extend.get('class'):
+            query_params.append(f"class={extend.get('class')}")
+        if extend.get('area'):
+            query_params.append(f"area={extend.get('area')}")
+        if extend.get('lang'):
+            query_params.append(f"lang={extend.get('lang')}")
+        if extend.get('year'):
+            query_params.append(f"year={extend.get('year')}")
+
+        url = f"{self.host}/api.php/app/video?" + "&".join(query_params)
+        data = self.fetch(url, headers=self.headers).json()
+        return data
+
+    def searchContent(self, key, quick, pg="1"):
+        data = self.fetch(f"{self.host}/api.php/app/search?text={key}&pg={pg}", headers=self.headers).json()
+        videos = data['list']
+        for item in data['list']:
+            item.pop('type', None)
+        return {'list': videos, 'page': pg}
 
     def detailContent(self, ids):
-        try:
-            vod_id = ids[0].split('/')[0]
-            t = str(int(time.time()))
-            body1 = {"token_id": self.token_id, "vod_id": vod_id, "mobile_time": t, "token": self.token}
-            qdata = self.get_data(body1, '/App/IndexPlay/playInfo')
-            body2 = {"vurl_cloud_id": "2", "vod_d_id": vod_id}
-            jdata = self.get_data(body2, '/App/Resource/Vurl/show')
-            if not qdata or 'vodInfo' not in qdata:
-                return {'list': []}
-            vod = qdata['vodInfo']
-            video_detail = {
-                "vod_id": vod_id,
-                "vod_name": vod.get('vod_name', ''),
-                "vod_pic": vod.get('vod_pic', ''),
-                "vod_year": vod.get('vod_year', ''),
-                "vod_area": vod.get('vod_area', ''),
-                "vod_actor": vod.get('vod_actor', ''),
-                "vod_director": vod.get('vod_director', ''),
-                "vod_content": vod.get('vod_use_content', '').strip(),
-                "vod_play_from": "",
-                "vod_play_url": ""
-            }
-            play_from_list = []
-            play_url_list = []
-            if jdata and 'list' in jdata:
-                play_map = {}
-                for item in jdata['list']:
-                    if 'play' in item:
-                        for line_name, play_info in item['play'].items():
-                            if play_info.get('param'):
-                                play_map.setdefault(line_name, []).append(play_info['param'])
-                for line_name, episodes in play_map.items():
-                    play_from_list.append(line_name)
-                    play_url_list.append('#'.join(episodes))
-            video_detail['vod_play_from'] = '$$$'.join(play_from_list)
-            video_detail['vod_play_url'] = '$$$'.join(play_url_list)
-            return {'list': [video_detail]}
-        except Exception as e:
-            print(f"获取详情失败: {e}")
-            return {'list': []}
+        data = self.fetch(f"{self.host}/api.php/app/video_detail?id={ids[0]}", headers=self.headers).json()['data']
+        show, paly_urls = [], []
 
-    def searchContent(self, key, quick, pg=1):
-        videos = []
-        try:
-            body = {"keywords": key, "order_val": "1", "page": str(pg)}
-            data = self.get_data(body, '/App/Index/findMoreVod', use_cache=False)
-            if data and 'list' in data:
-                for item in data['list']:
-                    vod_continu = item.get('vod_continu', 0)
-                    remarks = '电影' if vod_continu == 0 else f'更新至{vod_continu}集'
-                    videos.append({
-                        "vod_id": f"{item.get('vod_id', '')}/{vod_continu}",
-                        "vod_name": item.get('vod_name', ''),
-                        "vod_pic": item.get('vod_pic', ''),
-                        "vod_remarks": remarks
-                    })
-        except Exception as e:
-            print(f"搜索失败: {e}")
-        return {'list': videos, 'page': int(pg), 'pagecount': 9999, 'limit': 30, 'total': 999999}
+        for i in data['vod_url_with_player']:
+            urls = i['url'].split('#')
+            urls2 = []
+            for j in urls:
+                if j:
+                    url = j.split('$', 1)
+                    urls2.append(f"{url[0]}${self.lvdou(url[1])}")
+            paly_urls.append('#'.join(urls2))
 
-    def playerContent(self, flag, id, vipFlags):
+            show.append(i['name'].strip())
+
+        data.pop('vod_url_with_player')
+        data['vod_play_from'] = '$$$'.join(show)
+        data['vod_play_url'] = '$$$'.join(paly_urls)
+        return {'list': [data]}
+
+    def playerContent(self, flag, video_id, vipFlags):
+        # 移除URL中的百分号编码（如 %26 %20 等），直接删除而非解码
+        # 例: 04.国%26粤.mp4 → 04.国粤.mp4
+        video_id = re.sub(r'%[0-9A-Fa-f]{2}', '', video_id)
+        # 需要内置解析的情况:
+        # 1. 非明文URL(base64密文等)
+        # 2. 本站域名URL(lyyytv.cn 伪直链,需经 parse_api 二次解析才能拿到真实播放地址)
+        is_plain_url = video_id.startswith(('http://', 'https://'))
+        if (not is_plain_url) or (is_plain_url and 'lyyytv.cn' in video_id):
+            parsed = self.ldmax_parse(video_id)
+            if parsed:
+                return {'jx': 0, 'parse': 0, 'playUrl': '', 'url': parsed['url'], 'header': self.headers}
+        # 真正的直链(mp4/m3u8 等)直接播放
+        if self.check_paly_url(video_id):
+            return {'jx': 0, 'parse': 0, 'playUrl': '', 'url': video_id, 'header': self.headers}
+        # 其他情况交给 tvbox 外置解析
+        return {'jx': 1, 'playUrl': '', 'parse': 0, 'url': video_id, 'header': self.headers}
+
+    def lvdou(self, text):
+        key = self.cmskey[:16].encode("utf-8")
+        iv = self.cmskey[-16:].encode("utf-8")
+        original_text = text
+        url_prefix = "lvdou+"
+
+        if original_text.startswith(url_prefix):
+            ciphertext_b64 = original_text[len(url_prefix):]
+            try:
+                cipher = AES.new(key, AES.MODE_CBC, iv)
+                ct_bytes = base64.b64decode(ciphertext_b64)
+                pt_bytes = cipher.decrypt(ct_bytes)
+                return unpad(pt_bytes, AES.block_size).decode('utf-8')
+            except Exception:
+                return original_text
+        else:
+            return original_text
+
+    def raw_url(self, original_url):
         try:
-            if '||' in id:
-                parts = id.split('||')
-                param_str = parts[0]
-                resolutions = parts[1].split('@') if len(parts) > 1 else []
-                params = {}
-                for pair in param_str.split('&'):
-                    if '=' in pair:
-                        key, value = pair.split('=', 1)
-                        params[key] = value
-                if resolutions:
-                    params['resolution'] = resolutions[0]
-            else:
-                params = {}
-                for pair in id.split('&'):
-                    if '=' in pair:
-                        key, value = pair.split('=', 1)
-                        params[key] = value
-            if 'domain_type' not in params:
-                params['domain_type'] = '8'
-            if 'type' not in params:
-                params['type'] = 'play'
-            if 'resolution' not in params:
-                params['resolution'] = flag  
-            data = self.get_data(params, '/App/Resource/VurlDetail/showOne', use_cache=False)
-            if data and 'url' in data:
-                return {
-                    "parse": 0,
-                    "playUrl": "",
-                    "url": data['url'],
-                    "header": json.dumps({"User-Agent": "Lavf/57.83.100", "Referer": "http://WJiZxLXA2.com/"}),
-                    'danmaku': 'http://127.0.0.1:9978/proxy?do=diydanmu'
-                }
-            return {"parse": 0, "playUrl": "", "url": ""}
-        except Exception as e:
-            print(f"播放解析失败: {e}")
-            return {"parse": 0, "playUrl": "", "url": ""}
+            response = self.fetch(original_url, allow_redirects=False, stream=True, timeout=20)
+            if 300 <= response.status_code < 400:
+                redirect_location = response.headers.get('Location')
+                if redirect_location:
+                    real_url = urljoin(original_url, redirect_location)
+                    return real_url
+            return original_url
+        except Exception:
+            return original_url
+
+    def check_paly_url(self, content):
+        pattern = r"https?://.*(?:\.(?:mp4|m3u8|flv|avi|mkv|ts|mov|wmv|webm)|lyyytv\.cn/)"
+        return bool(re.search(pattern, content, re.IGNORECASE))
+
+    def getName(self):
+        pass
+
+    def localProxy(self, param):
+        pass
 
     def isVideoFormat(self, url):
-        video_formats = ['.m3u8', '.mp4', '.avi', '.mkv', '.flv', '.ts']
-        return any(url.lower().endswith(fmt) for fmt in video_formats)
+        pass
 
     def manualVideoCheck(self):
         pass
 
-    def localProxy(self, params):
-        return None
-
-    def get_cached_data(self, cache_key, data, path):
-        current_time = time.time()
-        if cache_key in self.cache:
-            cached_data, timestamp = self.cache[cache_key]
-            if current_time - timestamp < self.cache_timeout:
-                return cached_data
-        result = self.get_data(data, path)
-        if result:
-            self.cache[cache_key] = (result, current_time)
-        return result
-
-if __name__ == '__main__':
-    pass
+    def destroy(self):
+        pass
