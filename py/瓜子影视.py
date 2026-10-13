@@ -116,7 +116,6 @@ t5lYKfpe8k83ZA==
         self.registered = True
 
     def sign_in(self):
-        """登录设备"""
         print("设备登录...")
         params = {
             "new_key": self.deviceKey,
@@ -126,7 +125,6 @@ t5lYKfpe8k83ZA==
         self._apply_auth(result)
 
     def _apply_auth(self, result):
-        """从认证响应中提取token"""
         new_token = result.get('token', '')
         if not new_token:
             raise Exception("认证失败，无token返回: {}".format(result))
@@ -137,18 +135,14 @@ t5lYKfpe8k83ZA==
         print(f"获取token成功, token前缀: {self.token[:30]}...")
 
     def refresh_token(self):
-        """刷新token"""
         print("刷新token...")
         result = self._auth_request('/App/Authentication/Authenticator/refresh', {})
         self._apply_auth(result)
 
     def _auth_request(self, path, params):
-        """认证类请求（不需要ensure_token）"""
         return self._send_encrypted_request(params, path, is_auth=True)
 
-    # ---------- 业务请求核心（修复加密与签名） ----------
     def ensure_token(self):
-        """确保token有效，如未就绪则重新获取"""
         if not self.token or not self.token_id:
             if self.registered:
                 self.sign_in()
@@ -157,12 +151,7 @@ t5lYKfpe8k83ZA==
             self.refresh_token()
 
     def _send_encrypted_request(self, data, path, is_auth=False):
-        """
-        发送加密请求，返回解密后的字典
-        :param data: 业务参数字典
-        :param path: 请求路径
-        :param is_auth: 是否为认证类请求（signUp/signIn/refresh），此时不使用ensure_token
-        """
+       
         try:
             if not is_auth:
                 self.ensure_token()
@@ -179,15 +168,13 @@ t5lYKfpe8k83ZA==
             # 3. 生成签名
             t = str(int(time.time()))
             sign_str = f"token_id=,token={self.token},phone_type=1,request_key={request_key},app_id=1,time={t},keys={keys}*&zvdvdvddbfikkkumtmdwqppp?|4Y!s!2br"
-            signature = self.get_md5(sign_str)  # 已改为大写
-
-            # 4. 构建请求体
+            signature = self.get_md5(sign_str) 
             body = {
                 'token': self.token,
                 'token_id': '',
                 'phone_type': '1',
                 'time': t,
-                'phone_model': 'xiaomi-25031',  # 与Java版保持一致
+                'phone_model': 'xiaomi-25031',
                 'keys': keys,
                 'request_key': request_key,
                 'signature': signature,
@@ -195,7 +182,6 @@ t5lYKfpe8k83ZA==
                 'ad_version': '1'
             }
 
-            # 5. 发送请求
             url = f"{self.host}{path}"
             response = self.post(url, headers=self.header, data=body, timeout=10)
 
@@ -203,10 +189,8 @@ t5lYKfpe8k83ZA==
                 raise Exception(f"HTTP {response.status_code}")
 
             resp_json = response.json()
-            # 检查业务code（若不为200可能token过期）
             if 'code' in resp_json and resp_json['code'] != 200:
                 print(f"业务错误码: {resp_json['code']}, 信息: {resp_json}")
-                # 如果不是认证请求，尝试重新获取token后重试一次（这里简单处理，外层get_data已有重试）
                 raise Exception("业务错误")
 
             data_section = resp_json.get('data')
@@ -216,7 +200,6 @@ t5lYKfpe8k83ZA==
             encrypted_response = data_section.get('response_key', '')
             encrypted_keys = data_section.get('keys', '')
 
-            # 6. 解密响应
             decrypted_keys_json = self.rsa_decrypt(encrypted_keys, self.RSA_PRIVATE_KEY)
             key_info = json.loads(decrypted_keys_json)
             resp_key = key_info['key']
@@ -229,7 +212,6 @@ t5lYKfpe8k83ZA==
             return None
 
     def get_data(self, data, path, use_cache=True):
-        """带重试和域名轮询的数据获取（保持原框架）"""
         try:
             cache_key = f"{path}_{hash(str(data))}" if use_cache else None
             if use_cache and cache_key in self.cache:
@@ -249,11 +231,8 @@ t5lYKfpe8k83ZA==
                             self.cache[cache_key] = (result, time.time())
                         return result
 
-                    # 切换到下一个域名
                     self.host_index = (self.host_index + 1) % len(self.hosts)
                     tried += 1
-
-                # 所有域名失败，尝试重新认证并重试
                 if attempt < 2:
                     print("所有域名失败，尝试重新认证...")
                     try:
@@ -268,7 +247,6 @@ t5lYKfpe8k83ZA==
             print(f"get_data异常: {e}")
             return None
 
-    # ---------- 加解密工具 ----------
     def aes_encrypt(self, text, key, iv):
         try:
             key_bytes = key.encode('utf-8')
@@ -293,7 +271,6 @@ t5lYKfpe8k83ZA==
             return ""
 
     def rsa_encrypt(self, text, public_key_str):
-        """RSA公钥加密（PKCS1v1.5）"""
         try:
             key = RSA.import_key("-----BEGIN PUBLIC KEY-----\n" + public_key_str + "\n-----END PUBLIC KEY-----")
             cipher = PKCS1_v1_5.new(key)
@@ -304,7 +281,6 @@ t5lYKfpe8k83ZA==
             return ""
 
     def rsa_decrypt(self, encrypted_data, private_key_str):
-        """RSA私钥解密"""
         try:
             encrypted_bytes = base64.b64decode(encrypted_data)
             rsa_key = RSA.import_key(private_key_str)
@@ -316,9 +292,8 @@ t5lYKfpe8k83ZA==
             return ""
 
     def get_md5(self, text):
-        return hashlib.md5(text.encode()).hexdigest().upper()  # 与Java一致大写
-
-    # ---------- 业务方法（不变） ----------
+        return hashlib.md5(text.encode()).hexdigest().upper()  
+        
     def homeContent(self, filter):
         result = {}
         classes = [
@@ -326,7 +301,13 @@ t5lYKfpe8k83ZA==
             {"type_name": "电视剧", "type_id": "2"},
             {"type_name": "动漫", "type_id": "4"},
             {"type_name": "综艺", "type_id": "3"},
-            {"type_name": "短剧", "type_id": "64"}
+            {"type_name": "短剧", "type_id": "64"},
+            {"type_name": "海外剧", "type_id": "5"},
+            {"type_name": "AI漫剧", "type_id": "74"},
+            {"type_name": "音乐", "type_id": "72"},
+            {"type_name": "电影解说", "type_id": "73"},
+            {"type_name": "电竞解说", "type_id": "70"},
+            {"type_name": "体育解说", "type_id": "71"}
         ]
         result['class'] = classes
         filters = {}
@@ -407,22 +388,23 @@ t5lYKfpe8k83ZA==
                 "vod_actor": vod.get('vod_actor', ''),
                 "vod_director": vod.get('vod_director', ''),
                 "vod_content": vod.get('vod_use_content', '').strip(),
-                "vod_play_from": "瓜子影视"
+                "vod_play_from": "",
+                "vod_play_url": ""
             }
-            play_list = []
+            play_from_list = []
+            play_url_list = []
             if jdata and 'list' in jdata:
-                for index, item in enumerate(jdata['list']):
+                play_map = {}
+                for item in jdata['list']:
                     if 'play' in item:
-                        n, p = [], []
-                        for key, value in item['play'].items():
-                            if 'param' in value and value['param']:
-                                n.append(key)
-                                p.append(value['param'])
-                        if p:
-                            play_name = str(index + 1) if len(jdata['list']) != 1 else vod.get('vod_name', '')
-                            play_url = f"{p[-1]}||{'@'.join(n)}"
-                            play_list.append(f"{play_name}${play_url}")
-            video_detail["vod_play_url"] = "#".join(play_list)
+                        for line_name, play_info in item['play'].items():
+                            if play_info.get('param'):
+                                play_map.setdefault(line_name, []).append(play_info['param'])
+                for line_name, episodes in play_map.items():
+                    play_from_list.append(line_name)
+                    play_url_list.append('#'.join(episodes))
+            video_detail['vod_play_from'] = '$$$'.join(play_from_list)
+            video_detail['vod_play_url'] = '$$$'.join(play_url_list)
             return {'list': [video_detail]}
         except Exception as e:
             print(f"获取详情失败: {e}")
@@ -449,23 +431,38 @@ t5lYKfpe8k83ZA==
 
     def playerContent(self, flag, id, vipFlags):
         try:
-            parts = id.split('||')
-            if len(parts) < 2:
-                return {"parse": 0, "playUrl": "", "url": ""}
-            param_str = parts[0]
-            resolutions = parts[1].split('@') if len(parts) > 1 else []
-            params = {}
-            for pair in param_str.split('&'):
-                if '=' in pair:
-                    key, value = pair.split('=', 1)
-                    params[key] = value
-            if resolutions:
-                resolutions.sort(key=lambda x: int(x) if x.isdigit() else 0, reverse=True)
-                params['resolution'] = resolutions[0]
-                data = self.get_data(params, '/App/Resource/VurlDetail/showOne', use_cache=False)
-                if data and 'url' in data:
-                    return {"parse": 0, "playUrl": "", "url": data['url'],
-                            "header": json.dumps({"User-Agent": "Lavf/57.83.100", "Referer": "http://WJiZxLXA2.com/"}), 'danmaku': 'http://127.0.0.1:9978/proxy?do=diydanmu'}
+            if '||' in id:
+                parts = id.split('||')
+                param_str = parts[0]
+                resolutions = parts[1].split('@') if len(parts) > 1 else []
+                params = {}
+                for pair in param_str.split('&'):
+                    if '=' in pair:
+                        key, value = pair.split('=', 1)
+                        params[key] = value
+                if resolutions:
+                    params['resolution'] = resolutions[0]
+            else:
+                params = {}
+                for pair in id.split('&'):
+                    if '=' in pair:
+                        key, value = pair.split('=', 1)
+                        params[key] = value
+            if 'domain_type' not in params:
+                params['domain_type'] = '8'
+            if 'type' not in params:
+                params['type'] = 'play'
+            if 'resolution' not in params:
+                params['resolution'] = flag  
+            data = self.get_data(params, '/App/Resource/VurlDetail/showOne', use_cache=False)
+            if data and 'url' in data:
+                return {
+                    "parse": 0,
+                    "playUrl": "",
+                    "url": data['url'],
+                    "header": json.dumps({"User-Agent": "Lavf/57.83.100", "Referer": "http://WJiZxLXA2.com/"}),
+                    'danmaku': 'http://127.0.0.1:9978/proxy?do=diydanmu'
+                }
             return {"parse": 0, "playUrl": "", "url": ""}
         except Exception as e:
             print(f"播放解析失败: {e}")
