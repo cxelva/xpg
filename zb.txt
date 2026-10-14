@@ -53,7 +53,6 @@ CCTV17农业农村,http://mg.cttv.vip/migu.php?pid=673168256
 CCTV4欧洲,http://113.98.11.46:3000/608807419
 CCTV4欧洲,http://mg.cttv.vip/migu.php?pid=608807419
 
-CCTV4美洲,http://113.98.11.46:3000/608807416
 CCTV4美洲,http://mg.cttv.vip/migu.php?pid=608807416
 
 CGTN外语纪录,http://113.98.11.46:3000/609006487
