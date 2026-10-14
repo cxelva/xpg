@@ -87,6 +87,15 @@
         "url": "http://v.rbotv.cn"
       }
     },
+	    {
+      "key": "电影侠",
+      "name": "🍎电影侠🔹影视",
+      "type": 3,
+      "api": "./py/电影侠.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
 	   {
             "key": "4K",
             "name": "🍎4K🔹影视",
