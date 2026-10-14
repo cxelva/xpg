@@ -153,19 +153,19 @@
       "filterable": 1
     },
 	  {
-      "key": "月之祠",
-      "name": "🍎月之祠🔹4k",
+      "key": "极光影视",
+      "name": "🍎极光🔹影视",
       "type": 3,
-      "api": "./py/月之祠.py",
+      "api": "./py/极光影视.py",
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1
     },
 	   {
-      "key": "片库",
-      "name": "🍎片库🔹4k",
+      "key": "懒人电影",
+      "name": "🍎懒人🔹电影",
       "type": 3,
-      "api": "./py/片库.py",
+      "api": "./py/懒人电影.py",
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1
