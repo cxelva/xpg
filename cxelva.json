@@ -162,6 +162,15 @@
       "quickSearch": 1,
       "filterable": 1
     },
+	  {
+      "key": "酷影聚",
+      "name": "🍎酷影聚🔹4k",
+      "type": 3,
+      "api": "./py/酷影聚.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
 	   {
       "key": "奈飞4K",
       "name": "🍎奈飞🔹4K",
