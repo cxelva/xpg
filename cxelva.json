@@ -153,6 +153,15 @@
       "filterable": 1,
       "ext": "http://cmsyun2.qijiyun.vip/api.php/app/"
     },
+	  {
+      "key": "追影影视",
+      "name": "🍎追影🔹影视",
+      "type": 3,
+      "api": "./py/追影.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
 	   {
       "key": "奈飞4K",
       "name": "🍎奈飞🔹4K",
