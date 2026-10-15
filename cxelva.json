@@ -548,13 +548,6 @@
         "decrypt": "0"
       }
     },
-	   { "key": "ssssdffc",
-  "name": "🍎4K🔹电影",
-  "type": 3,
-  "api": "./py/4K电影网.py",
-  "searchable": 1,
-  "quickSearch": 1
-},
 	      {
       "key": "猎手PY",
       "name": "🍎猎手🔹PY",
@@ -610,13 +603,6 @@
         "site": "https://m.hkybqufgh.com,https://m.sizhengxt.com,https://m.9zhoukj.com,https://m.sizhengxt.com,https://m.jiabaide.cn"
       }
     },
-    {
-      "key": "永乐影视",
-      "name": "🍎永乐🔹影视",
-      "type": 3,
-      "api": "csp_XBPQ",
-      "ext": "./lib/永乐影视.json"
-    },
 	  {
             "key": "乐乐",
             "name": "🍎乐乐🔹影视",
@@ -644,41 +630,6 @@
                 "播放链接": "play&&\">[替换:(>>-#,>>-#);>>.html]",
                 "播放链接前缀": "http://www.leleyya.com+get(\"&&?"
             }
-        },
-	   {
-            "key": "首播影院",
-            "name": "🍎首播🔹影院",
-            "type": 3,
-            "api": "csp_XBPQ",
-            "ext": {
-                "请求头": "User-Agent$MOBILE_UA",
-                "编码": "UTF-8",
-                "直接播放": "",
-                "数组": "class=\"link-hover\"&&</a>",
-                "标题": "title=\"&&\"",
-                "图片": "src=\"&&\"",
-                "副标题": "text-right\">&&<",
-                "链接": "href=\"&&\"",
-                "播放数组": "vlink_&&</ul>",
-                "播放列表": "<a&&a>",
-                "播放标题": ">&&<[不包含:夸克网盘]",
-                "播放链接": "href=\"&&\"",
-                "线路数组": "tab8&&</li>",
-                "线路标题": "</i>&&<",
-                "分类": "电影$1#电视剧$2#综艺$3#动漫$4#短剧$5#",
-                "分类url": "https://www.4f7lw7.cn/4f7lw7tp/{cateId}-{catePg}.html"
-            }
-        },
-	          {
-            "key": "狐狸君",
-            "name": "🍎狐狸🔹磁力",
-            "type": 3,
-            "api": "csp_XBPQ",
-            "changeable": 1,
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 1,
-            "ext": "./lib/狐狸君.json"
         },
    {
       "key": "天涯",
