@@ -432,18 +432,6 @@
       "filterable": 1
     },
 	      {
-      "key": "py_dsystv",
-      "name": "🍎袋鼠🔹影视",
-      "type": 3,
-      "api": "./py/dsystv.py",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "ext": {
-        "host": "https://dsystv.com"
-      }
-    },
-	      {
       "key": "py_libvio",
       "name": "🍎LIBVIO🔹[py]",
       "type": 3,
@@ -497,13 +485,6 @@
       "searchable": 1,
       "changeable": 1
     },
-	     {
-      "key": "爱看剧",
-      "name": "🍎看剧🔹影视",
-      "type": 3,
-      "api": "./lib/AppToV5.py",
-      "ext": "http://43.248.117.123:4680"
-    },
 	      {
       "key": "荐片",
       "name": "🍎荐片🔹磁力",
@@ -511,19 +492,6 @@
       "searchable": 1,
       "changeable": 1,
       "type": 3
-    },
-	    {
-      "key": "小鹿",
-      "name": "🍎小鹿🔹APP",
-      "type": 3,
-      "api": "csp_AppQi",
-      "searchable": 1,
-      "changeable": 1,
-      "ext": {
-        "url": "https://xiaolu.pwwhu.cn",
-        "dataKey": "x5Bep6Q78VCeYnPS",
-        "dataIv": "x5Bep6Q78VCeYnPS"
-      }
     },
     {
       "key": "剧圈99",
