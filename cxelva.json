@@ -36,10 +36,30 @@
       "api": "./py/韩小圈.py",
       "searchable": 1,
       "quickSearch": 1,
-      "filterable": 1,
-      "order_num": 0,
-      "changeable": 0
+      "filterable": 1
     },
+	  	    {
+      "key": "热播影视",
+      "name": "🍎热播🔹APP",
+      "type": 3,
+      "api": "csp_AppRJ",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 0,
+      "ext": {
+        "url": "http://v.rbotv.cn"
+      }
+    },
+	   {
+            "key": "瓜子┃4K",
+            "name": "🍎瓜子🔹影视",
+            "type": 3,
+            "api": "./py/瓜子影视.py",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "switchable": 1
+        },
 	      {
       "key": "小苹果资源",
       "name": "🍎小苹果🔹自营",
@@ -76,18 +96,6 @@
       "filterable": 1
     },
 	    {
-      "key": "热播影视",
-      "name": "🍎热播🔹APP",
-      "type": 3,
-      "api": "csp_AppRJ",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 0,
-      "ext": {
-        "url": "http://v.rbotv.cn"
-      }
-    },
-	    {
       "key": "电影侠",
       "name": "🍎电影侠🔹影视",
       "type": 3,
@@ -101,16 +109,6 @@
             "name": "🍎4K🔹影视",
             "type": 3,
             "api": "./py/gz.py",
-            "filterable": 1,
-            "quickSearch": 1,
-            "searchable": 1,
-            "switchable": 1
-        },
-	   {
-            "key": "瓜子┃4K",
-            "name": "🍎瓜子🔹影视",
-            "type": 3,
-            "api": "./py/瓜子影视.py",
             "filterable": 1,
             "quickSearch": 1,
             "searchable": 1,
