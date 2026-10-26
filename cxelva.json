@@ -69,15 +69,6 @@
       "quickSearch": 1,
       "filterable": 1
     },
-	   {
-      "key": "山楂4K",
-      "name": "🍎山楂🔹4K",
-      "type": 3,
-      "api": "./py/山楂4K.py",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1
-    },
 	  	   {
       "key": "人人影视",
       "name": "🍎人人🔹影视",
