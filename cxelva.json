@@ -624,6 +624,15 @@
                 "播放链接前缀": "http://www.leleyya.com+get(\"&&?"
             }
         },
+	  {
+      "key": "看看剧",
+      "name": "🍎看剧🔹影视",
+      "type": 3,
+      "api": "./py/看看剧.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
    {
       "key": "天涯",
       "name": "🍎天涯🔹蓝光",
