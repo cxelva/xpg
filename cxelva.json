@@ -99,6 +99,12 @@
       "quickSearch": 1,
       "filterable": 1
     },
+	      {
+      "key": "个影",
+      "name": "🍎个影🔹1920",
+      "type": 3,
+      "api": "./lib/gy.js"
+    },
 	  	   {
       "key": "电影侠",
       "name": "🍎电影侠🔹影视",
