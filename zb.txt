@@ -80,6 +80,10 @@ CGTN,http://mg.cttv.vip/migu.php?pid=609017205
 东方卫视,http://113.98.11.46:3000/651632648
 东方卫视,http://mg.cttv.vip/migu.php?pid=651632648
 
+浙江卫视,http://61.138.99.166:10089/hls/63/index.m3u8
+浙江卫视,http://ali-xwl.cztv.com/live/channel4k2160p.m3u8
+浙江卫视,http://222.223.41.27:8888/hls/28/index.m3u8
+
 江苏卫视,http://113.98.11.46:3000/623899368
 江苏卫视,http://mg.cttv.vip/migu.php?pid=623899368
 广东卫视,http://mg.cttv.vip/migu.php?pid=608831231
