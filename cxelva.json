@@ -6,7 +6,7 @@
   "sites": [
     {
       "key": "豆瓣",
-      "name": "🍎小苹果影视  更新10月4日！",
+      "name": "🍎小苹果影视  更新10月28日！",
       "type": 3,
       "api": "csp_Douban",
       "searchable": 0
@@ -41,6 +41,38 @@
       "changeable": 0
     },
 	   {
+            "key": "瓜子┃4K",
+            "name": "🍎瓜子🔹影视",
+            "type": 3,
+            "api": "./py/瓜子影视.py",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "switchable": 1
+        },
+	  	    {
+      "key": "热播影视",
+      "name": "🍎热播🔹APP",
+      "type": 3,
+      "api": "csp_AppRJ",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 0,
+      "ext": {
+        "url": "http://v.rbotv.cn"
+      }
+    },
+	  	   {
+            "key": "多多影视",
+            "name": "🍎多多🔹4K",
+            "type": 3,
+            "api": "./py/多多影视.py",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "switchable": 1
+        },
+	   {
       "key": "bl",
       "name": "🍎哔哩🔹4K",
       "type": 3,
@@ -67,33 +99,29 @@
       "quickSearch": 1,
       "filterable": 1
     },
-	    {
-      "key": "热播影视",
-      "name": "🍎热播🔹APP",
+	  	   {
+      "key": "电影侠",
+      "name": "🍎电影侠🔹影视",
       "type": 3,
-      "api": "csp_AppRJ",
+      "api": "./py/电影侠.py",
       "searchable": 1,
       "quickSearch": 1,
-      "filterable": 0,
-      "ext": {
-        "url": "http://v.rbotv.cn"
-      }
+      "filterable": 1
     },
-	   {
-            "key": "瓜子┃4K",
-            "name": "🍎瓜子🔹影视",
-            "type": 3,
-            "api": "./py/瓜子影视.py",
-            "filterable": 1,
-            "quickSearch": 1,
-            "searchable": 1,
-            "switchable": 1
-        },
 	   {
       "key": "剧迷影视",
       "name": "🍎剧迷🔹影视",
       "type": 3,
       "api": "./py/剧迷.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+	  	   {
+      "key": "梦幻影视",
+      "name": "🍎梦幻🔹影视",
+      "type": 3,
+      "api": "./py梦幻.py",
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1
@@ -107,15 +135,32 @@
       "quickSearch": 1,
       "filterable": 1
     },
-	      {
-      "key": "极影",
-      "name": "🍎极影🔹4K",
+	  	   {
+      "key": "追影.py",
+      "name": "🍎追影🔹影视",
       "type": 3,
-      "api": "./lib/极影.js",
+      "api": "./py/追影.py",
       "searchable": 1,
       "quickSearch": 1,
-      "filterable": 1,
-      "ext": "http://cmsyun2.qijiyun.vip/api.php/app/"
+      "filterable": 1
+    },
+	  	  	   {
+      "key": "极光影视.py",
+      "name": "🍎极光🔹影视",
+      "type": 3,
+      "api": "./py/极光影视.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
+	  	  	  	   {
+      "key": "懒人电影.py",
+      "name": "🍎懒人🔹影视",
+      "type": 3,
+      "api": "./py/懒人电影.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
     },
 	   {
       "key": "奈飞4K",
@@ -151,16 +196,30 @@
             "searchable": 1,
             "switchable": 1
         },
-	   {
-            "key": "多多影视",
-            "name": "🍎多多🔹4K",
-            "type": 3,
-            "api": "./py/多多影视.py",
-            "filterable": 1,
-            "quickSearch": 1,
-            "searchable": 1,
-            "switchable": 1
-        },
+{
+      "name": "🍎粉猪🔹4K",
+      "key": "AppV7Fz",
+      "type": 3,
+      "jar": "./lib/aw.png",
+      "api": "csp_AppV7Amns",
+      "ext": "AppV7Fz"
+    },
+    {
+      "name": "🍎咸鱼🔹4K",
+      "key": "AppV7Xy",
+      "type": 3,
+      "jar": "./lib/aw.png",
+      "api": "csp_AppV7Amns",
+      "ext": "AppV7Xy"
+    },
+    {
+      "name": "🍎太奇🔹4K",
+      "key": "AppV7Mtq",
+      "type": 3,
+      "jar": "./lib/aw.png",
+      "api": "csp_AppV7Amns",
+      "ext": "AppV7Mtq"
+    },
 	  {
       "key": "秒看",
       "name": "🍎秒看🔹4K",
@@ -379,18 +438,6 @@
       "filterable": 1
     },
 	      {
-      "key": "py_dsystv",
-      "name": "🍎袋鼠🔹影视",
-      "type": 3,
-      "api": "./py/dsystv.py",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "ext": {
-        "host": "https://dsystv.com"
-      }
-    },
-	      {
       "key": "py_libvio",
       "name": "🍎LIBVIO🔹[py]",
       "type": 3,
@@ -444,13 +491,6 @@
       "searchable": 1,
       "changeable": 1
     },
-	     {
-      "key": "爱看剧",
-      "name": "🍎看剧🔹影视",
-      "type": 3,
-      "api": "./lib/AppToV5.py",
-      "ext": "http://43.248.117.123:4680"
-    },
 	      {
       "key": "荐片",
       "name": "🍎荐片🔹磁力",
@@ -458,19 +498,6 @@
       "searchable": 1,
       "changeable": 1,
       "type": 3
-    },
-	    {
-      "key": "小鹿",
-      "name": "🍎小鹿🔹APP",
-      "type": 3,
-      "api": "csp_AppQi",
-      "searchable": 1,
-      "changeable": 1,
-      "ext": {
-        "url": "https://xiaolu.pwwhu.cn",
-        "dataKey": "x5Bep6Q78VCeYnPS",
-        "dataIv": "x5Bep6Q78VCeYnPS"
-      }
     },
     {
       "key": "剧圈99",
@@ -526,22 +553,6 @@
         "version": "5.0.0.1",
         "decrypt": "0"
       }
-    },
-	   { "key": "ssssdffc",
-  "name": "🍎4K🔹电影",
-  "type": 3,
-  "api": "./py/4K电影网.py",
-  "searchable": 1,
-  "quickSearch": 1
-},
-	      {
-      "key": "猎手PY",
-      "name": "🍎猎手🔹PY",
-      "api": "./py/猎手.py",
-      "filterable": 1,
-      "quickSearch": 1,
-      "searchable": 1,
-      "type": 3
     },
     {
       "key": "王子",
@@ -623,41 +634,6 @@
                 "播放链接": "play&&\">[替换:(>>-#,>>-#);>>.html]",
                 "播放链接前缀": "http://www.leleyya.com+get(\"&&?"
             }
-        },
-	   {
-            "key": "首播影院",
-            "name": "🍎首播🔹影院",
-            "type": 3,
-            "api": "csp_XBPQ",
-            "ext": {
-                "请求头": "User-Agent$MOBILE_UA",
-                "编码": "UTF-8",
-                "直接播放": "",
-                "数组": "class=\"link-hover\"&&</a>",
-                "标题": "title=\"&&\"",
-                "图片": "src=\"&&\"",
-                "副标题": "text-right\">&&<",
-                "链接": "href=\"&&\"",
-                "播放数组": "vlink_&&</ul>",
-                "播放列表": "<a&&a>",
-                "播放标题": ">&&<[不包含:夸克网盘]",
-                "播放链接": "href=\"&&\"",
-                "线路数组": "tab8&&</li>",
-                "线路标题": "</i>&&<",
-                "分类": "电影$1#电视剧$2#综艺$3#动漫$4#短剧$5#",
-                "分类url": "https://www.4f7lw7.cn/4f7lw7tp/{cateId}-{catePg}.html"
-            }
-        },
-	          {
-            "key": "狐狸君",
-            "name": "🍎狐狸🔹磁力",
-            "type": 3,
-            "api": "csp_XBPQ",
-            "changeable": 1,
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 1,
-            "ext": "./lib/狐狸君.json"
         },
    {
       "key": "天涯",
@@ -1210,15 +1186,6 @@
       "api": "./lib/88看球[体].js"
     },
     {
-      "key": "球通体育",
-      "name": "🏆球通🔹体育",
-      "type": 3,
-      "api": "csp_QiutongTY",
-      "style": {
-        "type": "list"
-      }
-    },
-    {
       "key": "瓜子体育",
       "name": "🏆瓜子🔹体育",
       "type": 3,
@@ -1330,49 +1297,39 @@
     "cache.ott.fifalive.itv.cmvideo.cn=base-v4-free-mghy.e.cdn.chinamobile.com",
     "cache.ott.hnbblive.itv.cmvideo.cn=base-v4-free-mghy.e.cdn.chinamobile.com"
   ],
-  "parses": [
-	  {
-            "name": "🍎如意吉祥",
-            "type": 1,
-            "url": "https://niubi.69mini.com/jsonapi/?url=",
-            "ext": {
-                "header": {
-                    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36 Edg/110.0.1587.57"
-                }
-            }
-        },
-	   {
-            "name": "🍎马上发财",
-            "type": 1,
-            "url": "http://1.94.244.214:8889/geturl?url=",
-            "ext": {
-                "header": {
-                    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36 Edg/110.0.1587.57"
-                }
-            }
-        },
-	       {
-      "name": "🍎融融解析",
+ "parses": [
+    {
+      "name": "🍎虾米",
       "type": 0,
       "url": "https://jx.xmflv.com/?url=",
-      "ext": {
-        "header": {
-          "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36 Edg/110.0.1587.57"  
-        }
-      }
-    },
-	   {
-      "name": "🍎多屏解析",
-      "type": 0,
-      "url": "https://jx.nnxv.cn/tv.php?url=",
       "ext": {
         "header": {
           "user-agent": "Mozilla/5.0 (Linux; Android 13; V2049A Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/116.0.0.0 Mobile Safari/537.36"
         }
       }
     },
-        {
-      "name": "🍎融融TV",
+    {
+      "name": "🍎云解",
+      "type": 0,
+      "url": "https://yparse.ik9.cc/index.php?url=",
+      "ext": {
+        "header": {
+          "user-agent": "Mozilla/5.0 (Linux; Android 13; V2049A Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/116.0.0.0 Mobile Safari/537.36"
+        }
+      }
+    },
+    {
+      "name": "🍎咸鱼",
+      "type": 0,
+      "url": "https://jx.xymp4.cc/?url=",
+      "ext": {
+        "header": {
+          "user-agent": "Mozilla/5.0 (Linux; Android 13; V2049A Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/116.0.0.0 Mobile Safari/537.36"
+        }
+      }
+    },
+    {
+      "name": "🍎淘片",
       "type": 0,
       "url": "https://jx.yparse.com/index.php?url=",
       "ext": {
@@ -1381,15 +1338,45 @@
         }
       }
     },
-	  {
-      "name": "🍎优酷TV",
+    {
+      "name": "🍎冰豆",
       "type": 0,
-      "url": "https://video.isyour.love/player/getplayer?url="
+      "url": "https://bd.jx.cn/?url=",
+      "ext": {
+        "header": {
+          "user-agent": "Mozilla/5.0 (Linux; Android 13; V2049A Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/116.0.0.0 Mobile Safari/537.36"
+        }
+      }
     },
-        {
-      "name": "🍎小苹果影视TV",
+    {
+      "name": "🍎七七",
       "type": 0,
-      "url": "https://jx.2s0.cn/player/?url="
+      "url": "https://jx.77flv.cc/?url=",
+      "ext": {
+        "header": {
+          "user-agent": "Mozilla/5.0 (Linux; Android 13; V2049A Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/116.0.0.0 Mobile Safari/537.36"
+        }
+      }
+    },
+    {
+      "name": "🍎盘古",
+      "type": 0,
+      "url": "https://www.playm3u8.cn/jiexi.php?url=",
+      "ext": {
+        "header": {
+          "user-agent": "Mozilla/5.0 (Linux; Android 13; V2049A Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/116.0.0.0 Mobile Safari/537.36"
+        }
+      }
+    },
+    {
+      "name": "🍎夜幕",
+      "type": 0,
+      "url": "https://yemu.xyz/?url=",
+      "ext": {
+        "header": {
+          "user-agent": "Mozilla/5.0 (Linux; Android 13; V2049A Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/116.0.0.0 Mobile Safari/537.36"
+        }
+      }
     }
   ],
   "rules": [
