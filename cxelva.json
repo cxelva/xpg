@@ -36,9 +36,7 @@
       "api": "./py/韩小圈.py",
       "searchable": 1,
       "quickSearch": 1,
-      "filterable": 1,
-      "order_num": 0,
-      "changeable": 0
+      "filterable": 1
     },
 	   {
             "key": "瓜子┃4K",
@@ -47,8 +45,7 @@
             "api": "./py/瓜子影视.py",
             "filterable": 1,
             "quickSearch": 1,
-            "searchable": 1,
-            "switchable": 1
+            "searchable": 1
         },
 	  	    {
       "key": "热播影视",
@@ -67,10 +64,9 @@
             "name": "🍎多多🔹4K",
             "type": 3,
             "api": "./py/多多影视.py",
-            "filterable": 1,
-            "quickSearch": 1,
-            "searchable": 1,
-            "switchable": 1
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
         },
 	   {
       "key": "bl",
@@ -199,8 +195,7 @@
             "api": "./py/开心影院.py",
             "filterable": 1,
             "quickSearch": 1,
-            "searchable": 1,
-            "switchable": 1
+            "searchable": 1
         },
 {
       "name": "🍎粉猪🔹4K",
