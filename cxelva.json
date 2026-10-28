@@ -60,6 +60,16 @@
             "searchable": 1,
             "switchable": 1
         },
+	  	   {
+            "key": "多多影视",
+            "name": "🍎多多🔹4K",
+            "type": 3,
+            "api": "./py/多多影视.py",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "switchable": 1
+        },
 	   {
       "key": "bl",
       "name": "🍎哔哩🔹4K",
@@ -179,16 +189,6 @@
             "name": "🍎苹果🔹影院",
             "type": 3,
             "api": "./py/开心影院.py",
-            "filterable": 1,
-            "quickSearch": 1,
-            "searchable": 1,
-            "switchable": 1
-        },
-	   {
-            "key": "多多影视",
-            "name": "🍎多多🔹4K",
-            "type": 3,
-            "api": "./py/多多影视.py",
             "filterable": 1,
             "quickSearch": 1,
             "searchable": 1,
