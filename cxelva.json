@@ -335,15 +335,6 @@
       "filterable": 1
     },
 	   {
-      "key": "蔡蔡.py",
-      "name": "🍎蔡蔡🔹影视",
-      "type": 3,
-      "api": "./py/4K影视.py",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1
-    },
-	   {
       "key": "蓝鹰",
       "name": "🍎蓝鹰🔹线路",
       "type": 3,
