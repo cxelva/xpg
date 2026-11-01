@@ -341,17 +341,52 @@ class Spider(Spider):
             aa = re.findall(r'\\"list\\":(.*?)}}}]', res.text)
             if not aa:
                 return {'list': [], 'parse': 0, 'jx': 0}
-            bb = aa[0].replace('\\"', '"')
-            data_list = json.loads(bb)
-            for i in data_list:
-                video_list.append(
-                    {
-                        'vod_id': i['vodId'],
-                        'vod_name': i['vodName'],
-                        'vod_pic': i['vodPic'],
-                        'vod_remarks': i['vodVersion'] if i['typeId1'] == 1 else i['vodRemarks']
-                    }
-                )
+            raw = aa[0]
+            # 部分条目简介等字段含未转义引号，整段 json.loads 会失败（电视剧/动漫更常见）
+            data_list = None
+            try:
+                bb = raw
+                while '\\"' in bb:
+                    bb = bb.replace('\\"', '"')
+                data_list = json.loads(bb)
+            except Exception:
+                data_list = None
+            if data_list is not None:
+                for i in data_list:
+                    video_list.append(
+                        {
+                            'vod_id': i['vodId'],
+                            'vod_name': i['vodName'],
+                            'vod_pic': i['vodPic'],
+                            'vod_remarks': i.get('vodVersion') if i.get('typeId1') == 1 else i.get('vodRemarks', '')
+                        }
+                    )
+            else:
+                # 兜底：字段级正则提取，跳过脏 JSON
+                blob = raw.replace('\\"', '"')
+                for m in re.finditer(
+                    r'\{"vodId":(\d+).*?"typeId1":(\d+).*?"vodName":"(.*?)".*?"vodPic":"(.*?)"',
+                    blob, re.DOTALL
+                ):
+                    vod_id, type_id1, vod_name, vod_pic = m.group(1), m.group(2), m.group(3), m.group(4)
+                    seg = m.group(0)
+                    remarks = ''
+                    vm = re.search(r'"vodVersion":"(.*?)"', seg)
+                    rm = re.search(r'"vodRemarks":"(.*?)"', seg)
+                    if type_id1 == '1' and vm:
+                        remarks = vm.group(1)
+                    elif rm:
+                        remarks = rm.group(1)
+                    elif vm:
+                        remarks = vm.group(1)
+                    video_list.append(
+                        {
+                            'vod_id': vod_id,
+                            'vod_name': vod_name,
+                            'vod_pic': vod_pic,
+                            'vod_remarks': remarks
+                        }
+                    )
         except requests.RequestException as e:
             return {'list': [], 'msg': e}
         return {'list': video_list, 'parse': 0, 'jx': 0}
