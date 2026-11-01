@@ -101,6 +101,15 @@
       "quickSearch": 1,
       "filterable": 1
     },
+	  	     {
+      "key": "金牌.py",
+      "name": "🍎金牌🔹app",
+      "type": 3,
+      "api": "./py/金牌.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1
+    },
 	  	   {
       "key": "人人影视",
       "name": "🍎人人🔹影视",
@@ -407,15 +416,6 @@
         "buildNumber": "2001",
         "buildSignature": "A40DA80A59D170CAA950CF15C18C454D47A39B26989D8B640ECD745BA71BF5DC"
       }
-    },
-	     {
-      "key": "金牌.py",
-      "name": "🍎金牌🔹app",
-      "type": 3,
-      "api": "./py/金牌.py",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1
     },
 	      {
       "key": "py_libvio",
