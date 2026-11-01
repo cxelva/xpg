@@ -451,6 +451,8 @@ class Spider(Spider):
     def homeContent(self, filter=False):
         result = {
             "class": [
+                {"type_id": "recommend", "type_name": "精选推荐"},
+                {"type_id": "newest", "type_name": "最近上新"},
                 {"type_id": "ai-duanju", "type_name": "AI成人短剧"},
                 {"type_id": "ai-manju", "type_name": "AI成人漫剧"},
                 {"type_id": "ai-huanlian", "type_name": "AI换脸"},
@@ -459,8 +461,6 @@ class Spider(Spider):
                 {"type_id": "ranks", "type_name": "排行榜"},
                 {"type_id": "chigua", "type_name": "黄果吃瓜"},
                 {"type_id": "author", "type_name": "黄果官方"},
-                {"type_id": "recommend", "type_name": "精选推荐"},
-                {"type_id": "newest", "type_name": "最近上新"},
             ],
             "list": [],
             "filters": {
@@ -492,7 +492,7 @@ class Spider(Spider):
 
     def homeVideoContent(self):
         try:
-            html = self._get_cached("/recommend/1/")
+            html = self._get_cached("/recommend/")
             if not html:
                 html = self._get_cached("/")
             return {"list": self._parse_list(html)}
@@ -538,10 +538,13 @@ class Spider(Spider):
 
             # 其它固定路径
             if cid == "recommend":
-                html = self._get_cached(f"/recommend/{pg}/")
+                # 第1页规范路径是 /recommend/，带页码会 301，部分环境跟跳后为空
+                path = f"/recommend/{pg}/" if pg > 1 else "/recommend/"
+                html = self._get_cached(path)
                 videos = self._parse_list(html)
             elif cid == "newest":
-                html = self._get_cached(f"/newest/{pg}/")
+                path = f"/newest/{pg}/" if pg > 1 else "/newest/"
+                html = self._get_cached(path)
                 videos = self._parse_list(html)
             elif cid == "topic":
                 html = self._get_cached("/topics/")
@@ -1083,13 +1086,13 @@ class Spider(Spider):
         doc = BeautifulSoup(html, _BS4_PARSER or "html.parser")
 
         if mode == "drama" or mode == "search":
-            # 通用卡片
+            # 通用卡片（站点现用 /video/{id}/，旧版为 /detail/{id}/，两者都兼容）
             for card in doc.select("div.hg-drama-card"):
                 a = card.find("a", href=True)
                 if not a:
                     continue
                 href = a.get("href", "")
-                m = re.search(r"/detail/(\d+)", href)
+                m = re.search(r"/(?:detail|video)/(\d+)", href)
                 if not m:
                     continue
                 vid = m.group(1)
@@ -1125,8 +1128,8 @@ class Spider(Spider):
 
             # search 补充
             if mode == "search" and not videos:
-                for a in doc.find_all("a", href=re.compile(r"/detail/\d+")):
-                    m = re.search(r"/detail/(\d+)", a.get("href", ""))
+                for a in doc.find_all("a", href=re.compile(r"/(?:detail|video)/\d+")):
+                    m = re.search(r"/(?:detail|video)/(\d+)", a.get("href", ""))
                     if not m or m.group(1) in seen:
                         continue
                     seen.add(m.group(1))
@@ -1158,7 +1161,7 @@ class Spider(Spider):
                 if not a:
                     continue
                 href = a.get("href", "")
-                m = re.search(r"/detail/(\d+)", href)
+                m = re.search(r"/(?:detail|video)/(\d+)", href)
                 vid = m.group(1) if m else href
                 if vid in seen:
                     continue
@@ -1223,7 +1226,8 @@ class Spider(Spider):
         """无 BS4 时的正则兜底（与第一版兼容）"""
         result, seen = [], set()
         for block in re.split(r'<div class="hg-drama-card"', html)[1:]:
-            m = re.search(r'href="(/detail/(\d+)/)"', block)
+            # 兼容 /detail/{id}/ 与当前站点的 /video/{id}/
+            m = re.search(r'href="(/(?:detail|video)/(\d+)/?)"', block)
             if not m:
                 continue
             vid = m.group(2)
