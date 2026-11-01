@@ -1,31 +1,19 @@
 # -*- coding: utf-8 -*-
 """
 懒人电影 - lanrendy.top
-自研 SPA 前端 + JSON API（数据源 360zy / MacCMS 字段），无页面级反爬（curl 直连可访问）。
+自研 SPA 前端 + JSON API（数据源 360zy / MacCMS 字段），无页面级反爬。
 
-关键结论（已实测验证）：
-1. 数据接口：GET /api/at/json  （JSON，UTF-8，返回 MacCMS 全字段）
-   - 列表/搜索：ac=videolist&pg=1[&t=子分类][&wd=关键词][&year=年份]
-       每页固定 20 条；父分类（t=1/2/3/4/17）返回 0 条，必须聚合子分类；t=46 短剧例外有数据
-   - 详情：ac=detail&ids={vod_id} → {vod_play_from/vod_play_url/type_name/...}
-2. 分类（type_id 表，来自站点 NAV）：
-   电影(父1): 6动作 7喜剧 8爱情 9科幻 10恐怖 11剧情 12战争 20惊悚 21家庭 22古装 23历史
-             24悬疑 25犯罪 26灾难 27纪录 28短片 29动画 45西部
-   连续剧(父2): 13国产 14香港 15韩国 16欧美 30台湾 31日本 32海外 33泰国
-   综艺(父3): 34大陆 35港台 36日韩 37欧美
-   动漫(父4): 38国产 39欧美 40日韩
-   短剧(父46): 47都市 48悬疑 49穿越 50仙侠 51反转 52恋爱 53逆袭（父 46 直接有数据）
-   体育(父17): 18NBA 41足球 42篮球
-3. 播放：详情 vod_play_url 为 MacCMS 格式  name$url#集2$url...$$$线路2...
-   直链为 m3u8（vod1.maowushi.com 等），带 Referer https://lanrendy.top/ 可直接访问；
-   站点自带 /v/m3u8?u= 内嵌代理兜底（直连失败时可用，耗站点请求次数）
-4. 封面：doubanio/qpic/iqiyipic 等防盗链图床，站点用 /img?u= 代理；壳子默认透传原图
+关键结论（2026-11 实测）：
+1. 接口：GET /api/at/json
+   - 列表：ac=videolist&pg=1[&t=分类][&wd=关键词][&year=年份]  每页20条
+   - 详情：ac=detail&ids={vod_id}
+   - 父分类 t=1/2/3/4/17 返回0条，必须聚合子分类；t=46 短剧父分类直接有数据
+2. 播放：vod_play_url 为 name$url#...$$$线路2...，直链 m3u8，带 Referer 可播
 """
 import re
 import json
 import time
 import urllib.parse
-from concurrent.futures import ThreadPoolExecutor
 
 try:
     import requests
@@ -55,7 +43,7 @@ class Spider(Spider):
     UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
           "(KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36")
 
-    # 父分类（type_id, 名称, 子分类列表）；父分类需聚合子分类取数
+    # 父分类 (type_id, 名称, 子分类列表)
     CATEGORY = [
         ("1", "电影", ["6", "7", "8", "9", "10", "11", "12", "20", "21",
                        "22", "23", "24", "25", "26", "27", "28", "29", "45"]),
@@ -72,11 +60,8 @@ class Spider(Spider):
         super().__init__()
         self._http = None
         self._urllib_opener = None
-        self._play_cache = {}
-        self._cache_ttl = 1800
         self._re_direct = re.compile(r'\.(m3u8|mp4|flv|ts|mkv)([?#&]|$)', re.I)
 
-    # ==================== 工具 ====================
     def _log(self, msg):
         try:
             print("[%s] %s" % (self.name, msg))
@@ -91,7 +76,6 @@ class Spider(Spider):
         return re.sub(r"\s+", " ", text).strip()
 
     def _clean_name(self, name):
-        """片名清洗（去尾部垃圾后缀 + 压缩空白）"""
         if not name:
             return name
         name = re.sub(
@@ -100,7 +84,7 @@ class Spider(Spider):
             "", str(name), flags=re.I)
         return re.sub(r'\s+', ' ', name).strip()
 
-    # ==================== 网络层（requests → urllib 双通道） ====================
+    # ==================== 网络 ====================
     def _init_http(self):
         if self._http is None and requests is not None:
             try:
@@ -120,14 +104,20 @@ class Spider(Spider):
                 ctx = ssl.create_default_context()
                 ctx.check_hostname = False
                 ctx.verify_mode = ssl.CERT_NONE
-                handlers = [urllib.request.ProxyHandler({}),
-                            urllib.request.HTTPSHandler(context=ctx)]
+                handlers = [
+                    urllib.request.ProxyHandler({}),
+                    urllib.request.HTTPSHandler(context=ctx),
+                ]
                 self._urllib_opener = urllib.request.build_opener(*handlers)
             except Exception:
                 self._urllib_opener = None
 
     def _raw(self, url, method="GET", body=None, headers=None, timeout=12):
-        """返回 (status, text)；requests → urllib 双通道"""
+        self._init_http()
+        headers = dict(headers or {})
+        if "User-Agent" not in headers:
+            headers["User-Agent"] = self.UA
+
         if self._http is not None:
             try:
                 if method == "GET":
@@ -136,12 +126,12 @@ class Spider(Spider):
                     r = self._http.post(url, data=body, headers=headers, timeout=timeout)
                 return r.status_code, r.text
             except Exception as e:
-                self._log("requests 通道失败: %s" % e)
-        self._init_http()
+                self._log("requests失败: %s" % e)
+
         if self._urllib_opener is not None:
             try:
                 data = body.encode("utf-8") if body and method == "POST" else None
-                req = urllib.request.Request(url, data=data, headers=headers or {})
+                req = urllib.request.Request(url, data=data, headers=headers)
                 req.get_method = lambda: method
                 resp = self._urllib_opener.open(req, timeout=timeout)
                 return resp.getcode(), resp.read().decode("utf-8", "ignore")
@@ -149,74 +139,87 @@ class Spider(Spider):
                 try:
                     return e.code, e.read().decode("utf-8", "ignore")
                 except Exception:
-                    return e.code, ""
+                    return getattr(e, "code", 0), ""
             except Exception as e:
-                self._log("urllib 通道失败: %s" % e)
+                self._log("urllib失败: %s" % e)
         return 0, ""
 
     def _api(self, params, retry=2):
-        """调 JSON API，失败重试"""
-        url = self.base_url + "/api/at/json?" + "&".join(
-            "%s=%s" % (k, urllib.parse.quote(str(v))) for k, v in params.items())
+        qs = "&".join(
+            "%s=%s" % (k, urllib.parse.quote(str(v), safe=""))
+            for k, v in params.items()
+            if v is not None and str(v) != ""
+        )
+        url = self.base_url + "/api/at/json?" + qs
         headers = {
             "User-Agent": self.UA,
             "Accept": "application/json,text/plain,*/*",
             "Accept-Language": "zh-CN,zh;q=0.9",
             "Referer": self.base_url + "/",
+            "Origin": self.base_url,
         }
         for attempt in range(retry):
             status, text = self._raw(url, headers=headers, timeout=12)
             if status == 200 and text:
                 try:
-                    return json.loads(text)
+                    data = json.loads(text)
+                    if isinstance(data, dict):
+                        return data
                 except Exception:
                     pass
             if attempt < retry - 1:
-                time.sleep(0.8 + attempt)
+                time.sleep(0.5 + attempt * 0.3)
         return None
 
-    # ==================== 列表处理 ====================
+    # ==================== 列表 ====================
     def _norm_video(self, v):
-        """API 条目 → TVBox 列表项"""
         return {
             "vod_id": str(v.get("vod_id", "")),
             "vod_name": self._clean_name(v.get("vod_name", "")),
             "vod_pic": v.get("vod_pic") or "",
             "vod_remarks": v.get("vod_remarks") or v.get("type_name") or "",
+            "vod_time": v.get("vod_time") or "",
+            "vod_year": v.get("vod_year") or "",
         }
-
-    def _category_aggregate(self, subs, pg, year=None):
-        """父分类：并发拉子分类第 pg 页，合并去重取前 60"""
-        try:
-            with ThreadPoolExecutor(max_workers=6) as ex:
-                futs = [ex.submit(self._fetch_list, {"t": t, "pg": pg, "year": year}) for t in subs]
-                groups = [f.result() for f in futs]
-        except Exception:
-            groups = [self._fetch_list({"t": t, "pg": pg, "year": year}) for t in subs]
-        return self._merge(groups)
 
     def _fetch_list(self, params):
         p = {"ac": "videolist"}
         for k, v in params.items():
-            if v:
+            if v is not None and str(v) != "":
                 p[k] = v
         j = self._api(p)
-        if not j:
+        if not j or not isinstance(j, dict):
             return []
-        return [self._norm_video(v) for v in (j.get("list") or [])]
+        return [self._norm_video(v) for v in (j.get("list") or []) if v]
 
     def _merge(self, groups, limit=60):
-        """多组结果按 vod_id 去重、vod_time 倒序，截取前 limit 条"""
-        seen = {}
+        seen = set()
         out = []
         for g in groups:
+            if not g:
+                continue
             for v in g:
                 vid = v.get("vod_id", "")
                 if vid and vid not in seen:
-                    seen[vid] = 1
+                    seen.add(vid)
                     out.append(v)
         out.sort(key=lambda x: x.get("vod_time") or "", reverse=True)
         return out[:limit]
+
+    def _category_aggregate(self, subs, pg, year=None):
+        """串行拉取子分类（兼容无 concurrent.futures / 线程受限的环境）"""
+        if not subs:
+            return []
+        groups = []
+        for t in subs:
+            try:
+                lst = self._fetch_list({"t": t, "pg": pg, "year": year})
+                if lst:
+                    groups.append(lst)
+            except Exception as e:
+                self._log("子分类 t=%s 失败: %s" % (t, e))
+            time.sleep(0.06)
+        return self._merge(groups, limit=60)
 
     # ==================== TVBox 核心 ====================
     def init(self, extend=''):
@@ -232,31 +235,37 @@ class Spider(Spider):
             self._init_http()
             self._log("初始化完成: %s" % self.base_url)
         except Exception as e:
-            self._log("init 异常: %s" % e)
+            self._log("init异常: %s" % e)
 
     def homeContent(self, filter=False):
         result = {
             "class": [
                 {"type_id": cid, "type_name": cname}
-                for cid, cname, _subs in self.CATEGORY
+                for cid, cname, _ in self.CATEGORY
             ]
         }
         if filter:
-            result["filters"] = {}
-            result["filter"] = {}
+            years = [{"n": "全部", "v": ""}]
+            for y in range(2026, 2015, -1):
+                years.append({"n": str(y), "v": str(y)})
+            result["filters"] = {
+                cid: [{"key": "year", "name": "年份", "value": years}]
+                for cid, _, _ in self.CATEGORY
+            }
         return result
 
     def homeVideoContent(self):
         try:
-            # 首页行 = 最新电影(t=11) + 最新剧集(t=13) + 动漫(t=38)，合并去重
             groups = [
-                self._fetch_list({"t": 11, "pg": 1}),
-                self._fetch_list({"t": 13, "pg": 1}),
-                self._fetch_list({"t": 38, "pg": 1}),
+                self._fetch_list({"t": "11", "pg": "1"}),
+                self._fetch_list({"t": "13", "pg": "1"}),
+                self._fetch_list({"t": "38", "pg": "1"}),
             ]
-            return {"list": self._merge(groups, limit=30)}
+            lst = self._merge(groups, limit=30)
+            self._log("homeVideo 返回 %d 条" % len(lst))
+            return {"list": lst}
         except Exception as e:
-            self._log("homeVideoContent异常: %s" % e)
+            self._log("homeVideo异常: %s" % e)
             return {"list": []}
 
     def categoryContent(self, tid, pg, filter=False, content=None):
@@ -265,29 +274,36 @@ class Spider(Spider):
             year = ""
             if content:
                 try:
-                    year = str((json.loads(content) or {}).get("year") or "")
+                    if isinstance(content, str):
+                        content = json.loads(content) if content.strip() else {}
+                    year = str((content or {}).get("year") or "")
                 except Exception:
                     year = ""
-            # 父分类聚合；短剧(46)上游直接有数据，特例单请求
-            if str(tid) == "46":
-                lst = self._fetch_list({"t": 46, "pg": pg, "year": year})
+            tid = str(tid)
+
+            if tid == "46":
+                lst = self._fetch_list({"t": "46", "pg": pg, "year": year})
             else:
-                subs = self.SUBS_MAP.get(str(tid))
+                subs = self.SUBS_MAP.get(tid)
                 if not subs:
-                    return {"list": [], "page": pg, "pagecount": 1, "limit": 24, "total": 0}
-                lst = self._category_aggregate(subs, pg, year)
+                    lst = self._fetch_list({"t": tid, "pg": pg, "year": year})
+                else:
+                    lst = self._category_aggregate(subs, pg, year)
+
             if not lst:
                 lst = []
+            pagecount = 80 if tid == "46" else 40
+            self._log("category tid=%s pg=%s -> %d条" % (tid, pg, len(lst)))
             return {
                 "list": lst,
                 "page": pg,
-                "pagecount": 1,
+                "pagecount": pagecount,
                 "limit": 24,
                 "total": 0,
             }
         except Exception as e:
-            self._log("categoryContent异常: %s" % e)
-            return {"list": [], "page": pg, "pagecount": 1, "limit": 24, "total": 0}
+            self._log("category异常: %s" % e)
+            return {"list": [], "page": int(pg or 1), "pagecount": 1, "limit": 24, "total": 0}
 
     def searchContent(self, key, quick=False, pg="1"):
         try:
@@ -295,6 +311,7 @@ class Spider(Spider):
             if not keyword:
                 return {"list": [], "page": 1, "pagecount": 1, "limit": 0, "total": 0}
             lst = self._fetch_list({"wd": keyword, "pg": 1})
+            self._log("search '%s' -> %d条" % (keyword, len(lst)))
             return {
                 "list": lst,
                 "page": 1,
@@ -303,7 +320,7 @@ class Spider(Spider):
                 "total": len(lst),
             }
         except Exception as e:
-            self._log("searchContent异常: %s" % e)
+            self._log("search异常: %s" % e)
             return {"list": []}
 
     def detailContent(self, ids):
@@ -312,10 +329,13 @@ class Spider(Spider):
             j = self._api({"ac": "detail", "ids": vod_id})
             if not j:
                 return {"list": []}
-            v = (j.get("list") or [])[0]
-            if not v:
+            lst = j.get("list") or []
+            if not lst:
                 return {"list": []}
+            v = lst[0]
             vod_name = self._clean_name(v.get("vod_name", ""))
+            play_from = v.get("vod_play_from") or ""
+            play_url = v.get("vod_play_url") or ""
             video = {
                 "vod_id": str(v.get("vod_id", vod_id)),
                 "vod_name": vod_name,
@@ -324,27 +344,25 @@ class Spider(Spider):
                 "vod_area": v.get("vod_area") or "",
                 "vod_actor": v.get("vod_actor") or "",
                 "vod_director": v.get("vod_director") or "",
-                "vod_content": self._clean(v.get("vod_content")),
+                "vod_content": self._clean(v.get("vod_content") or v.get("vod_blurb") or ""),
                 "vod_remarks": v.get("vod_remarks") or "",
-                "vod_play_from": v.get("vod_play_from") or "",
-                "vod_play_url": v.get("vod_play_url") or "",
+                "vod_play_from": play_from,
+                "vod_play_url": play_url,
             }
-            if not video["vod_play_url"]:
-                self._log("无可播资源: %s" % vod_name)
+            if not play_url:
+                self._log("无播放源: %s" % vod_name)
                 return {"list": []}
-            self._log("详情解析成功: %s 线路: %s" % (
-                vod_name, video["vod_play_from"]))
+            self._log("详情OK: %s 线路:%s" % (vod_name, play_from))
             return {"list": [video]}
         except Exception as e:
-            self._log("detailContent异常: %s" % e)
+            self._log("detail异常: %s" % e)
             return {"list": []}
 
     def playerContent(self, flag, id, vipFlags=None):
         try:
             url = str(id or "").strip()
             if not url:
-                return {"parse": 0, "url": "", "header": ""}
-            # m3u8/mp4 等直链 → 直连播放（带站点 Referer）；其余交给壳子解析
+                return {"parse": 0, "url": "", "header": {}}
             if self._re_direct.search(url):
                 return {
                     "parse": 0,
@@ -352,24 +370,26 @@ class Spider(Spider):
                     "header": {
                         "User-Agent": self.UA,
                         "Referer": self.base_url + "/",
+                        "Origin": self.base_url,
                     },
                 }
-            return {"parse": 1, "url": url, "header": ""}
+            return {"parse": 1, "url": url, "header": {}}
         except Exception as e:
-            self._log("playerContent异常: %s" % e)
-            return {"parse": 0, "url": "", "header": ""}
+            self._log("player异常: %s" % e)
+            return {"parse": 0, "url": "", "header": {}}
 
     def getName(self):
         return self.name
 
     def isVideoFormat(self, url):
-        pass
+        return bool(self._re_direct.search(str(url or "")))
 
     def manualVideoCheck(self):
-        pass
+        return False
 
     def destroy(self):
-        pass
+        self._http = None
+        self._urllib_opener = None
 
     def localProxy(self, param):
-        pass
+        return None
