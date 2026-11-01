@@ -53,7 +53,7 @@ def _cat_save(d):
 
 class Spider(Spider):
     host = 'https://www.dyx00.com'
-    pic_cdn = 'https://vres.cyscyy.com'
+    pic_cdn = 'https://vres.wkcyvs.cn'
     ua = 'Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36'
     skip = ('搜索', '百度', '搜狗', '神马', '360', 'baidu', 'google', 'sogou', 'kuaishou', '快手')
     wm = ('kkys', 'kekys', '可可影视')
