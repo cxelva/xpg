@@ -38,6 +38,12 @@
       "quickSearch": 1,
       "filterable": 1
     },
+	  	      {
+      "key": "个影",
+      "name": "🍎融融🔹自建",
+      "type": 3,
+      "api": "./lib/gy.js"
+    },
 	   {
             "key": "瓜子┃4K",
             "name": "🍎瓜子🔹影视",
@@ -103,21 +109,6 @@
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1
-    },
-	   {
-      "key": "剧下饭",
-      "name": "🍎下饭🔹4K",
-      "type": 3,
-      "api": "./py/jxf.py",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1
-    },
-	      {
-      "key": "个影",
-      "name": "🍎个影🔹1920",
-      "type": 3,
-      "api": "./lib/gy.js"
     },
 	  	   {
       "key": "电影侠",
