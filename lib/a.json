@@ -35,6 +35,16 @@
       "type": 3,
       "api": "./a/f05e3b39.js"
     },
+	    {
+      "key": "ch黄果短剧",
+      "name": "🔞黄果短剧",
+      "type": 3,
+      "api": "./a/ch黄果短剧.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "changeable": 1
+    },
 	   {
       "key": "黄果短剧",
       "name": "🔞黄果短剧（翻墙）",
