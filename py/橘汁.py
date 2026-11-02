@@ -564,7 +564,7 @@ class Spider(_Base):
                            None, {'User-Agent': UA, 'Accept': 'application/json'})
             for c in (json.loads(d).get('data') or []):
                 cid = str(c.get('id', ''))
-                if cid and cid != '29':
+                if cid and cid not in ('29', '27'):
                     cats.append({'type_id': cid, 'type_name': c.get('name', '')})
         except Exception:
             pass
@@ -578,7 +578,6 @@ class Spider(_Base):
                 {'type_id': '25', 'type_name': '直播'},
                 {'type_id': '26', 'type_name': '漫剧'},
             ]
-        cats.append({'type_id': 'history', 'type_name': '最近在看'})
         return {'class': cats}
 
     def homeVideoContent(self):
