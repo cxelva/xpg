@@ -137,15 +137,6 @@
       "quickSearch": 1,
       "filterable": 1
     },
-	  	   {
-      "key": "梦幻影视",
-      "name": "🍎梦幻🔹影视",
-      "type": 3,
-      "api": "./py梦幻.py",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1
-    },
 	   {
       "key": "山有木兮",
       "name": "🍎山有🔹木兮",
