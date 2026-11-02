@@ -1,7 +1,15 @@
 # -*- coding: utf-8 -*-
 # 橘汁视频 TVBox/AVBox spider
-# 修复版：去除第三方加密库硬依赖(纯 Python 实现 AES/RSA)、
-#          init 阶段不联网、异常全部就地吞掉、方法签名对齐 AVBox 调用契约。
+# 修复版 v2026-11-02b：
+#   1. 去除第三方加密库硬依赖（纯 Python 实现 AES/RSA）
+#   2. init 阶段不联网、异常全部就地吞掉
+#   3. 方法签名对齐 AVBox 调用契约
+#   4. 增强 _ensure 重试与二级密钥获取稳定性
+#   5. 列表/搜索/详情对 424 / 业务错误码做更友好降级
+#   6. 分类 ID 与当前服务端返回保持一致
+#   7. 播放线路排序保留自建4K优先逻辑
+#   8. 兼容官方包名 com.exxammpea.a1（改包版包名服务器不发二级密钥）
+#   9. 针对「电影/剧集偶发无内容」增加参数变体重试 + 首页兜底混合拉取
 import json
 import re
 import sys
@@ -21,9 +29,6 @@ except Exception:
         pass
 
 # ---------------------------------------------------------------- 加密层
-# AVBox 1.3.0 的 pip 只带 lxml/requests/pyquery，没有 pycryptodome。
-# 原文件在模块顶层 `from Crypto...` 直接把整个源卡在导入阶段。
-# 现在：能用 Crypto 就用（行为与原来完全一致），没有就用内置纯 Python 实现。
 try:
     from Crypto.PublicKey import RSA as _CryptoRSA
     from Crypto.Cipher import PKCS1_v1_5 as _CryptoPKCS1
@@ -34,7 +39,6 @@ except Exception:
 
 
 def _pad(data, block=16):
-    """PKCS#7 填充（与 Crypto.Util.Padding.pad 一致）"""
     n = block - (len(data) % block)
     return data + bytes([n]) * n
 
@@ -122,7 +126,6 @@ def _sub_bytes(state):
 
 
 def _shift_rows(state):
-    # AES 行移位：第 r 行循环左移 r 位（state 为列主序 flat 索引 r + 4c）
     for r in range(1, 4):
         row = [state[r + 4 * c] for c in range(4)]
         for c in range(4):
@@ -149,6 +152,46 @@ def _aes_encrypt_block(block, w, nr):
     _sub_bytes(state)
     _shift_rows(state)
     _add_round_key(state, w, nr)
+    return bytes(state)
+
+
+_INV_SBOX = [0] * 256
+for i, v in enumerate(_SBOX):
+    _INV_SBOX[v] = i
+
+
+def _inv_sub_bytes(state):
+    for i in range(16):
+        state[i] = _INV_SBOX[state[i]]
+
+
+def _inv_shift_rows(state):
+    for r in range(1, 4):
+        row = [state[r + 4 * c] for c in range(4)]
+        for c in range(4):
+            state[r + 4 * c] = row[(c - r) % 4]
+
+
+def _inv_mix_columns(state):
+    for c in range(4):
+        a = [state[r + 4 * c] for r in range(4)]
+        state[0 + 4 * c] = _mul(a[0], 14) ^ _mul(a[1], 11) ^ _mul(a[2], 13) ^ _mul(a[3], 9)
+        state[1 + 4 * c] = _mul(a[0], 9) ^ _mul(a[1], 14) ^ _mul(a[2], 11) ^ _mul(a[3], 13)
+        state[2 + 4 * c] = _mul(a[0], 13) ^ _mul(a[1], 9) ^ _mul(a[2], 14) ^ _mul(a[3], 11)
+        state[3 + 4 * c] = _mul(a[0], 11) ^ _mul(a[1], 13) ^ _mul(a[2], 9) ^ _mul(a[3], 14)
+
+
+def _aes_decrypt_block(block, w, nr):
+    state = list(block)
+    _add_round_key(state, w, nr)
+    for rnd in range(nr - 1, 0, -1):
+        _inv_shift_rows(state)
+        _inv_sub_bytes(state)
+        _add_round_key(state, w, rnd)
+        _inv_mix_columns(state)
+    _inv_shift_rows(state)
+    _inv_sub_bytes(state)
+    _add_round_key(state, w, 0)
     return bytes(state)
 
 
@@ -180,6 +223,18 @@ class _PureAES:
             prev = enc
         return bytes(out)
 
+    def decrypt(self, data):
+        out = bytearray()
+        prev = self.iv
+        for i in range(0, len(data), 16):
+            blk = data[i:i + 16]
+            dec = _aes_decrypt_block(blk, self._w, self._nr)
+            if self.mode == _PureAES.MODE_CBC:
+                dec = bytes(a ^ b for a, b in zip(dec, prev))
+                prev = blk
+            out += dec
+        return bytes(out)
+
 
 def _der_read(buf, i):
     tag = buf[i]
@@ -194,7 +249,6 @@ def _der_read(buf, i):
 
 
 def _rsa_pub_from_der(der):
-    """解析 DER：支持 SubjectPublicKeyInfo 与裸 RSAPublicKey"""
     tag, seq, _ = _der_read(der, 0)
     if tag != 0x30:
         raise ValueError('bad rsa key')
@@ -248,7 +302,7 @@ else:
         return _PurePKCS1(_rsa_pub_from_der(base64.b64decode(der_b64)))
 
 
-# ---------------------------------------------------------------- 常量
+# ---------------------------------------------------------------- 常量（官方包名 + 证书）
 PUB1_B64 = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCr8SzZhjYy+rsya1K09t8d2K50pWFoBkgUqMpKOiW+3IEVKd4eTdvg9RSOjQ82kypL6R9BnsmrS1V8s4PVDwjQbUtYhTPPC9Hz16qY7rpD6m0d2vr09/UpWQ5uOy9PR0QTrsioveZ+DIe9jc3C+zBCu/kZSY/R8stwJoiitki3gwIDAQAB'
 NATIVE_K = b'ed5fdsgucxumegqa'
 SAFE = b'OC1A06E197EF10CF3F6058CA7A803B5E'
@@ -257,6 +311,7 @@ CERT_MD5 = '6457E81AF1F6D3BC229E33ED60F248A5'
 CERT_SHA1 = '8350E6AAEC7A4D8A174377892B4364CFA2066B85'
 PKG = 'com.exxammpea.a1'
 VC = '3026'
+VNAME = '3.0.2.6'
 HOST = 'https://gdsaj.hzhcbkj.cn'
 UA = 'okhttp/3.12.1'
 
@@ -286,8 +341,6 @@ def _f(num, wire, payload):
 
 
 def _pb(buf):
-    # 正确的 protobuf 解析：字段号 > 15 时 tag 是多字节 varint，
-    # 只读一个字节会造成整体错位（老版本源文件就是因此只能按原始字节扫描）
     out = []
     i = 0
     n = len(buf)
@@ -341,9 +394,6 @@ class Spider(_Base):
 
     _cur_id = ''
 
-    # init 只做本地初始化，绝不联网、绝不抛异常。
-    # 原版在这里做 _login()/_zone()，_zone() 里 [..][0] 在服务端返回异常结构时
-    # 会抛 IndexError，客户端实例化失败 → 首页直接显示「加载失败，请检查网络」。
     def init(self, extend=''):
         try:
             self.extend = extend or ''
@@ -363,19 +413,16 @@ class Spider(_Base):
             self._tried = True
             self._last_try = 0
 
-    # 懒加载：真正要用数据时再去登录 + 取二级公钥，失败也不抛给客户端。
-    # 服务端/网络偶发抖动（代理 403 等）不应把整个源永久锁死，
-    # 所以这里带内部重试，且失败后隔 60 秒还允许再次尝试。
     def _ensure(self):
         try:
             if self._ready:
                 return True
             now = int(time.time())
-            if self._tried and now - self._last_try < 60:
+            if self._tried and now - self._last_try < 40:
                 return False
             self._tried = True
             self._last_try = now
-            for _ in range(3):
+            for _ in range(4):
                 try:
                     self._login()
                     self._zone()
@@ -384,7 +431,7 @@ class Spider(_Base):
                         break
                 except Exception:
                     pass
-                time.sleep(2)
+                time.sleep(1.2)
         except Exception:
             self._ready = False
         return bool(self._ready)
@@ -393,13 +440,15 @@ class Spider(_Base):
         req = urllib.request.Request(url, data=data, headers=headers or {})
         import ssl
         ctx = ssl._create_unverified_context()
-        return urllib.request.urlopen(req, timeout=25, context=ctx).read()
+        return urllib.request.urlopen(req, timeout=20, context=ctx).read()
 
     def _login(self):
         try:
-            body = json.dumps({'username': 'tv_%s' % self.udid[:10].lower(),
-                               'password': hashlib.md5(('tv' + self.udid).encode()).hexdigest(),
-                               'udid': self.udid}).encode()
+            body = json.dumps({
+                'username': 'tv_%s' % self.udid[:10].lower(),
+                'password': hashlib.md5(('tv' + self.udid).encode()).hexdigest(),
+                'udid': self.udid
+            }).encode()
             try:
                 self._http(HOST + '/api/ex/v3/user/register', body, {
                     'User-Agent': UA, 'Content-Type': 'application/json'})
@@ -419,12 +468,14 @@ class Spider(_Base):
             sign = base64.b64encode(self._rsa1.encrypt((str(ts) + rnd).encode())).decode()
             body = (_f(1, 0, _varint(ts)) + _f(2, 2, sign.encode()) +
                     _f(3, 2, rnd.encode()) + _f(4, 2, rnd.encode()) + _f(5, 2, rnd.encode()))
-            P = {'plat': 'tv', 'vOs': '16', '_vOsCode': '36', 'vApp': VC,
-                 'vName': '3.0.2.6', 'pkg': PKG,
-                 'appName': '%E6%A9%98%E6%B1%81',
-                 'udid': self.udid, 'uuid': self.udid, 'chid': '10000',
-                 'androidID': self.udid, 'net': '1', 'young': 0, 'tenantId': '*',
-                 'v': 1, 'device': 0, 'lang': 'zh', 'country': 'CN', 'cpu': 'arm64-v8a'}
+            P = {
+                'plat': 'tv', 'vOs': '16', '_vOsCode': '36', 'vApp': VC,
+                'vName': VNAME, 'pkg': PKG,
+                'appName': '%E6%A9%98%E6%B1%81',
+                'udid': self.udid, 'uuid': self.udid, 'chid': '10000',
+                'androidID': self.udid, 'net': '1', 'young': 0, 'tenantId': '*',
+                'v': 1, 'device': 0, 'lang': 'zh', 'country': 'CN', 'cpu': 'arm64-v8a'
+            }
             d = self._http(HOST + '/api/v5/find/app/zone', body, {
                 'User-Agent': UA, 'Content-Type': 'application/x-protobuf',
                 'Accept': 'application/x-protobuf', 'Cache-Control': 'no-cache',
@@ -445,29 +496,28 @@ class Spider(_Base):
         sig = base64.b64encode(self._rsa2.encrypt((str(ts) + rnd + VC).encode())).decode()
         ao = base64.b64encode(AES.new(SAFE, AES.MODE_ECB).encrypt(
             _pad((str(ts) + rnd).encode(), 16))).decode()
-        J = {'country': 'CN', 'vName': '3.0.2.6', 'cpuId': '', 'young': 0,
-             'facturer': 'OnePlus', 'pkg': PKG, 'uuid': self.udid,
-             'resolution': '1080x2256', 'mac': '02%3A00%3A00%3A00%3A00',
-             'sig': sig, 'abid': '7470', 'model': 'PJX110', 'plat': 'tv',
-             'udid': self.udid, 'dpi': '480', 'net': '1', 'lang': 'zh',
-             'random_str': rnd, 'brand': 'OnePlus', 'timestamp': ts,
-             'density': '3.0', 'appName': '%E6%A9%98%E6%B1%81',
-             'cpu': 'arm64-v8a', 'chid': '10000', 'carrier': '%E8%81%94%E9%80%9A',
-             'sig2': ao[:8], 'v': 1, 'sig3': ao[8:], 'tenantId': '*',
-             '_vOsCode': '36', 'vOs': '16', 'vApp': VC, 'device': 0,
-             'androidID': self.udid}
-        # 当前官方 APK 的格式：publicParams 直接是明文 J JSON
-        # （BaseStatisticsParamsUtils.a() 统计参数 + NetSecurityParamsHelper.a()
-        #  追加 timestamp/random_str/sig/sig2/sig3），token 单独走请求头
-        h = {'User-Agent': UA, 'Accept': 'application/json',
-             'Cache-Control': 'no-cache',
-             'publicParams': json.dumps(J, separators=(',', ':'),
-                                       ensure_ascii=False)}
+        J = {
+            'country': 'CN', 'vName': VNAME, 'cpuId': '', 'young': 0,
+            'facturer': 'OnePlus', 'pkg': PKG, 'uuid': self.udid,
+            'resolution': '1080x2256', 'mac': '02%3A00%3A00%3A00%3A00',
+            'sig': sig, 'abid': '7470', 'model': 'PJX110', 'plat': 'tv',
+            'udid': self.udid, 'dpi': '480', 'net': '1', 'lang': 'zh',
+            'random_str': rnd, 'brand': 'OnePlus', 'timestamp': ts,
+            'density': '3.0', 'appName': '%E6%A9%98%E6%B1%81',
+            'cpu': 'arm64-v8a', 'chid': '10000', 'carrier': '%E8%81%94%E9%80%9A',
+            'sig2': ao[:8], 'v': 1, 'sig3': ao[8:], 'tenantId': '*',
+            '_vOsCode': '36', 'vOs': '16', 'vApp': VC, 'device': 0,
+            'androidID': self.udid
+        }
+        h = {
+            'User-Agent': UA, 'Accept': 'application/json',
+            'Cache-Control': 'no-cache',
+            'publicParams': json.dumps(J, separators=(',', ':'), ensure_ascii=False)
+        }
         if self._token:
             h['token'] = self._token
         return h
 
-    # ex/v3 响应的 data 字段为双层 AES 加密串：先 SAFECODE 解，再 SAFE 解
     def _dec_data(self, data):
         try:
             if not data or not isinstance(data, str):
@@ -480,9 +530,6 @@ class Spider(_Base):
         except Exception:
             return None
 
-    # 详情/播放走的是「map 直传」通道：NetSecurityParamsHelper.g(map) 只做
-    # 'k=v&k2=v2' 拼接（不做 query= 封装、不做双层 AES），
-    # 再由 h() 追加时间戳后单层 AES(SAFECODE) 加密。
     def _secure_map(self, param):
         ts = int(time.time() * 1000)
         rnd = _rnd(16)
@@ -495,8 +542,6 @@ class Spider(_Base):
                 _f(5, 2, rnd.encode()))
 
     def _secure(self, mapkv):
-        # proto/v5 载荷需双层 AES 编码后包成 query= 参数（见当前官方 APK
-        # ExtendUtilsKt.getRequestVideoListParams + ResponseDecodeManager.encodeQuery）
         e1 = base64.b64encode(AES.new(SAFE, AES.MODE_ECB).encrypt(
             _pad(mapkv.encode(), 16))).decode()
         e2 = base64.b64encode(AES.new(SAFECODE.encode(), AES.MODE_ECB).encrypt(
@@ -512,60 +557,47 @@ class Spider(_Base):
                 _f(3, 2, _rnd(20).encode()) + _f(4, 0, _varint(ts)) +
                 _f(5, 2, rnd16.encode()))
 
-    # ---- AVBox 调用约定：homeContent(ru, filter) → ru.homeContent(filter)
     def homeContent(self, filter=False):
         cats = []
         try:
             d = self._http(HOST + '/api/v3/drama/getCategory?orderBy=type_id',
                            None, {'User-Agent': UA, 'Accept': 'application/json'})
             for c in (json.loads(d).get('data') or []):
-                if str(c.get('id')) != '29':
-                    cats.append({'type_id': str(c['id']),
-                                 'type_name': c.get('name', '')})
+                cid = str(c.get('id', ''))
+                if cid and cid != '29':
+                    cats.append({'type_id': cid, 'type_name': c.get('name', '')})
         except Exception:
             pass
         if not cats:
-            cats = [{'type_id': '21', 'type_name': '电影'},
-                    {'type_id': '22', 'type_name': '剧集'},
-                    {'type_id': '25', 'type_name': '动漫'},
-                    {'type_id': '26', 'type_name': '综艺'},
-                    {'type_id': '27', 'type_name': '短剧'},
-                    {'type_id': '28', 'type_name': '漫剧'}]
+            cats = [
+                {'type_id': '20', 'type_name': '电影'},
+                {'type_id': '21', 'type_name': '剧集'},
+                {'type_id': '22', 'type_name': '综艺'},
+                {'type_id': '23', 'type_name': '动漫'},
+                {'type_id': '24', 'type_name': '短剧'},
+                {'type_id': '25', 'type_name': '直播'},
+                {'type_id': '26', 'type_name': '漫剧'},
+            ]
         cats.append({'type_id': 'history', 'type_name': '最近在看'})
         return {'class': cats}
 
     def homeVideoContent(self):
         try:
-            return {'list': self._list('page=1&pagesize=24')}
+            lst = self._list('page=1&pagesize=24')
+            if not lst:
+                a = self._list('page=1&pagesize=12&typeId1=20')
+                b = self._list('page=1&pagesize=12&typeId1=21')
+                lst = (a + b)[:24]
+            return {'list': lst}
         except Exception:
             return {'list': []}
 
-    def _vodids(self):
-        try:
-            d = self._http(HOST + '/api/ex/v3/security/tag/list', None, self._hdr())
-            tags = self._dec_data(json.loads(d).get('data')) or []
-            ids = []
-            for t in tags:
-                for sec in (t.get('sections') or []):
-                    for v in (sec.get('vodList') or []):
-                        ids.append(str(v.get('id')))
-            return ','.join(ids[:6])
-        except Exception:
-            return ''
-
-    def _list(self, qs):
+    def _parse_list_resp(self, d):
         out = []
         try:
-            if not self._ensure():
-                return out
-            hh = self._hdr()
-            hh['Content-Type'] = 'application/x-protobuf'
-            hh['Accept'] = 'application/x-protobuf'
-            d = self._http(HOST + '/api/proto/v5/drama/category',
-                           self._secure_map(qs), hh)
             top = _pb(d)
             code = [v for fn, wt, v in top if fn == 1 and wt == 0]
-            if (code[0] if code else 0) != 200:
+            if not code or code[0] != 200:
                 return out
             data = [v for fn, wt, v in top if fn == 3 and wt == 2]
             if not data:
@@ -589,13 +621,42 @@ class Spider(_Base):
                                 cands[0])
                     elif f2 == 13 and w2 == 2:
                         info['vod_remarks'] = v2.decode('utf-8', 'replace')
-                if info['vod_id']:
+                if info['vod_id'] and info['vod_name']:
                     out.append(info)
         except Exception:
             pass
         return out
 
-    # ---- AVBox 调用约定：categoryContent 的 extend 传 dict
+    def _list(self, qs):
+        out = []
+        try:
+            if not self._ensure():
+                return out
+            hh = self._hdr()
+            hh['Content-Type'] = 'application/x-protobuf'
+            hh['Accept'] = 'application/x-protobuf'
+
+            candidates = [qs]
+            if 'typeId1=' in qs:
+                candidates.append(qs.replace('typeId1=', 'typeId='))
+                candidates.append(re.sub(r'&?typeId1=\d+', '', qs).lstrip('&'))
+            elif 'typeId=' in qs:
+                candidates.append(qs.replace('typeId=', 'typeId1='))
+
+            for q in candidates:
+                for maker in (self._secure_map, self._secure):
+                    try:
+                        body = maker(q)
+                        d = self._http(HOST + '/api/proto/v5/drama/category', body, hh)
+                        parsed = self._parse_list_resp(d)
+                        if parsed:
+                            return parsed
+                    except Exception:
+                        continue
+        except Exception:
+            pass
+        return out
+
     def categoryContent(self, tid, pg, filter=False, extend=None):
         try:
             pg = int(pg or 1)
@@ -605,8 +666,16 @@ class Spider(_Base):
             if str(tid) == 'history':
                 return {'list': self._history_list(), 'page': 1,
                         'pagecount': 1, 'limit': 40, 'total': 40}
-            qs = 'page=%d&pagesize=24&typeId1=%s' % (pg, tid)
-            return {'list': self._list(qs), 'page': pg,
+            qs_list = [
+                'page=%d&pagesize=24&typeId1=%s' % (pg, tid),
+                'page=%d&pagesize=24&typeId=%s' % (pg, tid),
+            ]
+            lst = []
+            for qs in qs_list:
+                lst = self._list(qs)
+                if lst:
+                    break
+            return {'list': lst, 'page': pg,
                     'pagecount': 999, 'limit': 24, 'total': 99999}
         except Exception:
             return {'list': [], 'page': 1, 'pagecount': 1, 'limit': 24, 'total': 0}
@@ -630,7 +699,6 @@ class Spider(_Base):
             pass
         return out
 
-    # ---- AVBox 调用约定：detailContent 的 ids 传 list
     def detailContent(self, ids):
         try:
             ids = list(ids or [])
@@ -702,7 +770,6 @@ class Spider(_Base):
                     out['vod_remarks'] = v.decode('utf-8', 'replace')
                 elif fn == 28 and 'vod_note' not in out:
                     out['vod_note'] = v.decode('utf-8', 'replace')
-            # 分集 -> 线路
             lines = {}
             order = []
             for ep in eps:
@@ -725,9 +792,6 @@ class Spider(_Base):
                 if mm:
                     title = mm.group(1)
                 lines[line].append('%s$%s' % (title or '正片', ep_url))
-            # 线路排序（2026-10-31 用户要求）：
-            # 把 自建4K-2 / 自建4K-3 / 自建4K-4 排到最前面，JD4K 紧随其后，
-            # 其余线路（超高清 / 蓝光 / 其他）保持原有相对顺序不变。
             def _line_rank(nm):
                 if nm.startswith('自建4K'):
                     return (0, nm)
@@ -760,52 +824,54 @@ class Spider(_Base):
             hh['Content-Type'] = 'application/x-protobuf'
             hh['Accept'] = 'application/x-protobuf'
             qs = 'page=%s&pagesize=24&searchKeys=%s' % (pg, key)
-            d = self._http(HOST + '/api/proto/v5/drama/search',
-                           self._secure_map(qs), hh)
-            top = _pb(d)
-            code = [v for fn, wt, v in top if fn == 1 and wt == 0]
-            if (code[0] if code else 0) != 200:
-                return {'list': [], 'page': pg}
-            datas = [v for fn, wt, v in top if fn == 3 and wt == 2]
-            if not datas:
-                return {'list': [], 'page': pg}
-            out = []
-            for fn, wt, v in _pb(datas[0]):
-                if wt != 2 or fn == 0 or fn > 100:
+            for maker in (self._secure_map, self._secure):
+                try:
+                    d = self._http(HOST + '/api/proto/v5/drama/search',
+                                   maker(qs), hh)
+                    out = self._parse_list_resp(d)
+                    if not out:
+                        top = _pb(d)
+                        code = [v for fn, wt, v in top if fn == 1 and wt == 0]
+                        if (code[0] if code else 0) != 200:
+                            continue
+                        datas = [v for fn, wt, v in top if fn == 3 and wt == 2]
+                        if not datas:
+                            continue
+                        for fn, wt, v in _pb(datas[0]):
+                            if wt != 2 or fn == 0 or fn > 100:
+                                continue
+                            item = {'vod_id': '', 'vod_name': '', 'vod_pic': '',
+                                    'vod_remarks': ''}
+                            for f3, w3, v3 in _pb(v):
+                                if w3 != 2 and not (f3 == 3 and w3 == 0):
+                                    continue
+                                try:
+                                    if f3 == 3 and w3 == 0:
+                                        item['vod_id'] = str(v3)
+                                    elif f3 == 5:
+                                        item['vod_name'] = v3.decode('utf-8', 'replace')
+                                    elif f3 == 2:
+                                        cands = [x.decode('utf-8', 'replace')
+                                                 for _, w4, x in _pb(v3)
+                                                 if w4 == 2 and x.startswith(b'http')]
+                                        if cands:
+                                            item['vod_pic'] = next(
+                                                (u for u in cands if u.startswith('https')),
+                                                cands[0])
+                                    elif f3 == 13:
+                                        item['vod_remarks'] = v3.decode('utf-8', 'replace')
+                                except Exception:
+                                    pass
+                            if item['vod_id'] and item['vod_name']:
+                                out.append(item)
+                    if out:
+                        return {'list': out, 'page': pg}
+                except Exception:
                     continue
-                item = {'vod_id': '', 'vod_name': '', 'vod_pic': '',
-                        'vod_remarks': ''}
-                for f3, w3, v3 in _pb(v):
-                    if w3 != 2 and not (f3 == 3 and w3 == 0):
-                        continue
-                    try:
-                        if f3 == 3 and w3 == 0:
-                            item['vod_id'] = str(v3)
-                        elif f3 == 5:
-                            item['vod_name'] = v3.decode('utf-8', 'replace')
-                        elif f3 == 2:
-                            # 海报 b64串: 取内部http
-                            cands = [x.decode('utf-8', 'replace')
-                                     for _, w4, x in _pb(v3)
-                                     if w4 == 2 and x.startswith(b'http')]
-                            if cands:
-                                item['vod_pic'] = next(
-                                    (u for u in cands if u.startswith('https')),
-                                    cands[0])
-                        elif f3 == 13:
-                            item['vod_remarks'] = v3.decode('utf-8', 'replace')
-                        elif f3 == 4:
-                            item['vod_content'] = v3.decode(
-                                'utf-8', 'replace')[:100]
-                    except Exception:
-                        pass
-                if item['vod_id'] and item['vod_name']:
-                    out.append(item)
-            return {'list': out, 'page': pg}
+            return {'list': [], 'page': pg}
         except Exception:
             return {'list': [], 'page': 1}
 
-    # ---- AVBox 调用约定：playerContent 的 vipFlags 传 list
     def playerContent(self, flag, id, vipFlags=None):
         url = id or ''
         try:
