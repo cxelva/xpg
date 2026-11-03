@@ -55,6 +55,16 @@
       "filterable": 1,
       "changeable": 1
     },
+	  	   {
+      "key": "橙果短剧",
+      "name": "🔞橙果短剧（翻墙）",
+      "type": 3,
+      "api": "./a/橙果.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "changeable": 1
+    },
 	    {
       "key": "✨高清SEX国产",
       "name": "🔞高清SEX国产",
