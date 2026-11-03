@@ -96,7 +96,7 @@
       "key": "bl",
       "name": "🍎哔哩🔹4K",
       "type": 3,
-      "api": "./py/bl.py",
+      "api": "https://hk.gh-proxy.org/https://raw.githubusercontent.com/IY-CPU/IY/main/lib/bl.py",
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1
