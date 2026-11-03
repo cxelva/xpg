@@ -36,6 +36,16 @@
       "api": "./a/f05e3b39.js"
     },
 	    {
+      "key": "禁果短剧",
+      "name": "🔞禁果短剧",
+      "type": 3,
+      "api": "./a/禁果.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "changeable": 1
+    },
+	    {
       "key": "ch黄果短剧",
       "name": "🔞黄果短剧",
       "type": 3,
