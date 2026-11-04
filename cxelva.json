@@ -280,6 +280,15 @@
     "sitesIndex": 0
    }
   },
+	  	  {
+   "key": "VIP电影",
+   "name": "🍎VIP🔹影视",
+   "type": 3,
+   "api": "./py/VIP电影.py",
+   "searchable": 1,
+   "quickSearch": 1,
+   "filterable": 1
+  },
 	  {
    "key": "py_juzong",
    "name": "🍎剧踪🔹影视",
@@ -363,7 +372,7 @@
     },
 	      {
       "key": "py_libvio",
-      "name": "🍎LIBVIO🔹[py]",
+      "name": "🍎LIBVIO🔹影视",
       "type": 3,
       "api": "./py/libvio.py",
       "searchable": 1,
