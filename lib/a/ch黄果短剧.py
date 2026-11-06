@@ -48,22 +48,27 @@ except ImportError:
 
 # ---------- 常量 ----------
 
-# 国内友好的泛域名后缀（官方常用）
+# 国内友好的泛域名后缀（官方常用，含新线路）
 _DOMESTIC_SUFFIXES = [
+    "lbvrhyir.cc",
+    "cewfmcve.cc",
     "dsqqahhno.cc",
     "arj2ftl0.cc",
     "jxqgmx5ga.cc",
     "40ygo615.cc",
     "ediayikma.cc",
+    "ye28r31s.cc",
+    "cm06z19q.cc",
 ]
 
 # 官方发布页（用于自动获取最新直连地址）
 _PUBLISH_PAGES = [
     "https://huangguoai.ai/",
-    "https://huangguoai.pages.dev/",
     "https://huangguoai.com/go-home/",
-    "https://hgai9.com/",
+    "https://huangguoai.pages.dev/",
+    "https://hgai11.com/",
     "https://hgai10.com/",
+    "https://hgai9.com/",
 ]
 
 def _gen_random_subdomain():
@@ -85,15 +90,15 @@ def _gen_backup_hosts(n=10):
 # 初始 HOSTS：主站放最后，前面放已知可用的国内线路 + 随机生成
 # 实际运行时会在 init 里用官方发布页覆盖/补充
 HOSTS = [
+    "https://bgq1.lbvrhyir.cc",
+    "https://p8ojg7.lbvrhyir.cc",
+    "https://mi6wos.lbvrhyir.cc",
+    "https://xeltc.lbvrhyir.cc",
+    "https://hitt4e.lbvrhyir.cc",
+    "https://lxiwi.lbvrhyir.cc",
     "https://h9s5.dsqqahhno.cc",
     "https://y4vw.dsqqahhno.cc",
     "https://zfprv.dsqqahhno.cc",
-    "https://rjn42j.dsqqahhno.cc",
-    "https://imaikq.dsqqahhno.cc",
-    "https://vxyq.dsqqahhno.cc",
-    "https://tju.jxqgmx5ga.cc",
-    "https://nku.arj2ftl0.cc",
-    "https://xjtu.arj2ftl0.cc",
 ] + _gen_backup_hosts(6) + ["https://huangguoai.com"]
 
 UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
@@ -277,18 +282,18 @@ class Spider(Spider):
         """从发布页文本里提取 https://xxx.yyy.cc 形式的地址"""
         if not text:
             return []
+        # 已知国内后缀 + 任意 *.xxx.cc 短子域名（含无线路 lbvrhyir / cewfmcve 等）
         found = re.findall(
-            r'https?://([a-z0-9]{2,12}\.(?:dsqqahhno|arj2ftl0|jxqgmx5ga|40ygo615|ediayikma|ye28r31s|cm06z19q)\.cc)',
+            r'(?:https?://)?([a-z0-9]{2,15}\.(?:lbvrhyir|cewfmcve|dsqqahhno|arj2ftl0|jxqgmx5ga|40ygo615|ediayikma|ye28r31s|cm06z19q)\.cc)',
             text, re.I)
-        # 也抓通用短子域名
         found2 = re.findall(
-            r'https?://([a-z0-9]{2,10}\.[a-z0-9]{5,15}\.cc)',
+            r'(?:https?://)?([a-z0-9]{2,12}\.[a-z0-9]{5,18}\.cc)',
             text, re.I)
         hosts = []
         seen = set()
         for h in found + found2:
             h = h.lower().rstrip('/')
-            if h not in seen and not h.startswith('www.'):
+            if h not in seen and not h.startswith('www.') and 'huangguo' not in h:
                 seen.add(h)
                 hosts.append("https://" + h)
         return hosts
@@ -551,15 +556,23 @@ class Spider(Spider):
         if filter:
             pass
         try:
-            html = self._get_cached("/")
-            if html:
-                result["list"] = self._parse_list(html)
+            # 优先 API，避免首页 HTML 结构变动导致空列表
+            videos, _, _ = self._list_api("hot", 1)
+            if videos:
+                result["list"] = videos
+            else:
+                html = self._get_cached("/")
+                if html:
+                    result["list"] = self._parse_list(html)
         except Exception:
             pass
         return result
 
     def homeVideoContent(self):
         try:
+            videos, _, _ = self._list_api("hot", 1)
+            if videos:
+                return {"list": videos}
             html = self._get_cached("/recommend/")
             if not html:
                 html = self._get_cached("/")
@@ -603,13 +616,19 @@ class Spider(Spider):
                 return self._result(videos, pg, pages or 9999, total)
 
             if cid == "recommend":
-                path = f"/recommend/{pg}/" if pg > 1 else "/recommend/"
-                html = self._get_cached(path)
-                videos = self._parse_list(html)
+                # 精选推荐：API sort=hot（推荐/热播）
+                videos, pages, total = self._list_api("hot", pg)
+                if not videos:
+                    path = f"/recommend/{pg}/" if pg > 1 else "/recommend/"
+                    html = self._get_cached(path)
+                    videos = self._parse_list(html)
             elif cid == "newest":
-                path = f"/newest/{pg}/" if pg > 1 else "/newest/"
-                html = self._get_cached(path)
-                videos = self._parse_list(html)
+                # 最近上新：API sort=new
+                videos, pages, total = self._list_api("new", pg)
+                if not videos:
+                    path = f"/newest/{pg}/" if pg > 1 else "/newest/"
+                    html = self._get_cached(path)
+                    videos = self._parse_list(html)
             elif cid == "topic":
                 html = self._get_cached("/topics/")
                 videos = self._parse_list(html, mode="topic")
@@ -666,6 +685,44 @@ class Spider(Spider):
             pass
         return videos, pages, total
 
+    def _list_api(self, sort, pg):
+        """通用列表 API：/api/videos?sort=hot|new&page=&size=
+        用于精选推荐(hot)、最近上新(new)，比 HTML 解析更稳定。
+        """
+        sort = (sort or "hot").strip()
+        if sort not in ("hot", "new", "recommend", "newest"):
+            sort = "hot"
+        if sort == "recommend":
+            sort = "hot"
+        if sort == "newest":
+            sort = "new"
+        url = f"/api/videos?sort={sort}&page={pg}&size={PAGE_SIZE}"
+        text = self._get_cached(url, ref="/")
+        if not text:
+            return [], 0, 0
+        try:
+            data = json.loads(text)
+        except Exception:
+            return [], 0, 0
+        d = data.get("data") or {}
+        items = d.get("items") or []
+        pag = d.get("pagination") or {}
+        videos = []
+        for it in items:
+            v = self._api_item(it)
+            if v:
+                videos.append(v)
+        pages = total = 0
+        try:
+            pages = int(pag.get("pages") or 0)
+        except Exception:
+            pass
+        try:
+            total = int(pag.get("total") or 0)
+        except Exception:
+            pass
+        return videos, pages, total
+
     def _api_item(self, it):
         vid = it.get("id")
         if vid is None:
@@ -674,6 +731,9 @@ class Spider(Spider):
         if not title:
             return None
         pic = (it.get("cover") or "").strip()
+        # 相对路径补全为绝对地址
+        if pic and pic.startswith("/"):
+            pic = (getattr(self, "host", "") or HOSTS[0]).rstrip("/") + pic
         epc = it.get("episode_count")
         finished = it.get("is_finished")
         if finished:
