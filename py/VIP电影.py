@@ -170,11 +170,61 @@ def _strip(txt):
 
 
 def _html_to_text(html):
-    """移除HTML标签，返回纯文本"""
+    """移除HTML标签 + 解码实体，返回干净纯文本"""
     if not html:
         return ""
-    txt = re.sub(r"<[^>]+>", " ", html)
-    return re.sub(r"\s+", " ", txt).strip()
+    txt = html
+    for a, b in (
+        ("&nbsp;", " "),
+        ("&amp;", "&"),
+        ("&lt;", "<"),
+        ("&gt;", ">"),
+        ("&quot;", '"'),
+        ("&#39;", "'"),
+        ("&apos;", "'"),
+        ("&ldquo;", "“"),
+        ("&rdquo;", "”"),
+        ("&mdash;", "—"),
+        ("&hellip;", "…"),
+    ):
+        txt = txt.replace(a, b)
+
+    def _num_ent(m):
+        try:
+            if m.group(1).lower().startswith("x"):
+                return chr(int(m.group(1)[1:], 16))
+            return chr(int(m.group(1)))
+        except Exception:
+            return ""
+
+    txt = re.sub(r"&#(x?[0-9a-fA-F]+);", _num_ent, txt)
+    txt = re.sub(r"<br\s*/?>", "\n", txt, flags=re.I)
+    txt = re.sub(r"<[^>]+>", " ", txt)
+    txt = re.sub(r"\s+", " ", txt).strip()
+    return txt
+
+
+def _fix_encoding(raw_bytes, header_charset=None):
+    """按 utf-8 / gb18030 尝试解码，避免简介乱码"""
+    if raw_bytes is None:
+        return ""
+    if isinstance(raw_bytes, str):
+        return raw_bytes
+    candidates = []
+    if header_charset:
+        candidates.append(header_charset)
+    candidates.extend(["utf-8", "gb18030", "gbk"])
+    seen = set()
+    for enc in candidates:
+        enc = (enc or "").strip().lower().replace("charset=", "")
+        if not enc or enc in seen:
+            continue
+        seen.add(enc)
+        try:
+            return raw_bytes.decode(enc)
+        except Exception:
+            continue
+    return raw_bytes.decode("utf-8", "replace")
 
 
 class Spider(Spider):
@@ -266,15 +316,43 @@ class Spider(Spider):
                 pass
 
     def _http_get(self, url, timeout=8, use_ajax=False):
-        """HTTP GET请求，带重试"""
+        """HTTP GET请求，带重试；强制按字节正确解码，避免简介乱码"""
         headers = self.ajax_header if use_ajax else self.header
         sess = getattr(self, "_session", None)
+
+        def _decode_rsp(rsp):
+            if rsp is None:
+                return ""
+            # 优先 content 字节 + 声明字符集
+            charset = None
+            try:
+                ct = (rsp.headers.get("Content-Type") or "") if hasattr(rsp, "headers") else ""
+                m = re.search(r"charset=([\w\-]+)", ct, re.I)
+                if m:
+                    charset = m.group(1)
+            except Exception:
+                pass
+            raw = None
+            try:
+                raw = getattr(rsp, "content", None)
+            except Exception:
+                raw = None
+            if raw:
+                # 页面 meta 里 charset 更准
+                head = raw[:2000].decode("ascii", "ignore")
+                m2 = re.search(r'charset\s*=\s*["\']?([\w\-]+)', head, re.I)
+                if m2:
+                    charset = m2.group(1)
+                return _fix_encoding(raw, charset)
+            txt = getattr(rsp, "text", None) or ""
+            return txt
+
         if sess is not None and hasattr(sess, "get"):
             for attempt in range(2):
                 try:
                     rsp = sess.get(url, headers=headers, timeout=timeout, verify=False, allow_redirects=True)
                     if getattr(rsp, "status_code", 0) == 200:
-                        txt = getattr(rsp, "text", None) or ""
+                        txt = _decode_rsp(rsp)
                         if txt:
                             return txt
                 except Exception:
@@ -283,7 +361,7 @@ class Spider(Spider):
         try:
             rsp = self.fetch(url, headers=headers, timeout=timeout)
             if getattr(rsp, "status_code", 0) == 200:
-                txt = getattr(rsp, "text", None) or ""
+                txt = _decode_rsp(rsp)
                 if txt:
                     return txt
         except Exception:
@@ -571,32 +649,41 @@ class Spider(Spider):
             if pic_match:
                 vod["vod_pic"] = pic_match.group(1)
 
-        # 提取简介
-        # 模式1: detail-desc
-        intro_match = re.search(
-            r'<div[^>]+class="[^"]*detail-desc[^"]*"[^>]*>([\s\S]*?)</div>',
-            html, re.DOTALL
+        # 提取简介 —— 站点 JB 模板真实结构:
+        # <span class="detail-sketch">短简介</span>
+        # <span class="detail-content" style="display:none">完整简介</span>
+        content = ""
+        m_full = re.search(
+            r'<span[^>]+class="[^"]*detail-content[^"]*"[^>]*>([\s\S]*?)</span>',
+            html, re.I,
         )
-        if intro_match:
-            intro_text = _html_to_text(intro_match.group(1))
-            # 去掉"简介："前缀
-            intro_text = re.sub(r'^简介[：:]\s*', '', intro_text)
-            vod["vod_content"] = intro_text[:500]
-
-        # 模式2: content__content
-        if not vod["vod_content"]:
-            intro_match2 = re.search(
-                r'<span[^>]+class="content__content"[^>]*>([\s\S]*?)</span>',
-                html, re.DOTALL
+        if m_full:
+            content = _html_to_text(m_full.group(1))
+        if not content:
+            m_sk = re.search(
+                r'<span[^>]+class="[^"]*detail-sketch[^"]*"[^>]*>([\s\S]*?)</span>',
+                html, re.I,
             )
-            if intro_match2:
-                vod["vod_content"] = _html_to_text(intro_match2.group(1))[:500]
-
-        # 模式3: 从介绍行提取
-        if not vod["vod_content"]:
-            intro_match3 = re.search(r'介绍[：:]\s*([\s\S]{20,}?)(?:<br|</p>|更新[：:])', html)
-            if intro_match3:
-                vod["vod_content"] = _html_to_text(intro_match3.group(1))[:500]
+            if m_sk:
+                content = _html_to_text(m_sk.group(1))
+        if not content:
+            # 兼容其它模板
+            for pat in (
+                r'<div[^>]+class="[^"]*detail-desc[^"]*"[^>]*>([\s\S]*?)</div>',
+                r'<span[^>]+class="[^"]*content__content[^"]*"[^>]*>([\s\S]*?)</span>',
+                r'<meta[^>]+name="description"[^>]+content="([^"]+)"',
+                r'<meta[^>]+content="([^"]+)"[^>]+name="description"',
+            ):
+                m = re.search(pat, html, re.I | re.DOTALL)
+                if m:
+                    content = _html_to_text(m.group(1))
+                    if content and len(content) > 8:
+                        break
+        if content:
+            content = re.sub(r'^(简介|介绍|剧情|详情)\s*[：:]\s*', '', content)
+            # 去掉站点常见尾巴
+            content = re.sub(r'(剧情详解剧情介绍[:：]?)$', '', content).strip()
+            vod["vod_content"] = content[:800]
 
         # 提取播放列表
         play_from, play_url = self._extract_playlists(html, vod_id)
