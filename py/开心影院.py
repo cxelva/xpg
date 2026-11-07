@@ -163,7 +163,18 @@ RE_AREA = re.compile(r'制片国家/地区[：:]\s*</strong>\[?([^<\]]+)')
 RE_DIRECTOR = re.compile(r'导演[：:]\s*</strong>([\s\S]*?)</p>')
 RE_ACTOR = re.compile(r'主演[：:]\s*</strong>([\s\S]*?)</p>')
 RE_TYPES = re.compile(r'href=["\']/vodshow/\d+---[^"\']*\.html["\']>([^<]+)</a>')
-RE_PLAYER = re.compile(r'var\s+player_data\s*=\s*(\{.*?\})\s*</script>', re.S)
+RE_PLAYER = re.compile(
+    r'var\s+player_(?:data|aaaa|info)\s*=\s*(\{[\s\S]*?\})\s*;?\s*</script>',
+    re.I,
+)
+RE_PLAYER2 = re.compile(
+    r'(?:player_data|player_aaaa|MacPlayer)\s*[=:]\s*(\{[\s\S]*?\})\s*;',
+    re.I,
+)
+RE_M3U8_IN_HTML = re.compile(
+    r'(https?://[^\s"\'<>\\]+?\.m3u8[^\s"\'<>\\]*)',
+    re.I,
+)
 RE_PAGE_SEG = re.compile(r'href=["\']/vodshow/([^"\']+?)\.html["\']')
 RE_PAGE_NUM = re.compile(r'[?&]page[=/](\d+)|/page/(\d+)|-(\d+)-\.html|第\s*(\d+)\s*页')
 
@@ -406,28 +417,96 @@ class Spider(BaseSpider):
 
     # ===== NBY(YX源) 服务端两步解密 =====
     def _resolve_nby(self, enc):
-        """NBY-XMYAES密文|密钥 -> 真实 m3u8 (get_signed_url -> jmurl)"""
+        """NBY 密文 -> 真实 m3u8 (get_signed_url -> jmurl)，兼容多种返回字段"""
         if not enc:
             return ""
+        enc = str(enc).strip().replace("\\/", "/")
         now = time.time()
         hit = self._nby_cache.get(enc)
         if hit and now - hit[0] < NBY_TTL:
             return hit[1]
-        base = self._host + "/static/player/nby.php"
+        host = self._host or HOST
+        paths = [
+            host + "/static/player/nby.php",
+            host + "/static/player/nby/nby.php",
+        ]
+        for base in paths:
+            try:
+                r1 = self._get_json(
+                    base + "?get_signed_url=1&url=" + quote(enc, safe=""),
+                    timeout=8,
+                )
+                if not r1:
+                    continue
+                signed = (r1.get("signed_url") or r1.get("url") or r1.get("path") or "")
+                if not signed:
+                    # 有的实现直接在第一步返回 jmurl
+                    jm0 = r1.get("jmurl") or r1.get("m3u8") or r1.get("play") or ""
+                    if jm0 and ("m3u8" in jm0 or "http" in jm0):
+                        self._nby_cache[enc] = (now, jm0)
+                        return jm0
+                    continue
+                if not signed.startswith("http") and not signed.startswith("/"):
+                    signed = "?" + signed.lstrip("?")
+                if signed.startswith("?"):
+                    r2 = self._get_json(base + signed, timeout=8)
+                elif signed.startswith("/"):
+                    r2 = self._get_json(host + signed, timeout=8)
+                else:
+                    r2 = self._get_json(signed if signed.startswith("http") else base + signed, timeout=8)
+                if not r2:
+                    continue
+                jm = (r2.get("jmurl") or r2.get("url") or r2.get("m3u8")
+                      or r2.get("play") or r2.get("link") or "")
+                jm = str(jm).replace("\\/", "/")
+                if jm and ("m3u8" in jm.lower() or "getm3u8" in jm.lower() or jm.startswith("http")):
+                    self._nby_cache[enc] = (now, jm)
+                    return jm
+            except Exception:
+                continue
+        return ""
+
+    @staticmethod
+    def _maybe_b64(s):
+        """尝试 base64 解码播放地址（部分线路会包一层）"""
+        if not s or len(s) < 16:
+            return s
+        t = s.strip()
+        if t.startswith("http") or t.startswith("NBY-") or ".m3u8" in t.lower():
+            return s
         try:
-            r1 = self._get_json(base + "?get_signed_url=1&url=" + quote(enc, safe=""),
-                                timeout=6)
-            signed = (r1 or {}).get("signed_url") or ""
-            if not signed:
-                return ""
-            r2 = self._get_json(base + signed, timeout=6)
-            jm = (r2 or {}).get("jmurl") or ""
-            if jm and ("m3u8" in jm or "getM3u8" in jm):
-                self._nby_cache[enc] = (now, jm)
-                return jm
+            import base64
+            pad = "=" * ((4 - len(t) % 4) % 4)
+            raw = base64.b64decode(t + pad).decode("utf-8", "ignore")
+            if raw.startswith("http") or "m3u8" in raw.lower() or raw.startswith("NBY-"):
+                return raw
         except Exception:
             pass
-        return ""
+        return s
+
+    def _parse_player_json(self, html):
+        """从播放页抽出 player_data / player_aaaa"""
+        if not html:
+            return None
+        for rx in (RE_PLAYER, RE_PLAYER2):
+            m = rx.search(html)
+            if not m:
+                continue
+            blob = m.group(1)
+            # 去掉可能的尾部垃圾
+            blob = blob.strip()
+            try:
+                return json.loads(blob)
+            except Exception:
+                # 宽松修复：单引号、尾逗号
+                try:
+                    fixed = blob.replace("'", '"')
+                    fixed = re.sub(r',\s*}', '}', fixed)
+                    fixed = re.sub(r',\s*]', ']', fixed)
+                    return json.loads(fixed)
+                except Exception:
+                    continue
+        return None
 
     # ============================================================
     # 并发多页抓取 (通用)
@@ -674,7 +753,7 @@ class Spider(BaseSpider):
         desc = RE_DESC.search(html)
         content = self._strip_tags(desc.group(1))[:500] if desc else ""
 
-        # 播放线路: 每个 tab-pane 一条线, YX源(需解密)垫后
+        # 播放线路: 每个 tab-pane 一条线；直链线路优先，YX/NBY 垫后
         marks = [(m.group(1), m.start()) for m in RE_PANE.finditer(html)]
         pane_eps = {}
         for i, (sid, st) in enumerate(marks):
@@ -685,13 +764,32 @@ class Spider(BaseSpider):
 
         lines = []
         for sid, label in RE_TAB.findall(html):
-            label = label.strip()
+            label = (label or "").replace("\u00a0", " ").strip()
             eps = pane_eps.get(sid)
             if eps:
                 lines.append((label, eps))
-        lines.sort(key=lambda x: 1 if x[0] == "YX源" else 0)  # 稳定排序, 直链在前
-        # tab 名统一去掉尾部空格/nbsp 残留
-        lines = [(lb.replace('\u00a0', ' ').strip(), eps) for lb, eps in lines]
+
+        # tab 正则失败时: 整页抓集数，合成一条线
+        if not lines:
+            all_eps = RE_EPS.findall(html)
+            if all_eps:
+                # 按线路号分组: vodplay/{vid}-{line}-{ep}
+                buckets = {}
+                for path, name in all_eps:
+                    parts = path.split("-")
+                    line_no = parts[1] if len(parts) >= 3 else "1"
+                    buckets.setdefault(line_no, []).append((path, name))
+                for i, (ln, eps) in enumerate(sorted(buckets.items(), key=lambda x: int(x[0]) if x[0].isdigit() else 99)):
+                    lines.append(("线路%s" % (i + 1), eps))
+
+        def _line_rank(name):
+            n = (name or "").upper()
+            if "YX" in n or "NBY" in n:
+                return 2
+            return 0
+
+        lines.sort(key=lambda x: _line_rank(x[0]))
+        lines = [(lb.replace("\u00a0", " ").strip(), eps) for lb, eps in lines]
 
         if lines:
             play_from = "$$$".join(LINE_NAMES.get(lb, lb) for lb, _ in lines)
@@ -777,69 +875,112 @@ class Spider(BaseSpider):
             self._ensure_host()
         except Exception:
             pass
-        pid = str(id or "").replace("\\/", "/")
+        host = self._host or HOST
+        pid = str(id or "").replace("\\/", "/").strip()
         if not pid:
             return {"parse": 0, "playUrl": "", "url": ""}
 
-        # 兼容直接传完整加密串/直链 (外部拼装场景)
-        if pid.startswith("NBY-"):
-            real = self._resolve_nby(pid)
+        # 已是直链 / 加密串
+        if pid.startswith("NBY-") or "NBY-" in pid[:20]:
+            real = self._resolve_nby(pid if pid.startswith("NBY-") else pid)
             if real:
-                return self._media_return(real, refer=self._host + "/")
-            return {"parse": 1, "playUrl": "", "url": pid,
-                    "header": {"User-Agent": UA, "Referer": self._host + "/"}}
-        if ".m3u8" in pid.lower() or ".mp4" in pid.lower():
+                return self._media_return(real, refer=host + "/")
+            return {
+                "parse": 1,
+                "playUrl": "",
+                "url": host + "/",
+                "header": {"User-Agent": UA, "Referer": host + "/"},
+            }
+        if re.search(r'\.(m3u8|mp4|flv|mkv)(\?|$)', pid, re.I) or pid.startswith("http"):
+            url = self._maybe_b64(pid) if not pid.startswith("http") else pid
+            if url.startswith("NBY-"):
+                real = self._resolve_nby(url)
+                if real:
+                    return self._media_return(real, refer=host + "/")
+            if re.search(r'\.(m3u8|mp4)', url, re.I) or url.startswith("http"):
+                return self._media_return(url)
             return self._media_return(pid)
 
-        # 常规: 拉播放页取 player_data
-        html = self._txt_retry(
-            self._host + "/vodplay/" + pid + ".html", 2, timeout=6)
-        data = None
-        if html:
-            m = RE_PLAYER.search(html)
-            if m:
-                try:
-                    data = json.loads(m.group(1))
-                except Exception:
-                    data = None
-        if not data:
-            # 拿不到数据 -> 交给壳子嗅探播放页
-            return {"parse": 1, "playUrl": "", "url": self._host + "/vodplay/" + pid + ".html",
-                    "header": {"User-Agent": UA, "Referer": self._host + "/"}}
+        # 常规: 拉播放页
+        play_page = host + "/vodplay/" + pid + ".html"
+        html = self._txt_retry(play_page, 2, timeout=8)
+        data = self._parse_player_json(html) if html else None
 
-        raw = str(data.get("url") or "").replace("\\/", "/")
-        frm = str(data.get("from") or "")
+        raw, frm = "", ""
+        if data:
+            raw = str(data.get("url") or data.get("link") or data.get("src") or "")
+            raw = raw.replace("\\/", "/").strip()
+            frm = str(data.get("from") or data.get("flag") or data.get("source") or "").strip()
+            raw = self._maybe_b64(raw)
 
-        # YX源: NBY 加密串 -> 服务端两步换直链
-        if frm == "NBY" or raw.startswith("NBY-"):
+        # 页面里直接扫 m3u8 兜底
+        if (not raw or (not raw.startswith("http") and not raw.startswith("NBY-"))) and html:
+            m3 = RE_M3U8_IN_HTML.search(html)
+            if m3:
+                raw = m3.group(1)
+
+        if not raw:
+            return {
+                "parse": 1,
+                "playUrl": "",
+                "url": play_page,
+                "header": {"User-Agent": UA, "Referer": host + "/"},
+            }
+
+        # NBY / YX 加密线路
+        if (frm.upper() in ("NBY", "YX", "YX源") or raw.startswith("NBY-")
+                or "NBY-" in raw[:30]):
             real = self._resolve_nby(raw)
             if real:
-                return self._media_return(real, refer=self._host + "/")
-            return {"parse": 1, "playUrl": "", "url": self._host + "/vodplay/" + pid + ".html",
-                    "header": {"User-Agent": UA, "Referer": self._host + "/"}}
+                return self._media_return(real, refer=host + "/")
+            # 解密失败：仍交给壳子打开播放页嗅探，避免直接失败
+            return {
+                "parse": 1,
+                "playUrl": "",
+                "url": play_page,
+                "header": {"User-Agent": UA, "Referer": host + "/"},
+            }
 
-        # 其余 7 条线路: 明文直链, 免解析直播
-        if ".m3u8" in raw.lower() or ".mp4" in raw.lower():
-            return self._media_return(raw)
-        return {"parse": 1, "playUrl": "", "url": raw,
-                "header": {"User-Agent": UA, "Referer": self._host + "/"}}
+        # 明文直链
+        if re.search(r'\.(m3u8|mp4|flv)(\?|$)', raw, re.I) or raw.startswith("http"):
+            return self._media_return(raw, refer=host + "/")
+
+        return {
+            "parse": 1,
+            "playUrl": "",
+            "url": raw if raw.startswith("http") else play_page,
+            "header": {"User-Agent": UA, "Referer": host + "/"},
+        }
 
     def _media_return(self, url, refer=None):
+        url = (url or "").strip().replace("\\/", "/")
+        if not url:
+            return {"parse": 1, "playUrl": "", "url": ""}
+        # 部分 CDN 返回相对路径
+        if url.startswith("//"):
+            url = "https:" + url
+        host = self._host or HOST
+        ref = refer or self._origin(url) or (host + "/")
+        origin = self._origin(url).rstrip("/") or host
         is_hls = ".m3u8" in url.lower()
-        return {
+        headers = {
+            "User-Agent": UA,
+            "Referer": ref if ref.endswith("/") else ref + "/",
+            "Origin": origin,
+            "Accept": "*/*",
+        }
+        # 注意: 部分播放器对 contentType 敏感，只在 HLS 时轻量标注
+        out = {
             "parse": 0,
             "playUrl": "",
             "url": url,
-            "header": {
-                "User-Agent": UA,
-                "Referer": refer or self._origin(url),
-            },
-            # HLS 走硬解, 减少缓冲预读
-            "format": "application/x-mpegURL" if is_hls else "",
-            "contentType": "application/x-mpegURL" if is_hls else "",
-            "isLive": False,
-            "saveDirName": "",
+            "header": headers,
+            "jx": 0,
+            "isVideo": True,
         }
+        if is_hls:
+            out["format"] = "application/x-mpegURL"
+        return out
 
     # ===== 本地代理 (占位) =====
     def localProxy(self, param):
