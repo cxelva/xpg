@@ -101,6 +101,34 @@
       "quickSearch": 1,
       "filterable": 1
     },
+	   {
+      "key": "山楂",
+      "name": "🍎山楂🔹4K",
+      "type": 3,
+      "api": "./py/sz.py"
+    },
+    {
+      "key": "剧下饭",
+      "name": "🍎下饭🔹4K",
+      "type": 3,
+      "api": "./py/jxf.py"
+    },
+	   {
+            "key": "咕噜影院",
+            "name": "🍎咕噜🔹4k",
+            "type": 3,
+            "api": "./py/咕噜.py",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "switchable": 1
+        },
+	      {
+      "key": "妙看",
+      "name": "🍎妙看🔹影视",
+      "type": 3,
+      "api": "./py/4kvms.py"
+    },
 	  	     {
       "key": "金牌.py",
       "name": "🍎金牌🔹app",
@@ -187,16 +215,6 @@
         "Netflix自制剧"
       ]
     },
-	   {
-            "key": "咕噜影院",
-            "name": "🍎咕噜🔹4k",
-            "type": 3,
-            "api": "./py/咕噜.py",
-            "filterable": 1,
-            "quickSearch": 1,
-            "searchable": 1,
-            "switchable": 1
-        },
 	  {
             "key": "开心影院",
             "name": "🍎苹果🔹影院",
