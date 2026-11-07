@@ -105,8 +105,12 @@
       "key": "山楂",
       "name": "🍎山楂🔹4K",
       "type": 3,
-      "api": "./py/sz.py"
-    },
+      "api": "./py/sz.py",
+	  "filterable": 1,
+      "quickSearch": 1,
+      "searchable": 1,
+      "switchable": 1
+        },
     {
       "key": "剧下饭",
       "name": "🍎下饭🔹4K",
