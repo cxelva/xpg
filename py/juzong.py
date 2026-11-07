@@ -148,27 +148,67 @@ class Spider(BaseSpider):
         html = self._get(self.host + "/")
         return {"list": self._parse_list(html)[:30]}
 
+    def _list_url(self, tid, pg=1):
+        """MacCMS 12-seg route; page number at segment index 8.
+        Good: /vodshow/2--------2---.html
+        Bad:  /vodshow/2-----------2---.html (page lands on year, empty list)
+        """
+        tid = str(tid or "").strip()
+        pg = int(pg or 1)
+        if pg <= 1:
+            return f"{self.host}/vodtype/{tid}/"
+        segs = [tid, "", "", "", "", "", "", "", str(pg), "", "", ""]
+        return f"{self.host}/vodshow/" + "-".join(segs) + ".html"
+
     def categoryContent(self, tid, pg, filter, extend):
         pg = int(pg or 1)
-        url = f"{self.host}/vodshow/{tid}-----------{pg}---.html" if pg > 1 else f"{self.host}/vodshow/{tid}-----------/"
-        if pg == 1:
-            url = f"{self.host}/vodtype/{tid}/"
+        if pg < 1:
+            pg = 1
+        url = self._list_url(tid, pg)
         html = self._get(url)
         lst = self._parse_list(html)
-        # 从页面提取总页数
+
         pagecount = pg
         if html:
-            tree = etree.HTML(html)
-            pages = tree.xpath('//ul[contains(@class,"pagination")]//a/@href')
-            nums = []
-            for p in pages:
-                pm = re.search(r"/vodshow/\d+-----------(\d+)", p)
-                if pm:
-                    nums.append(int(pm.group(1)))
-            if nums:
-                pagecount = max(nums)
-        return {"list": lst, "page": pg, "pagecount": max(pagecount, pg),
-                "limit": len(lst), "total": pagecount * 36 if pagecount > 1 else len(lst)}
+            nums = [pg]
+            # 只认页码位: /vodshow/{id}--------{page}--- 或 /vodtype/{id}-{page}
+            for href in re.findall(r'href="([^"]+)"', html):
+                m = re.search(r"/vodshow/\d+-{8}(\d+)-{3}", href)
+                if m:
+                    n = int(m.group(1))
+                    if 1 <= n <= 5000:
+                        nums.append(n)
+                m2 = re.search(r"/vodtype/\d+-(\d+)(?:\.html|/|$)", href)
+                if m2:
+                    n = int(m2.group(1))
+                    if 1 <= n <= 5000:
+                        nums.append(n)
+                m3 = re.search(r"/page/(\d+)", href)
+                if m3:
+                    nums.append(int(m3.group(1)))
+            m4 = re.search(r"共\s*(\d+)\s*页", html)
+            if m4:
+                nums.append(int(m4.group(1)))
+            # 分页区最大数字
+            block = ""
+            i = html.find("pagination")
+            if i >= 0:
+                block = html[i:i + 2500]
+                for n in re.findall(r">\s*(\d{1,4})\s*<", block):
+                    nums.append(int(n))
+            pagecount = max(nums) if nums else pg
+            if lst and pagecount <= pg:
+                pagecount = pg + 1
+            if not lst and pg > 1:
+                pagecount = max(1, pg - 1)
+
+        return {
+            "list": lst,
+            "page": pg,
+            "pagecount": max(pagecount, 1),
+            "limit": len(lst) or 36,
+            "total": max(pagecount, 1) * 36 if pagecount > 1 else len(lst),
+        }
 
     def detailContent(self, ids):
         result = {"list": []}
