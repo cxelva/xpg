@@ -1,20 +1,18 @@
 # -*- coding: utf-8 -*-
 """
-开心影院 (kxyy1.cc) 影视爬虫 — 兼容 FongMi/TV (T3) 与 WebHomeTV / PeekPro (T4)
-站点: https://www.kxyy1.cc/   (官方镜像 kxyy.app, 可用 extend 换域名)
+开心影院 影视爬虫 — 兼容 FongMi/TV (T3) 与 WebHomeTV / PeekPro (T4)
+发布页: https://kxyy.app/  (专线 www.kxyy1.cc ~ www.kxyy9.cc)
 
-特性:
-  - 全链路 HTML 解析 (站点无开放 JSON API), 已逐项实测路由与接口
-  - 二级分类筛选: 类型 / 地区 / 年份 / 排序 (vodshow 12 段路由, 服务端筛选)
-  - 搜索: /index.php/ajax/suggest JSON 接口 (免验证码), 结果缓存 + 本地分页
-  - 播放: 8 条线路, 7 条明文 m3u8 直链 (parse=0 免解析秒播)
-  - YX源(NBY) 加密线路: 服务端两步换取真实直链 (get_signed_url -> jmurl), 带缓存
-  - 速度优化 (v2):
-      * 首页 4 分类并行 + 10 分钟缓存
-      * 分类页并发拉 3 页合并, 卡片数 24 → 72
-      * 列表/详情统一走压缩图 (站点 ?w= 缩略图参数 + 兜底 pic:// 代理)
-      * 短超时 (列表 6s / 详情 8s), 重试 1 次
-      * NBY 直链缓存提到 30 分钟
+修复 v3:
+  - 启动自动探测可用镜像 (403 自动换线)
+  - 列表卡片多套正则 + 兜底解析, 避免 DOM 微调导致整页空
+  - homeContent 分类写死, 网络失败也能出分类入口
+  - 分页按「合并页」正确换算 pagecount
+  - extend 支持 host / url / JSON
+
+用法:
+  直接导入即可; 也可在源配置 extend 里写固定域名, 例如:
+  "extend": "https://www.kxyy6.cc"
 """
 
 import sys
@@ -51,7 +49,19 @@ except ImportError:  # noqa: E402
 # 常量
 # ============================================================
 
-HOST = "https://www.kxyy1.cc"
+# 官方发布页 kxyy.app 列出的专线；部分 IP/地区会 403，启动时自动探测可用域名
+HOSTS = [
+    "https://www.kxyy1.cc",
+    "https://www.kxyy2.cc",
+    "https://www.kxyy3.cc",
+    "https://www.kxyy4.cc",
+    "https://www.kxyy5.cc",
+    "https://www.kxyy6.cc",
+    "https://www.kxyy7.cc",
+    "https://www.kxyy8.cc",
+    "https://www.kxyy9.cc",
+]
+HOST = HOSTS[0]
 UA = ("Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36"
       " (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36")
 
@@ -115,24 +125,47 @@ PIC_QUALITY = "75"            # webp/jpeg 质量
 # 正则 (均已对站点真实页面验证)
 # ============================================================
 
+# 列表卡片：兼容多种 DOM 写法（a 内 img / 外层 h3 / data-src 懒加载）
 RE_CARD = re.compile(
-    r'/voddetail/(\d+)\.html"[^>]*><img[^>]*src="([^"]+)"'
-    r'[^>]*>(?:<span[^>]*>([^<]*)</span>)?</a>'
-    r'<div[^>]*><h3[^>]*>([^<]*)</h3><p[^>]*>([^<]*)</p>')
+    r'href=["\']/voddetail/(\d+)\.html["\'][^>]*>'
+    r'[\s\S]{0,400}?'
+    r'(?:src|data-src|data-original)=["\']([^"\']+)["\']'
+    r'[\s\S]{0,200}?'
+    r'(?:<span[^>]*class="[^"]*(?:pic-text|text|tips|note)[^"]*"[^>]*>([^<]*)</span>)?'
+    r'[\s\S]{0,300}?'
+    r'<h3[^>]*>([^<]+)</h3>',
+    re.I,
+)
+RE_CARD2 = re.compile(
+    r'/voddetail/(\d+)\.html["\'][^>]*>[\s\S]{0,80}?'
+    r'<img[^>]+(?:src|data-src|data-original)=["\']([^"\']+)["\']'
+    r'[^>]*(?:alt=["\']([^"\']*)["\'])?[^>]*>'
+    r'[\s\S]{0,200}?<h3[^>]*>([^<]+)</h3>',
+    re.I,
+)
+RE_CARD3 = re.compile(
+    r'voddetail/(\d+)\.html["\'][^>]*title=["\']([^"\']+)["\']'
+    r'[\s\S]{0,300}?(?:src|data-src)=["\']([^"\']+)["\']',
+    re.I,
+)
 RE_TITLE = re.compile(r'<h1[^>]*>([^<]+)</h1>')
 RE_PIC = re.compile(r'property="og:image" content="([^"]+)"')
 RE_SCORE = re.compile(r'豆瓣评分[：:]\s*([\d.]+)')
 RE_UPDATE = re.compile(r'更新时间[：:]\s*([\d\- :]+)')
-RE_TAB = re.compile(r'href="#tabs-home-(\d+)"[\s\S]*?</svg>\s*([^<]+?)\s*(?:&nbsp;|<span)')
-RE_PANE = re.compile(r'id="tabs-home-(\d+)"')
-RE_EPS = re.compile(r'href="/vodplay/(\d+-\d+-\d+)\.html"[^>]*>([^<]+)</a>')
-RE_DESC = re.compile(r'id="synopsis">[\s\S]*?<p>([\s\S]*?)</p>')
+RE_TAB = re.compile(
+    r'href=["\']#tabs-home-(\d+)["\'][\s\S]{0,200}?</svg>\s*([^<]+?)\s*(?:&nbsp;|<span|</)',
+    re.I,
+)
+RE_PANE = re.compile(r'id=["\']tabs-home-(\d+)["\']', re.I)
+RE_EPS = re.compile(r'href=["\']/vodplay/(\d+-\d+-\d+)\.html["\'][^>]*>([^<]+)</a>', re.I)
+RE_DESC = re.compile(r'id=["\']synopsis["\']>[\s\S]*?<p>([\s\S]*?)</p>', re.I)
 RE_AREA = re.compile(r'制片国家/地区[：:]\s*</strong>\[?([^<\]]+)')
 RE_DIRECTOR = re.compile(r'导演[：:]\s*</strong>([\s\S]*?)</p>')
 RE_ACTOR = re.compile(r'主演[：:]\s*</strong>([\s\S]*?)</p>')
-RE_TYPES = re.compile(r'href="/vodshow/\d+---[^"]*\.html">([^<]+)</a>')
+RE_TYPES = re.compile(r'href=["\']/vodshow/\d+---[^"\']*\.html["\']>([^<]+)</a>')
 RE_PLAYER = re.compile(r'var\s+player_data\s*=\s*(\{.*?\})\s*</script>', re.S)
-RE_PAGE_SEG = re.compile(r'href="/vodshow/([^"]+?)\.html"')
+RE_PAGE_SEG = re.compile(r'href=["\']/vodshow/([^"\']+?)\.html["\']')
+RE_PAGE_NUM = re.compile(r'[?&]page[=/](\d+)|/page/(\d+)|-(\d+)-\.html|第\s*(\d+)\s*页')
 
 # ============================================================
 # Spider 主类
@@ -147,24 +180,75 @@ class Spider(BaseSpider):
     def init(self, extend=""):
         host = ""
         if isinstance(extend, dict):
-            host = str(extend.get("host") or "")
-        elif isinstance(extend, str) and extend.startswith("http"):
-            host = extend
-        self._host = (host.rstrip("/") or HOST)
-
+            host = str(extend.get("host") or extend.get("url") or "")
+        elif isinstance(extend, str) and extend.strip():
+            s = extend.strip()
+            if s.startswith("{"):
+                try:
+                    j = json.loads(s)
+                    host = str(j.get("host") or j.get("url") or "")
+                except Exception:
+                    host = s if s.startswith("http") else ""
+            elif s.startswith("http"):
+                host = s
+        self._host = (host.rstrip("/") if host else "")
         self._header = {
             "User-Agent": UA,
-            "Referer": self._host + "/",
-            "Accept": "*/*",
-            # 强优先 webp, 站点 CDN 通常会返回 webp 缩略图
-            "Accept": "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8",
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+            "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8",
+            "Connection": "keep-alive",
         }
+        if self._host:
+            self._header["Referer"] = self._host + "/"
         # 缓存: 首页列表 / 搜索结果 / 分类页 / NBY 直链
         self._home_cache = []
         self._home_time = 0
         self._search_cache = {}
         self._cat_cache = {}
         self._nby_cache = {}
+        self._host_ok = False
+        # 未指定 host 时自动探测可用镜像
+        if not self._host:
+            self._pick_host()
+        else:
+            self._host_ok = True
+
+    def _pick_host(self):
+        """并行探测 HOSTS，选第一个能返回正常列表页的域名"""
+        results = [None] * len(HOSTS)
+
+        def probe(idx, h):
+            try:
+                headers = dict(self._header)
+                headers["Referer"] = h + "/"
+                url = h + "/vodshow/1-----------.html"
+                rsp = self.fetch(url, headers=headers, timeout=4)
+                text = self._rsp_text(rsp)
+                if text and ("voddetail" in text or "mac_" in text or len(text) > 8000):
+                    results[idx] = h
+            except Exception:
+                results[idx] = None
+
+        threads = [threading.Thread(target=probe, args=(i, h)) for i, h in enumerate(HOSTS)]
+        for t in threads:
+            t.start()
+        for t in threads:
+            t.join(6)
+        for h in results:
+            if h:
+                self._host = h
+                self._header["Referer"] = h + "/"
+                self._host_ok = True
+                return
+        # 全部失败也给一个默认值，避免后续空 host 崩溃
+        self._host = HOST
+        self._header["Referer"] = HOST + "/"
+        self._host_ok = False
+
+    def _ensure_host(self):
+        if not self._host or not self._host_ok:
+            self._pick_host()
+        return self._host
 
     # ===== 网络工具 =====
     def _rsp_text(self, rsp):
@@ -182,7 +266,21 @@ class Spider(BaseSpider):
             headers["Referer"] = referer
         try:
             rsp = self.fetch(url, headers=headers, timeout=timeout)
-            return self._rsp_text(rsp)
+            text = self._rsp_text(rsp)
+            # 403/空页时尝试换镜像（仅当 url 属于当前 host）
+            if (not text or "403 Forbidden" in text or len(text) < 200) and self._host and self._host in url:
+                self._host_ok = False
+                old = self._host
+                self._pick_host()
+                if self._host and self._host != old:
+                    url2 = url.replace(old, self._host, 1)
+                    headers["Referer"] = self._host + "/"
+                    try:
+                        rsp = self.fetch(url2, headers=headers, timeout=timeout)
+                        text = self._rsp_text(rsp)
+                    except Exception:
+                        pass
+            return text or ""
         except Exception:
             return ""
 
@@ -190,11 +288,11 @@ class Spider(BaseSpider):
         html = ""
         for i in range(max(1, times)):
             html = self._txt(url, timeout=timeout)
-            if html:
+            if html and "403 Forbidden" not in html and len(html) > 200:
                 break
             if i + 1 < times:
-                time.sleep(0.2)
-        return html
+                time.sleep(0.25)
+        return html if html and "403 Forbidden" not in html else ""
 
     def _get_json(self, url, timeout=10):
         text = self._txt(url, timeout=timeout)
@@ -237,24 +335,61 @@ class Spider(BaseSpider):
     def _cards_from_html(self, html, detail_pic=False):
         cards = []
         seen = set()
-        for vid, pic, remark, name, date in RE_CARD.findall(html):
-            if vid in seen:
-                continue
+        if not html:
+            return cards
+
+        def add(vid, pic, name, remark=""):
+            vid = str(vid or "").strip()
+            name = (name or "").strip()
+            if not vid or not name or vid in seen:
+                return
             seen.add(vid)
             cards.append({
                 "vod_id": vid,
-                "vod_name": name.strip(),
+                "vod_name": name,
                 "vod_pic": self._pic(pic, detail=detail_pic),
-                "vod_remarks": remark.strip() or date[:10],
+                "vod_remarks": (remark or "").strip(),
             })
+
+        # 主正则：vid, pic, remark, name
+        for m in RE_CARD.finditer(html):
+            add(m.group(1), m.group(2), m.group(4), m.group(3) or "")
+        if cards:
+            return cards
+        # 备用 2：vid, pic, alt, name
+        for m in RE_CARD2.finditer(html):
+            add(m.group(1), m.group(2), m.group(4) or m.group(3), "")
+        if cards:
+            return cards
+        # 备用 3：vid, title, pic
+        for m in RE_CARD3.finditer(html):
+            add(m.group(1), m.group(3), m.group(2), "")
+        if cards:
+            return cards
+        # 最后兜底：只抓 id + 邻近标题
+        for m in re.finditer(r'/voddetail/(\d+)\.html', html):
+            vid = m.group(1)
+            if vid in seen:
+                continue
+            seg = html[max(0, m.start() - 80):m.start() + 500]
+            nm = re.search(r'<h3[^>]*>([^<]+)</h3>', seg) or re.search(
+                r'title=["\']([^"\']+)["\']', seg)
+            pic_m = re.search(r'(?:src|data-src|data-original)=["\']([^"\']+)["\']', seg)
+            if nm:
+                add(vid, pic_m.group(1) if pic_m else "", nm.group(1))
         return cards
 
     # ===== 二级分类: vodshow 12 段路由 =====
     # 段位: [id, 地区, 排序, 类型, -, -, -, -, 页码, -, -, 年份]
     @staticmethod
     def _vodshow_url(host, tid, page=1, cls="", area="", by="", year=""):
-        segs = [str(tid), area, by, cls, "", "", "", "", str(page), "", "", year]
-        return host + "/vodshow/" + quote("-".join(segs), safe="") + ".html"
+        # 12 段: id-地区-排序-类型-----页码---年份
+        # 中文参数需要 url 编码，但连字符本身保留
+        segs = [str(tid), area or "", by or "", cls or "", "", "", "", "", str(page), "", "", year or ""]
+        path = "-".join(segs)
+        # 只编码非 ASCII / 空格等，保留 -
+        encoded = quote(path, safe="-.")
+        return (host or HOST) + "/vodshow/" + encoded + ".html"
 
     def _pagecount_from(self, html, page):
         """从分页块解析最大页码"""
@@ -345,6 +480,11 @@ class Spider(BaseSpider):
     # ============================================================
 
     def homeContent(self, filter):
+        # 分类写死，不依赖网络；确保壳子一定能看到分类入口
+        try:
+            self._ensure_host()
+        except Exception:
+            pass
         filters = {}
         for c in CLASSES:
             tid = c["type_id"]
@@ -363,6 +503,10 @@ class Spider(BaseSpider):
 
     def homeVideoContent(self):
         """首页推荐: 6 分类并行, 每个分类拉 2 页取前 12, 10 分钟缓存"""
+        try:
+            self._ensure_host()
+        except Exception:
+            pass
         now = time.time()
         if self._home_cache and now - self._home_time < CACHE_TTL:
             return {"list": self._home_cache}
@@ -411,6 +555,10 @@ class Spider(BaseSpider):
 
     def categoryContent(self, tid, pg, filter, extend):
         try:
+            self._ensure_host()
+        except Exception:
+            pass
+        try:
             page = max(1, int(pg or 1))
         except Exception:
             page = 1
@@ -431,7 +579,7 @@ class Spider(BaseSpider):
         if cached and now - cached[0] < CACHE_TTL:
             return cached[1]
 
-        # 服务端页码 = (前端页 - 1) * PAGE_FETCH + 1, 拉 PAGE_FETCH 页
+        # 前端一页 = 站点 PAGE_FETCH 页合并
         start_page = (page - 1) * PAGE_FETCH + 1
         base_url = self._vodshow_url(
             self._host, tid, page=start_page,
@@ -443,7 +591,6 @@ class Spider(BaseSpider):
         cards = self._fetch_pages(base_url, start_page, PAGE_FETCH, LIST_TIMEOUT)
 
         if not cards and page > 1:
-            # 末页可能为空 -> 回退第 1 页
             start_page = 1
             base_url = self._vodshow_url(
                 self._host, tid, page=1,
@@ -459,21 +606,18 @@ class Spider(BaseSpider):
             self._cat_cache[cache_key] = (now, result)
             return result
 
-        # 估算总页数: 用首页的 pagecount 块做参考 (任一合并页里都包含同样的分页)
-        # 由于多页合并, 这里粗略: 至少 page, 且如果有分页再算
-        pagecount = page
-        # 抓首页 HTML 拿真实页码
+        # 站点总页数 → 换算成爬虫端页数
+        site_pages = page * PAGE_FETCH
         first_html = self._txt_retry(base_url, 1, timeout=LIST_TIMEOUT)
         if first_html:
-            pagecount = self._pagecount_from(first_html, page)
-            # 实际一页在爬虫端是 PAGE_FETCH 倍, 前端翻页步长 = PAGE_FETCH
-            # 但 pagecount 是站点页数, 前端 page 与之保持一致即可
+            site_pages = max(site_pages, self._pagecount_from(first_html, start_page))
+        pagecount = max(1, (site_pages + PAGE_FETCH - 1) // PAGE_FETCH)
         result = {
             "list": cards,
             "page": page,
             "pagecount": pagecount,
             "limit": PAGE_SIZE,
-            "total": pagecount * PAGE_SIZE_RAW,
+            "total": site_pages * PAGE_SIZE_RAW,
         }
         self._cat_cache[cache_key] = (now, result)
         return result
@@ -483,6 +627,10 @@ class Spider(BaseSpider):
     # ============================================================
 
     def detailContent(self, ids):
+        try:
+            self._ensure_host()
+        except Exception:
+            pass
         if isinstance(ids, str):
             ids = [ids]
         vid = str(ids[0]).split('-')[0]
@@ -577,6 +725,10 @@ class Spider(BaseSpider):
 
     def searchContent(self, key, quick, pg="1"):
         try:
+            self._ensure_host()
+        except Exception:
+            pass
+        try:
             page = max(1, int(pg or 1))
         except Exception:
             page = 1
@@ -621,6 +773,10 @@ class Spider(BaseSpider):
     # ============================================================
 
     def playerContent(self, flag, id, vipFlags):
+        try:
+            self._ensure_host()
+        except Exception:
+            pass
         pid = str(id or "").replace("\\/", "/")
         if not pid:
             return {"parse": 0, "playUrl": "", "url": ""}
