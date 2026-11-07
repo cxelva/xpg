@@ -23,6 +23,16 @@
       "filterable": 1,
       "changeable": 1
     },
+	  	  {
+      "key": "8x8x_spider",
+      "name": "🔞8x8x",
+      "type": 3,
+      "api": "./a/8x8x_spider.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "changeable": 1
+    },
 	  {
       "key": "XMVideo",
       "name": "🔞熊猫视频",
@@ -154,16 +164,6 @@
             "filterable": 1,
             "changeable": 1
         },
-	  {
-      "key": "8x8x_spider",
-      "name": "🔞8x8x",
-      "type": 3,
-      "api": "./a/8x8x_spider.py",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "changeable": 1
-    },
 	   {
       "key": "91黑料网",
       "name": "🔞91黑料网",
