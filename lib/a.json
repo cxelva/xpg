@@ -55,6 +55,16 @@
       "type": 3,
       "api": "./a/f05e3b39.js"
     },
+	  {
+      "key": "51短剧",
+      "name": "🔞51短剧",
+      "type": 3,
+      "api": "./a/51短剧.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "changeable": 1
+    },
 	    {
       "key": "禁果短剧",
       "name": "🔞禁果短剧",
