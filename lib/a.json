@@ -33,6 +33,16 @@
       "filterable": 1,
       "changeable": 1
     },
+	   {
+      "key": "推特",
+      "name": "🔞推特",
+      "type": 3,
+      "api": "./a/推特APP.py",
+      "searchable": 1,
+      "quickSearch": 1,
+      "filterable": 1,
+      "changeable": 1
+    },
 	  {
       "key": "XMVideo",
       "name": "🔞熊猫视频",
@@ -199,16 +209,6 @@
       "name": "🔞丝袜乐土",
       "type": 3,
       "api": "./a/丝袜乐土.py",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "changeable": 1
-    },
-	   {
-      "key": "推特",
-      "name": "🔞推特",
-      "type": 3,
-      "api": "./a/推特APP.py",
       "searchable": 1,
       "quickSearch": 1,
       "filterable": 1,
