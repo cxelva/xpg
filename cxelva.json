@@ -991,7 +991,7 @@
       "quickSearch": 1,
       "changeable": 0,
       "genre": "shortdrama",
-      "jar": "./dg.png"
+      "jar": "./lib/dg.png"
     },
     {
       "name": "🎬拜拜🔹短剧",
@@ -1002,7 +1002,7 @@
       "quickSearch": 1,
       "changeable": 0,
       "genre": "shortdrama",
-      "jar": "./dg.png"
+      "jar": "./lib/dg.png"
     },
     {
       "name": "🎬围观🔹短剧",
@@ -1013,7 +1013,7 @@
       "quickSearch": 1,
       "changeable": 0,
       "genre": "shortdrama",
-      "jar": "./dg.png"
+      "jar": "./lib/dg.png"
     },
     {
       "name": "🎬喵喵🔹短剧",
@@ -1024,7 +1024,7 @@
       "quickSearch": 1,
       "changeable": 0,
       "genre": "shortdrama",
-      "jar": "./dg.png"
+      "jar": "./lib/dg.png"
     },
     {
       "key": "哔哩合集",
