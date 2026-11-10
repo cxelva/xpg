@@ -1181,18 +1181,6 @@
       }
     },
 	   {
-      "key": "聚合备用",
-      "name": "🍎聚合🔹直播",
-      "type": 3,
-      "api": "./py/网络直播.py"
-    },
-	   {
-      "key": "哔哩直播",
-      "name": "🍎哔哩🔹直播",
-      "type": 3,
-      "api": "./py/哔哩.py"
-    },
-	   {
       "key": "蜻蜓FM",
       "name": "🍎全国🔹电台",
       "type": 3,
@@ -1200,13 +1188,6 @@
       "style": {
         "type": "list"
       }
-    },
-	   {
-      "key": "藤藤",
-      "name": "🍎藤藤🔹4K",
-      "type": 3,
-      "api": "./lib/drpy2.min.js",
-      "ext": "./lib/藤藤.png"
     },
     {
       "key": "push_agent1",
