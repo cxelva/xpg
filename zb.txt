@@ -1,55 +1,76 @@
 🍎央视,#genre#
 CCTV1综合,http://113.98.11.46:3000/608807420
+CCTV1,http://17782331118.top:8188/rtp/235.254.199.51:7980
+CCTV1,http://17782331118.top:8188/rtp/235.254.197.250:7980
+CCTV1,http://17782331118.top:8188/rtp/235.254.199.147:7980
+CCTV1,http://17782331118.top:8188/rtp/235.254.199.92:7980
 CCTV1综合,http://mg.cttv.vip/migu.php?pid=608807420
 
 CCTV2财经,http://113.98.11.46:3000/631780532
+CCTV2,http://17782331118.top:8188/rtp/235.254.199.52:7980
 CCTV2财经,http://mg.cttv.vip/migu.php?pid=631780532
 
 CCTV3综艺,http://113.98.11.46:3000/624878271
 CCTV3综艺,http://mg.cttv.vip/migu.php?pid=624878271
 
 CCTV4中文国际,http://113.98.11.46:3000/631780421
+CCTV4,http://17782331118.top:8188/rtp/235.254.198.183:7980
 CCTV4中文国际,http://mg.cttv.vip/migu.php?pid=631780421
 
 CCTV5体育,http://113.98.11.46:3000/641886683
+CCTV5,http://17782331118.top:8188/rtp/235.254.199.54:7980
 CCTV5体育,http://mg.cttv.vip/migu.php?pid=641886683
 
 CCTV5+体育赛事,http://113.98.11.46:3000/641886773
+CCTV5+,http://17782331118.top:8188/rtp/235.254.199.121:7980
 CCTV5+体育赛事,http://mg.cttv.vip/migu.php?pid=641886773
 
 CCTV6电影,http://113.98.11.46:3000/624878396
+CCTV6,http://17782331118.top:8188/rtp/235.254.199.55:7980
 CCTV6电影,http://mg.cttv.vip/migu.php?pid=624878396
 
 CCTV7国防军事,http://113.98.11.46:3000/673168121
+CCTV7,http://17782331118.top:8188/rtp/235.254.199.56:7980
 CCTV7国防军事,http://mg.cttv.vip/migu.php?pid=673168121
 
 CCTV8电视剧,http://113.98.11.46:3000/624878356
+CCTV8,http://17782331118.top:8188/rtp/235.254.199.57:7980
 CCTV8电视剧,http://mg.cttv.vip/migu.php?pid=624878356
 
 CCTV9纪录,http://113.98.11.46:3000/673168140
+CCTV9纪录,http://17782331118.top:8188/rtp/235.254.199.58:7980
 CCTV9纪录,http://mg.cttv.vip/migu.php?pid=673168140
 
 CCTV10科教,http://113.98.11.46:3000/624878405
+CCTV10科教,http://17782331118.top:8188/rtp/235.254.199.59:7980
 CCTV10科教,http://mg.cttv.vip/migu.php?pid=624878405
 
 CCTV11戏曲,http://113.98.11.46:3000/667987558
+CCTV11戏曲,http://17782331118.top:8188/rtp/235.254.197.161:7980
 CCTV11戏曲,http://mg.cttv.vip/migu.php?pid=667987558
 
 CCTV12社会与法,http://113.98.11.46:3000/673168185
+CCTV12社会与法,http://17782331118.top:8188/rtp/235.254.199.60:7980
 CCTV12社会与法,http://mg.cttv.vip/migu.php?pid=673168185
 
 CCTV13新闻,http://113.98.11.46:3000/608807423
+CCTV13新闻,http://17782331118.top:8188/rtp/235.254.197.162:7980
 CCTV13新闻,http://mg.cttv.vip/migu.php?pid=608807423
 
 CCTV14少儿,http://113.98.11.46:3000/624878440
+CCTV14少儿,http://17782331118.top:8188/rtp/235.254.199.61:7980
 CCTV14少儿,http://mg.cttv.vip/migu.php?pid=624878440
 
 CCTV15音乐,http://113.98.11.46:3000/673168223
+CCTV15音乐,http://17782331118.top:8188/rtp/235.254.197.163:7980
 CCTV15音乐,http://mg.cttv.vip/migu.php?pid=673168223
 
 CCTV17农业农村,http://113.98.11.46:3000/673168256
+CCTV17农业农村,http://17782331118.top:8188/rtp/235.254.198.130:7980
 CCTV17农业农村,http://mg.cttv.vip/migu.php?pid=673168256
 
+CETV1,http://17782331118.top:8188/rtp/235.254.198.196:7980
+CETV4,http://17782331118.top:8188/rtp/235.254.197.53:7980
 CCTV4欧洲,http://113.98.11.46:3000/608807419
 CCTV4欧洲,http://mg.cttv.vip/migu.php?pid=608807419
 
@@ -79,9 +100,14 @@ CGTN,http://mg.cttv.vip/migu.php?pid=609017205
 🍎卫视,#genre#
 东方卫视,http://113.98.11.46:3000/651632648
 东方卫视,http://mg.cttv.vip/migu.php?pid=651632648
-
+东方卫视,https://bp-resource-dfl.bestv.cn/148/3/video.m3u8
+苏州4K,https://live-auth.51kandianshi.com/szgd/csztv4k_hd.m3u8
+湖南卫视,http://hlsal-ldvt.qing.mgtv.com/nn_live/nn_x64/dWlwPTEyNy4wLjAuMSZ1aWQ9cWluZy1jbXMmbm5fdGltZXpvbmU9OCZjZG5leF9pZD1hbF9obHNfbGR2dCZ1dWlkPTliODY4NmU5ZTM2YzYwMmMmZT02OTE0NjA0JnY9MSZpZD1ITldTWkdTVCZzPTcwN2RiYTc2YzJjNmJmMTQ4MmUyZGYzOWU2NWM3YWFi/HNWSZGST.m3u8
+河北4K,https://event.pull.hebtv.com:443/live/live101.m3u8
 看东方4K,http://bp-resource-dfl.bestv.cn/148/3/video.m3u8
+南国都市4K,http://tencentplaygsm.gztv.com/live/nanguodushi.m3u8
 南国都市4K,http://tencentplay.gztv.com/live/nanguodushi.m3u8?txSecret=140110ae3d6c936a77f94c4f4d85b0d3&txTime=18d57929bd4
+浙江卫视,https://ali-xwl.cztv.com/live/channel4k2160p.m3u8
 浙江卫视,http://61.138.99.166:10089/hls/63/index.m3u8
 浙江卫视,http://ali-xwl.cztv.com/live/channel4k2160p.m3u8
 
@@ -130,7 +156,38 @@ http://mg.cttv.vip/migu.php?pid=947472500
 三沙卫视,http://113.98.11.46:3000/961023778
 
 黑龙江卫视,http://113.98.11.46:3000/738906901
+浙江卫视,http://ali-xwl.cztv.com/live/channel4k2160p.m3u8
+湖南卫视,http://hlsal-ldvt.qing.mgtv.com/nn_live/nn_x64/dWlwPTEyNy4wLjAuMSZ1aWQ9cWluZy1jbXMmbm5fdGltZXpvbmU9OCZjZG5leF9pZD1hbF9obHNfbGR2dCZ1dWlkPTliODY4NmU5ZTM2YzYwMmMmZT02OTE0NjA0JnY9MSZpZD1ITldTWkdTVCZzPTcwN2RiYTc2YzJjNmJmMTQ4MmUyZGYzOWU2NWM3YWFi/HNWSZGST.m3u8
 
+江苏卫视,http://www.frankgb.cn:4022/udp/239.49.8.16:9602
+
+北京卫视,http://www.frankgb.cn:4022/udp/239.49.8.11:9414
+东方卫视,http://www.frankgb.cn:4022/udp/239.49.8.17:9606
+浙江卫视,http://www.frankgb.cn:4022/udp/239.49.8.20:9618
+湖南卫视,http://www.frankgb.cn:4022/udp/239.49.8.12:9418
+广东卫视,http://www.frankgb.cn:4022/udp/239.49.8.13:9422
+深圳卫视,http://www.frankgb.cn:4022/udp/239.49.8.15:9430
+四川卫视,http://www.frankgb.cn:4022/udp/239.49.8.110:8000
+山东卫视,http://www.frankgb.cn:4022/udp/239.49.8.7:9306
+山西卫视,http://www.frankgb.cn:4022/udp/239.49.1.55:8000
+天津卫视,http://www.frankgb.cn:4022/udp/239.49.8.35:8620
+安徽卫视,http://www.frankgb.cn:4022/udp/239.49.8.80:8000
+重庆卫视,http://www.frankgb.cn:4022/udp/239.49.8.57:9830
+东南卫视,http://www.frankgb.cn:4022/udp/239.49.8.112:8000
+河北卫视,http://www.frankgb.cn:4022/udp/239.49.8.114:8000
+湖北卫视,http://www.frankgb.cn:4022/udp/239.49.8.8:9632
+河南卫视,http://www.frankgb.cn:4022/udp/239.49.8.29:8000
+江西卫视,http://www.frankgb.cn:4022/udp/239.49.8.111:8000
+广西卫视,http://www.frankgb.cn:4022/udp/239.49.8.10:8000
+海南卫视,http://www.frankgb.cn:4022/udp/239.49.8.83:8000
+辽宁卫视,http://www.frankgb.cn:4022/udp/239.49.8.48:8000
+黑龙江卫视,http://www.frankgb.cn:4022/udp/239.49.8.14:9426
+吉林卫视,http://www.frankgb.cn:4022/udp/239.49.8.113:8000
+云南卫视,http://www.frankgb.cn:4022/udp/239.49.0.177:8000
+贵州卫视,http://www.frankgb.cn:4022/udp/239.49.8.49:8000
+青海卫视,http://www.frankgb.cn:4022/udp/239.49.0.81:8000
+宁夏卫视,http://www.frankgb.cn:4022/udp/239.49.1.60:8000
+三沙卫视,http://www.frankgb.cn:4022/udp/239.49.0.167:8000
 
 🍎地方,#genre#
 河北4K,https://event.pull.hebtv.com:443/live/live101.m3u8
