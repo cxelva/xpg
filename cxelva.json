@@ -101,16 +101,39 @@
       "quickSearch": 1,
       "filterable": 1
     },
-	   {
-      "key": "山楂",
-      "name": "🍎山楂🔹4K",
+	  {
+      "key": "秒看",
+      "name": "🍎秒看🔹4K",
       "type": 3,
-      "api": "./py/sz.py",
-	  "filterable": 1,
-      "quickSearch": 1,
+      "api": "csp_AppGet",
+      "playerType": 2,
+      "ext": {
+        "url": "https://mk1080.top/",
+        "dataKey": "c60d88b2eep53za8",
+        "dataIv": "c60d88b2eep53za8",
+        "token": "0e4bdd6893d319dcd405b6b06890debfd94fc4676702613921b05682f488dd8c"
+      }
+    },
+	   {
+      "key": "苹果",
+      "name": "🍎苹果🔹4K",
+      "type": 3,
+      "api": "csp_AppDrama",
       "searchable": 1,
-      "switchable": 1
-        },
+      "quickSearch": 1,
+      "filterable": 1,
+      "ext": {
+        "appName": "小苹果",
+        "publicKey": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCduNEnfxGaLuQRk5ABzXHhPV43zi00sCHjLo8BYc+Wi6xXm2b4v0i28Sq4WlNCKhseft9fz8kO/qLr6/022o1RcuOU7e4GFL3U9WnNODwRBYSYWd+K8nqpI/tAUDmZEBGRWqjrc7x6aMl3A+xpnWkLbPCLsuhbuuUE3tv09oeOpwIDAQAB",
+        "dataKey": "S0VNDTJHOFHHCNMRAW5IV2TOS2PBPQ==",
+        "dataIv": "OC1A06E197EF10CF3F6058CA7A803B5E",
+        "pkg": "com.juechufsh.android.xpg1",
+        "host": "",
+        "site": "./lib/app_xpg_android.txt",
+        "version": "1.0.0.3",
+        "decrypt": "0"
+      }
+    },
     {
       "key": "剧下饭",
       "name": "🍎下饭🔹4K",
@@ -228,63 +251,6 @@
             "quickSearch": 1,
             "searchable": 1
         },
-{
-      "name": "🍎粉猪🔹4K",
-      "key": "AppV7Fz",
-      "type": 3,
-      "jar": "./lib/aw.png",
-      "api": "csp_AppV7Amns",
-      "ext": "AppV7Fz"
-    },
-    {
-      "name": "🍎咸鱼🔹4K",
-      "key": "AppV7Xy",
-      "type": 3,
-      "jar": "./lib/aw.png",
-      "api": "csp_AppV7Amns",
-      "ext": "AppV7Xy"
-    },
-    {
-      "name": "🍎太奇🔹4K",
-      "key": "AppV7Mtq",
-      "type": 3,
-      "jar": "./lib/aw.png",
-      "api": "csp_AppV7Amns",
-      "ext": "AppV7Mtq"
-    },
-	  {
-      "key": "秒看",
-      "name": "🍎秒看🔹4K",
-      "type": 3,
-      "api": "csp_AppGet",
-      "playerType": 2,
-      "ext": {
-        "url": "https://mk1080.top/",
-        "dataKey": "c60d88b2eep53za8",
-        "dataIv": "c60d88b2eep53za8",
-        "token": "0e4bdd6893d319dcd405b6b06890debfd94fc4676702613921b05682f488dd8c"
-      }
-    },
-	   {
-      "key": "苹果",
-      "name": "🍎苹果🔹4K",
-      "type": 3,
-      "api": "csp_AppDrama",
-      "searchable": 1,
-      "quickSearch": 1,
-      "filterable": 1,
-      "ext": {
-        "appName": "小苹果",
-        "publicKey": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCduNEnfxGaLuQRk5ABzXHhPV43zi00sCHjLo8BYc+Wi6xXm2b4v0i28Sq4WlNCKhseft9fz8kO/qLr6/022o1RcuOU7e4GFL3U9WnNODwRBYSYWd+K8nqpI/tAUDmZEBGRWqjrc7x6aMl3A+xpnWkLbPCLsuhbuuUE3tv09oeOpwIDAQAB",
-        "dataKey": "S0VNDTJHOFHHCNMRAW5IV2TOS2PBPQ==",
-        "dataIv": "OC1A06E197EF10CF3F6058CA7A803B5E",
-        "pkg": "com.juechufsh.android.xpg1",
-        "host": "",
-        "site": "./lib/app_xpg_android.txt",
-        "version": "1.0.0.3",
-        "decrypt": "0"
-      }
-    },
 	  {
    "key": "py_maple",
    "name": "🍎枫叶🔹影视",
