@@ -1010,24 +1010,6 @@
       }
     },
     {
-      "key": "轮回DJ",
-      "name": "🍎轮回🔹DJ",
-      "type": 3,
-      "api": "csp_Djlh",
-      "style": {
-        "type": "list"
-      }
-    },
-    {
-      "key": "世界听书",
-      "name": "🍎世界🔹听书",
-      "type": 3,
-      "api": "csp_TingShijie",
-      "style": {
-        "type": "list"
-      }
-    },
-    {
       "key": "戏曲多多",
       "name": "🍎戏曲🔹多多",
       "type": 3,
