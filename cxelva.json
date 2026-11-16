@@ -183,17 +183,6 @@
       "ext": "AppV7Fz"
     },
     {
-      "name": "🍎星野┃APP",
-      "key": "AppV7Xy",
-      "type": 3,
-      "api": "csp_AppV7Amns",
-	  "jar": "./lib/ow.png", 
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 1,
-      "ext": "AppV7Xy"
-    },
-    {
       "name": "🍎织锦┃APP",
       "key": "AppV7Zjdr",
       "type": 3,
@@ -225,28 +214,6 @@
       "quickSearch": 1,
       "changeable": 1,
       "ext": "AppV7Xnm"
-    },
-    {
-      "name": "🍎鸣泉┃APP",
-      "key": "AppV7Mtq",
-      "type": 3,
-      "api": "csp_AppV7Amns",
-	  "jar": "./lib/ow.png", 
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 1,
-      "ext": "AppV7Mtq"
-    },
-    {
-      "name": "🍎琳琅┃APP",
-      "key": "AppV7Llq",
-      "type": 3,
-      "api": "csp_AppV7Amns",
-	  "jar": "./lib/ow.png", 
-      "searchable": 1,
-      "quickSearch": 1,
-      "changeable": 1,
-      "ext": "AppV7Llq"
     },
     {
       "name": "🍎衔石┃APP",
