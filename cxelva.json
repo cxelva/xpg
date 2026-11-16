@@ -154,6 +154,16 @@
         "decrypt": "0"
       }
     },
+	   {
+            "key": "咕噜影院",
+            "name": "🍎咕噜🔹4k",
+            "type": 3,
+            "api": "./py/咕噜.py",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "switchable": 1
+        },
     {
       "key": "剧下饭",
       "name": "🍎下饭🔹4K",
@@ -237,16 +247,6 @@
       "changeable": 1,
       "ext": "AppV7Xhr"
     },
-	   {
-            "key": "咕噜影院",
-            "name": "🍎咕噜🔹4k",
-            "type": 3,
-            "api": "./py/咕噜.py",
-            "filterable": 1,
-            "quickSearch": 1,
-            "searchable": 1,
-            "switchable": 1
-        },
 	      {
       "key": "妙看",
       "name": "🍎妙看🔹影视",
