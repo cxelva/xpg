@@ -282,10 +282,60 @@ class Spider(Spider):
             req = urllib.request.Request(url, headers=self.headers)
             with opener.open(req, timeout=timeout) as resp:
                 data = resp.read()
+                # gzip
+                if data[:2] == b"\x1f\x8b":
+                    try:
+                        import gzip
+                        data = gzip.decompress(data)
+                    except Exception:
+                        pass
                 enc = resp.headers.get_content_charset() or "utf-8"
                 return data.decode(enc, errors="ignore")
         except Exception:
             return ""
+
+    def _normalize_html(self, rsp):
+        """兼容 OK影视 / TVBox 各种 fetch 返回值。"""
+        if rsp is None:
+            return ""
+        if isinstance(rsp, (bytes, bytearray)):
+            data = bytes(rsp)
+            if data[:2] == b"\x1f\x8b":
+                try:
+                    import gzip
+                    data = gzip.decompress(data)
+                except Exception:
+                    pass
+            return data.decode("utf-8", errors="ignore")
+        if isinstance(rsp, str):
+            return rsp
+        # requests.Response / 自定义对象
+        if hasattr(rsp, "text") and isinstance(rsp.text, str) and rsp.text:
+            return rsp.text
+        if hasattr(rsp, "content"):
+            try:
+                c = rsp.content
+                if isinstance(c, (bytes, bytearray)):
+                    if c[:2] == b"\x1f\x8b":
+                        import gzip
+                        c = gzip.decompress(c)
+                    return c.decode("utf-8", errors="ignore")
+                if isinstance(c, str):
+                    return c
+            except Exception:
+                pass
+        # dict: {"content": "..."} / {"data": "..."} / {"body": "..."}
+        if isinstance(rsp, dict):
+            for k in ("content", "data", "body", "html", "text", "result"):
+                v = rsp.get(k)
+                if isinstance(v, str) and len(v) > 50:
+                    return v
+                if isinstance(v, (bytes, bytearray)):
+                    return self._normalize_html(v)
+            # nested
+            if "data" in rsp and isinstance(rsp["data"], dict):
+                return self._normalize_html(rsp["data"])
+        return str(rsp) if rsp else ""
 
     def _get(self, path_or_url, timeout=25):
         if path_or_url.startswith("http"):
@@ -294,19 +344,38 @@ class Spider(Spider):
             url = self.host.rstrip("/") + (
                 path_or_url if path_or_url.startswith("/") else "/" + path_or_url
             )
+        html = ""
+        # 1) 优先用壳子自带的 fetch（OK影视 / TVBox）
         try:
             if hasattr(self, "fetch"):
-                rsp = self.fetch(url, headers=self.headers)
-                if rsp is not None:
-                    if isinstance(rsp, str) and len(rsp) > 100:
-                        return rsp
-                    if hasattr(rsp, "text") and rsp.text and len(rsp.text) > 100:
-                        return rsp.text
-                    if hasattr(rsp, "content"):
-                        return rsp.content.decode("utf-8", errors="ignore")
+                try:
+                    rsp = self.fetch(url, headers=self.headers)
+                except TypeError:
+                    # 有的版本 fetch 只接受 url
+                    rsp = self.fetch(url)
+                html = self._normalize_html(rsp)
         except Exception:
-            pass
-        return self._raw_get(url, timeout=timeout)
+            html = ""
+        # 2) 部分壳子用 self.request / self.getHtml
+        if len(html) < 200:
+            for attr in ("request", "getHtml", "get_html"):
+                try:
+                    fn = getattr(self, attr, None)
+                    if not callable(fn):
+                        continue
+                    try:
+                        rsp = fn(url, headers=self.headers)
+                    except TypeError:
+                        rsp = fn(url)
+                    html = self._normalize_html(rsp)
+                    if len(html) >= 200:
+                        break
+                except Exception:
+                    pass
+        # 3) 原生 urllib 兜底
+        if len(html) < 200:
+            html = self._raw_get(url, timeout=timeout)
+        return html or ""
 
     def _full_url(self, u):
         if not u:
@@ -353,8 +422,25 @@ class Spider(Spider):
         """Parse video list from home / category / search pages."""
         results = []
         seen = set()
+        if not html:
+            return results
 
-        # 1) JSON-LD ItemList (most reliable on home)
+        def add(vid, name, remark=""):
+            vid = str(vid).strip()
+            name = html_lib.unescape(str(name or "")).strip()
+            if not vid or vid in seen:
+                return
+            if not name or name in ("广告", "更多", "查看", "null", "undefined"):
+                return
+            seen.add(vid)
+            results.append({
+                "vod_id": vid,
+                "vod_name": name,
+                "vod_pic": self._cover_url(vid),
+                "vod_remarks": str(remark or "").strip(),
+            })
+
+        # 1) JSON-LD ItemList（正式解析）
         for root in self._parse_jsonld(html):
             for node in self._walk_jsonld(root):
                 if node.get("@type") != "ItemList":
@@ -363,25 +449,37 @@ class Spider(Spider):
                     if not isinstance(el, dict):
                         continue
                     name = str(el.get("name") or "").strip()
-                    url = str(el.get("url") or "").strip()
+                    url = str(el.get("url") or el.get("item") or "").strip()
+                    if isinstance(el.get("item"), dict):
+                        url = str(el["item"].get("url") or url)
+                        if not name:
+                            name = str(el["item"].get("name") or "")
                     m = re.search(r"/video/(\d+)", url)
-                    if not m or not name:
-                        continue
-                    vid = m.group(1)
-                    if vid in seen:
-                        continue
-                    seen.add(vid)
-                    results.append({
-                        "vod_id": vid,
-                        "vod_name": name,
-                        "vod_pic": self._cover_url(vid),
-                        "vod_remarks": "",
-                    })
+                    if m and name:
+                        add(m.group(1), name)
 
-        # 2) regex fallback: /video/ID/ links + nearby title
-        if not results:
+        # 2) 不依赖完整 JSON：从源码里直接抠 "name":"...","url":".../video/ID/"
+        if len(results) < 5:
+            for m in re.finditer(
+                r'"name"\s*:\s*"([^"]{2,80})"\s*,\s*"position"\s*:\s*\d+\s*,\s*"url"\s*:\s*"[^"]*?/video/(\d+)/?"',
+                html,
+            ):
+                add(m.group(2), m.group(1))
+            for m in re.finditer(
+                r'"url"\s*:\s*"[^"]*?/video/(\d+)/?"\s*,\s*"name"\s*:\s*"([^"]{2,80})"',
+                html,
+            ):
+                add(m.group(1), m.group(2))
+            for m in re.finditer(
+                r'"name"\s*:\s*"([^"]{2,80})"\s*,\s*"url"\s*:\s*"[^"]*?/video/(\d+)/?"',
+                html,
+            ):
+                add(m.group(2), m.group(1))
+
+        # 3) 正则：href + 附近标题
+        if len(results) < 5:
             markers = [m.start() for m in re.finditer(
-                r'data-xpch=|class="[^"]*(?:card|item|video|drama)[^"]*"', html, re.I
+                r'data-xpch=|class="[^"]*(?:card|item|video|drama|list)[^"]*"', html, re.I
             )]
             for link in re.finditer(r'href=["\']/video/(\d+)/["\']', html, re.I):
                 vid = link.group(1)
@@ -389,14 +487,14 @@ class Spider(Spider):
                     continue
                 lefts = [p for p in markers if p <= link.start()]
                 rights = [p for p in markers if p > link.start()]
-                left = lefts[-1] if lefts else max(0, link.start() - 1200)
-                right = rights[0] if rights else min(len(html), link.end() + 800)
+                left = lefts[-1] if lefts else max(0, link.start() - 1500)
+                right = rights[0] if rights else min(len(html), link.end() + 1000)
                 block = html[left:right]
                 title = ""
                 for pat in (
-                    r'alt=["\']([^"\']+)["\']',
-                    r'aria-label=["\']([^"\']+)["\']',
-                    r'title=["\']([^"\']+)["\']',
+                    r'alt=["\']([^"\']{2,60})["\']',
+                    r'aria-label=["\']([^"\']{2,60})["\']',
+                    r'title=["\']([^"\']{2,60})["\']',
                     r'>\s*([^<>]{2,40})\s*<',
                 ):
                     tm = re.search(pat, block, re.I)
@@ -405,28 +503,15 @@ class Spider(Spider):
                         if t and t not in ("广告", "更多", "查看") and not t.startswith("http"):
                             title = t
                             break
-                if not title:
-                    continue
-                seen.add(vid)
-                results.append({
-                    "vod_id": vid,
-                    "vod_name": title,
-                    "vod_pic": self._cover_url(vid),
-                    "vod_remarks": "",
-                })
+                if title:
+                    add(vid, title)
 
-        # 3) last resort: any /video/id/ with generic name
+        # 4) 最后兜底：只有 id 也给出来，避免“分类有、内容空”
         if not results:
             for vid in re.findall(r"/video/(\d+)/", html):
                 if vid in seen:
                     continue
-                seen.add(vid)
-                results.append({
-                    "vod_id": vid,
-                    "vod_name": "短剧%s" % vid,
-                    "vod_pic": self._cover_url(vid),
-                    "vod_remarks": "",
-                })
+                add(vid, "短剧%s" % vid)
                 if len(results) >= 40:
                     break
 
