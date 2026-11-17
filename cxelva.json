@@ -38,12 +38,6 @@
       "quickSearch": 1,
       "filterable": 1
     },
-	  	      {
-      "key": "个影",
-      "name": "🍎融融🔹自建",
-      "type": 3,
-      "api": "./lib/gy.js"
-    },
 	   {
             "key": "瓜子┃4K",
             "name": "🍎瓜子🔹影视",
