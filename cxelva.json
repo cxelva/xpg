@@ -136,6 +136,39 @@
       "api": "./py/jxf.py"
     },
 	  {
+      "name": "🍎小黄🔹APP",
+      "key": "AppV7Xhr",
+      "type": 3,
+      "api": "csp_AppV7Amns",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1,
+      "ext": "AppV7Xhr",
+      "jar": "./lib/nf.png"
+    },
+	{
+      "name": "🍎柚子🔹APP",
+      "key": "AppV7Xyz",
+      "type": 3,
+      "api": "csp_AppV7Amns",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1,
+      "ext": "AppV7Xyz",
+      "jar": "./lib/nf.png"
+    },
+	      {
+      "name": "🍎秋天🔹APP",
+      "key": "NewGrV2",
+      "type": 3,
+      "api": "csp_NewGrV2Amns",
+      "searchable": 1,
+      "quickSearch": 1,
+      "changeable": 1,
+      "ext": "NewGrV2",
+      "jar": "./lib/nf.png"
+    },
+	  {
       "name": "🍎师兄🔹APP",
       "key": "AppV7Dsx",
       "type": 3,
