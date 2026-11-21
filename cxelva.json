@@ -136,6 +136,26 @@
             "searchable": 1,
             "switchable": 1
         },
+	  {
+            "key": "山楂影院",
+            "name": "🍎山楂🔹4k",
+            "type": 3,
+            "api": "./py/山楂.py",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "switchable": 1
+        },
+	  {
+            "key": "秒看影院",
+            "name": "🍎秒看🔹4k",
+            "type": 3,
+            "api": "./py/秒看.py",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "switchable": 1
+        },
 	      {
       "key": "天堂",
       "name": "🍎电影🔹天堂",
