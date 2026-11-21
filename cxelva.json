@@ -156,6 +156,16 @@
             "searchable": 1,
             "switchable": 1
         },
+	   {
+            "key": "云播影院",
+            "name": "🍎云播🔹影院",
+            "type": 3,
+            "api": "./py/云播.py",
+            "filterable": 1,
+            "quickSearch": 1,
+            "searchable": 1,
+            "switchable": 1
+        },
 	      {
       "key": "天堂",
       "name": "🍎电影🔹天堂",
