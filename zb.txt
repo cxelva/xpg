@@ -6,27 +6,27 @@ CCTV1综合,http://17782331118.top:8188/rtp/235.254.199.147:7980
 CCTV1综合,http://17782331118.top:8188/rtp/235.254.199.92:7980
 CCTV1综合,http://mg.cttv.vip/migu.php?pid=608807420
 
-CCTV2财经,http://17782331118.top:8188/rtp/235.254.199.52:7980
 CCTV2财经,http://113.98.11.46:3000/631780532
+CCTV2财经,http://17782331118.top:8188/rtp/235.254.199.52:7980
 CCTV2财经,http://mg.cttv.vip/migu.php?pid=631780532
 
 CCTV3综艺,http://113.98.11.46:3000/624878271
 CCTV3综艺,http://mg.cttv.vip/migu.php?pid=624878271
 
-CCTV4中文国际,http://17782331118.top:8188/rtp/235.254.198.183:7980
 CCTV4中文国际,http://113.98.11.46:3000/631780421
+CCTV4中文国际,http://17782331118.top:8188/rtp/235.254.198.183:7980
 CCTV4中文国际,http://mg.cttv.vip/migu.php?pid=631780421
 
-CCTV5体育,http://17782331118.top:8188/rtp/235.254.199.54:7980
 CCTV5体育,http://113.98.11.46:3000/641886683
+CCTV5体育,http://17782331118.top:8188/rtp/235.254.199.54:7980
 CCTV5体育,http://mg.cttv.vip/migu.php?pid=641886683
 
 CCTV5+体育赛事,http://17782331118.top:8188/rtp/235.254.199.121:7980
 CCTV5+体育赛事,http://113.98.11.46:3000/641886773
 CCTV5+体育赛事,http://mg.cttv.vip/migu.php?pid=641886773
 
-CCTV6电影,http://17782331118.top:8188/rtp/235.254.199.55:7980
 CCTV6电影,http://113.98.11.46:3000/624878396
+CCTV6电影,http://17782331118.top:8188/rtp/235.254.199.55:7980
 CCTV6电影,http://mg.cttv.vip/migu.php?pid=624878396
 
 CCTV7国防军事,http://17782331118.top:8188/rtp/235.254.199.56:7980
